@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Two Pointers on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/categories/two-pointers/</link>
+    <description>Recent content in Two Pointers on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Oct 2021 20:11:06 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/two-pointers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rotate Array</title>
+      <link>https://mindbreaker3310.github.io/posts/rotate-array/</link>
+      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/rotate-array/</guid>
+      <description>189. Rotate Array  題目  ‎給一個陣列，將陣列向右旋轉k步。
+ 範例  Input: nums = [1,2,3,4,5,6,7], k = 3 Output: [5,6,7,1,2,3,4] Explanation: rotate 1 steps to the right: [7,1,2,3,4,5,6] rotate 2 steps to the right: [6,7,1,2,3,4,5] rotate 3 steps to the right: [5,6,7,1,2,3,4] Input: nums = [-1,-100,3,99], k = 2 Output: [3,99,-1,-100] Explanation: rotate 1 steps to the right: [99,-1,-100,3] rotate 2 steps to the right: [3,99,-1,-100]  解答  public class Solution { public void Rotate(int[] nums, int k) { if (nums.</description>
+    </item>
+    
+    <item>
+      <title>Squares of a Sorted Array</title>
+      <link>https://mindbreaker3310.github.io/posts/squares-of-a-sorted-array/</link>
+      <pubDate>Tue, 19 Oct 2021 20:07:04 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/squares-of-a-sorted-array/</guid>
+      <description>977. Squares of a Sorted Array  題目  給一個由排序到大的陣列，回傳每個數值都平方的排序陣列。
+ 範例  Input: nums = [-4,-1,0,3,10] Output: [0,1,9,16,100] Explanation: After squaring, the array becomes [16,1,0,9,100]. After sorting, it becomes [0,1,9,16,100]. Input: nums = [-7,-3,2,3,11] Output: [4,9,9,49,121]  解答  public class Solution { public int[] SortedSquares(int[] nums) { int[] ans = new int[nums.Length]; int i = 0; int j = nums.Length - 1; int p = j; while (i &amp;lt;= j) { if (Math.</description>
+    </item>
+    
+  </channel>
+</rss>

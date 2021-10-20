@@ -1,13 +1,83 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on ExampleSite</title>
+    <title>Categories on MindBreaker3310</title>
     <link>https://mindbreaker3310.github.io/categories/</link>
-    <description>Recent content in Categories on ExampleSite</description>
-    <image>
-      <url>https://mindbreaker3310.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://mindbreaker3310.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://mindbreaker3310.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recent content in Categories on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Oct 2021 20:11:06 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algorithm</title>
+      <link>https://mindbreaker3310.github.io/categories/algorithm/</link>
+      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Array</title>
+      <link>https://mindbreaker3310.github.io/categories/array/</link>
+      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/array/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Medium</title>
+      <link>https://mindbreaker3310.github.io/categories/medium/</link>
+      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/medium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Two Pointers</title>
+      <link>https://mindbreaker3310.github.io/categories/two-pointers/</link>
+      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/two-pointers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Easy</title>
+      <link>https://mindbreaker3310.github.io/categories/easy/</link>
+      <pubDate>Tue, 19 Oct 2021 20:07:04 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/easy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Structure</title>
+      <link>https://mindbreaker3310.github.io/categories/data-structure/</link>
+      <pubDate>Tue, 19 Oct 2021 20:03:08 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/data-structure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Binary Search</title>
+      <link>https://mindbreaker3310.github.io/categories/binary-search/</link>
+      <pubDate>Tue, 19 Oct 2021 13:26:30 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/binary-search/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>https://mindbreaker3310.github.io/categories/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/test/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

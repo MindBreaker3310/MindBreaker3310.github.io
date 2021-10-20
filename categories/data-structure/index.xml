@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Structure on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/categories/data-structure/</link>
+    <description>Recent content in Data Structure on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Oct 2021 20:03:08 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/data-structure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Merge Sorted Array</title>
+      <link>https://mindbreaker3310.github.io/posts/merge-sorted-array/</link>
+      <pubDate>Tue, 19 Oct 2021 20:03:08 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/merge-sorted-array/</guid>
+      <description>88. Merge Sorted Array  題目  給予兩個非零部分由小到大排序的陣列nums1與nums2，m與n分別代表前面兩個陣列的長度。
+目標要將nums1與nums2合併，替換掉nums1內的0。
+ 範例  Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3 Output: [1,2,2,3,5,6] Explanation: The arrays we are merging are [1,2,3] and [2,5,6]. The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1. Input: nums1 = [1], m = 1, nums2 = [], n = 0 Output: [1] Explanation: The arrays we are merging are [1] and [].</description>
+    </item>
+    
+    <item>
+      <title>Two Sum</title>
+      <link>https://mindbreaker3310.github.io/posts/two-sum/</link>
+      <pubDate>Tue, 19 Oct 2021 20:00:03 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/two-sum/</guid>
+      <description>1. Two Sum  題目  給一整數陣列與目標數，找出陣列中的兩個數值相加會等於目標數，並回傳這兩個數的index。
+只會有一個解，且不同重複使用相同的元素
+ 範例  Input: nums = [2,7,11,15], target = 9 Output: [0,1] Output: Because nums[0] + nums[1] == 9, we return [0, 1]. Input: nums = [3,2,4], target = 6 Output: [1,2]  解答  public class Solution { public int[] TwoSum(int[] nums, int target) { Dictionary&amp;lt;int, int&amp;gt; dict = new Dictionary&amp;lt;int, int&amp;gt;(); for (int i = 0; i &amp;lt; nums.Length; i++) { if (dict.</description>
+    </item>
+    
+    <item>
+      <title>Maximum Subarray</title>
+      <link>https://mindbreaker3310.github.io/posts/maximum-subarray/</link>
+      <pubDate>Tue, 19 Oct 2021 12:31:43 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/maximum-subarray/</guid>
+      <description>53. Maximum Subarray  題目  ‎給一個整數陣列，找到&amp;quot;連續&amp;quot;的子陣列（包含至少一個數位），它擁有最大的數值總和，並將其回傳‎‎。
+ 範例  Input: nums = [-2,1,-3,4,-1,2,1,-5,4] Output: 6 Explanation: [4,-1,2,1] has the largest sum = 6 Input: nums = [1] Output: 1  解答  public class Solution { public int MaxSubArray(int[] nums) { int currentSum = 0; int maxSum = nums[0]; for (int i = 0; i &amp;lt; nums.Length; i++) { currentSum += nums[i]; if (nums[i] &amp;gt; currentSum) { currentSum = nums[i]; } if (currentSum &amp;gt; maxSum) { maxSum = currentSum; } } return maxSum; } }  筆記  currentSum代表從前面往後加的總和，如果當nums[i]比前面加的總和還大時，那就從nums[i]開始重加currentSum = nums[i]</description>
+    </item>
+    
+    <item>
+      <title>Contains Duplicate</title>
+      <link>https://mindbreaker3310.github.io/posts/contains-duplicate/</link>
+      <pubDate>Tue, 19 Oct 2021 11:51:58 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/contains-duplicate/</guid>
+      <description>217. Contains Duplicate  題目  給一整數陣列，如果任何值在陣列中‎‎至少出現兩次‎‎，回傳true，否則回傳false。
+ 範例  Input: nums = [1,2,3,1] Output: true Input: nums = [1,2,3,4] Output: false  解答  public class Solution { public bool ContainsDuplicate(int[] nums) { Array.Sort(nums); for (int i = 0; i &amp;lt; nums.Length - 1; i++) { if (nums[i] == nums[i + 1]) { return true; } } return false; } }  筆記  很直覺，先排序好陣列後，若有連續兩個數字相同，及代表有數值重複出現。
+ 參考  https://leetcode.com/problems/contains-duplicate/</description>
+    </item>
+    
+  </channel>
+</rss>

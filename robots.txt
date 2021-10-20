@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://mindbreaker3310.github.io/sitemap.xml
