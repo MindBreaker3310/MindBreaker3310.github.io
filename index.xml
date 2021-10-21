@@ -6,7 +6,513 @@
         <description>Recent content on MindBreaker3310</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 19 Oct 2021 20:11:06 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 21 Oct 2021 20:46:32 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Reverse Words in a String III</title>
+        <link>https://mindbreaker3310.github.io/posts/reverse-words-in-a-string-iii/</link>
+        <pubDate>Thu, 21 Oct 2021 20:46:32 +0800</pubDate>
+        
+        <guid>https://mindbreaker3310.github.io/posts/reverse-words-in-a-string-iii/</guid>
+        <description>&lt;h1 id=&#34;557-reverse-words-in-a-string-iii&#34;&gt;557. Reverse Words in a String III&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;題目&#34;&gt;題目&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;只反轉句子裡面的單字，而不改變單字的順序。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Let&amp;#39;s take LeetCode contest&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;s&amp;#39;teL ekat edoCteeL tsetnoc&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;God Ding&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;doG gniD&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解答&#34;&gt;解答&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Solution&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ReverseWords&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;subs&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;subs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;subs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;subs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Reverse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ToArray&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Join&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;subs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解題思路&#34;&gt;解題思路&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;先將句子切割成一個個單字的矩陣，再分別把每個單字做轉換，最後再合併成一個字串。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;參考&#34;&gt;參考&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode.com/problems/reverse-words-in-a-string-iii/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://leetcode.com/problems/reverse-words-in-a-string-iii/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Reverse String</title>
+        <link>https://mindbreaker3310.github.io/posts/reverse-string/</link>
+        <pubDate>Thu, 21 Oct 2021 20:45:46 +0800</pubDate>
+        
+        <guid>https://mindbreaker3310.github.io/posts/reverse-string/</guid>
+        <description>&lt;h1 id=&#34;344-reverse-string&#34;&gt;344. Reverse String&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;題目&#34;&gt;題目&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;反轉這個char[]，而不能使用其他記憶體空間。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;h&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;e&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;l&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;l&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;o&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;o&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;l&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;l&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;e&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;h&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;H&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;n&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;n&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;h&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;h&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;n&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;n&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;H&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解答&#34;&gt;解答&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Solution&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ReverseString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解題思路&#34;&gt;解題思路&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;就轉&amp;hellip;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;參考&#34;&gt;參考&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode.com/problems/reverse-string/submissions/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://leetcode.com/problems/reverse-string/submissions/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Pascal&#39;s Triangle</title>
+        <link>https://mindbreaker3310.github.io/posts/rascals-triangle/</link>
+        <pubDate>Thu, 21 Oct 2021 20:45:17 +0800</pubDate>
+        
+        <guid>https://mindbreaker3310.github.io/posts/rascals-triangle/</guid>
+        <description>&lt;h1 id=&#34;118-pascals-triangle&#34;&gt;118. Pascal&amp;rsquo;s Triangle&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;題目&#34;&gt;題目&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;給要得行數，建立出Pascal三角形的陣列。&lt;/p&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif&#34; &gt;
+		&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;Pascal&amp;rsquo;s Triangle&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;Pascal’s Triangle&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numRows&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numRows&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解答&#34;&gt;解答&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Solution&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;IList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Generate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numRows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;c1&#34;&gt;//建立二維陣列
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[][]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;numRows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][];&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numRows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numRows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++)&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                    &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+                &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                    &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解題思路&#34;&gt;解題思路&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;每一層的第一個與最後一個都只會是&lt;code&gt;1&lt;/code&gt;，中間第&lt;code&gt;i&lt;/code&gt;個則是由上一層的第&lt;code&gt;i-1&lt;/code&gt;、&lt;code&gt;i&lt;/code&gt;個相加。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;參考&#34;&gt;參考&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode.com/problems/pascals-triangle/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://leetcode.com/problems/pascals-triangle/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Reshape the Matrix</title>
+        <link>https://mindbreaker3310.github.io/posts/reshape-the-matrix/</link>
+        <pubDate>Thu, 21 Oct 2021 20:44:35 +0800</pubDate>
+        
+        <guid>https://mindbreaker3310.github.io/posts/reshape-the-matrix/</guid>
+        <description>&lt;h1 id=&#34;566-reshape-the-matrix&#34;&gt;566. Reshape the Matrix&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;題目&#34;&gt;題目&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;實作在Matlab非常好用的功能reshape，他可以將matrix變形。&lt;/p&gt;
+&lt;p&gt;給一個二維matrix，將其換成&lt;code&gt;r&lt;/code&gt;*&lt;code&gt;c&lt;/code&gt; 的matrix。&lt;/p&gt;
+&lt;p&gt;若不能轉換，則回傳原matrix。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://assets.leetcode.com/uploads/2021/04/24/reshape1-grid.jpg&#34; &gt;
+		&lt;img src=&#34;https://assets.leetcode.com/uploads/2021/04/24/reshape1-grid.jpg&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;範例1&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;範例1&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mat&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;r&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;figure 
+	&gt;
+	&lt;a href=&#34;https://assets.leetcode.com/uploads/2021/04/24/reshape2-grid.jpg&#34; &gt;
+		&lt;img src=&#34;https://assets.leetcode.com/uploads/2021/04/24/reshape2-grid.jpg&#34;
+			
+			
+			
+			loading=&#34;lazy&#34;
+			alt=&#34;範例2&#34;&gt;
+	&lt;/a&gt;
+	
+	&lt;figcaption&gt;範例2&lt;/figcaption&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mat&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;r&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解答&#34;&gt;解答&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-C#public&#34; data-lang=&#34;C#public&#34;&gt;{
+    public int[][] MatrixReshape(int[][] mat, int r, int c)
+    {
+        int matRows = mat.Length;
+        int matColumns = mat[0].Length;
+
+        if (matRows * matColumns != r * c)
+        {
+            return mat;
+        }
+
+	//C#建立多維矩陣的方法
+        int[][] ans = new int[r][];
+        for (int i = 0; i &amp;lt; r; i++)
+        {
+            ans[i] = new int[c];
+        }
+
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i &amp;lt; r; i++)
+        {
+            for (int j = 0; j &amp;lt; c; j++)
+            {
+                if (y == matColumns)
+                {
+                    x++;
+                    y = 0;
+                }
+                ans[i][j] = mat[x][y];
+                y++;
+            }
+        }
+
+        return ans;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解題思路&#34;&gt;解題思路&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;方法有很多種，這算是最直覺的方式了，先建立要輸出的matrix，再由左至右(&lt;code&gt;i&lt;/code&gt;)、由上至下(&lt;code&gt;j&lt;/code&gt;)一個一個填入，而填入的數值也是如此移動(&lt;code&gt;x&lt;/code&gt;, &lt;code&gt;y&lt;/code&gt;)，遇到&lt;code&gt;y == matColumns&lt;/code&gt;就換行。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;參考&#34;&gt;參考&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode.com/problems/reshape-the-matrix/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://leetcode.com/problems/reshape-the-matrix/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Best Time to Buy and Sell Stock</title>
+        <link>https://mindbreaker3310.github.io/posts/best-time-to-buy-and-sell-stock/</link>
+        <pubDate>Wed, 20 Oct 2021 20:36:55 +0800</pubDate>
+        
+        <guid>https://mindbreaker3310.github.io/posts/best-time-to-buy-and-sell-stock/</guid>
+        <description>&lt;h1 id=&#34;121-best-time-to-buy-and-sell-stock&#34;&gt;121. Best Time to Buy and Sell Stock&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;題目&#34;&gt;題目&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;給一個陣列代表每日股票的買賣價格，找出最好的買點與賣點。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Explanation&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Buy&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;on&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;day&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;price&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sell&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;on&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;day&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;price&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;profit&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5.&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Note&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;that&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;buying&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;on&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;day&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;selling&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;on&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;day&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;allowed&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;because&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;you&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;must&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;buy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;before&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;you&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sell&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Explanation&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;In&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;transactions&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;are&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;done&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;the&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;max&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;profit&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解答&#34;&gt;解答&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Solution&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MaxProfit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxProfit&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;profit&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prices&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+                &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;profit&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxProfit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                    &lt;span class=&#34;n&#34;&gt;maxProfit&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;profit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxProfit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解題思路&#34;&gt;解題思路&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;設定兩個指標分別代表買點&lt;code&gt;b&lt;/code&gt;與賣點&lt;code&gt;s&lt;/code&gt;(買點隔一天)，當股票往下跌(買點&amp;gt;賣點)，把買點設為更低價的那一天，股票上漲時，買點不動，紀錄收益，找出最大收益。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;參考&#34;&gt;參考&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode.com/problems/best-time-to-buy-and-sell-stock/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://leetcode.com/problems/best-time-to-buy-and-sell-stock/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Intersection of Two Arrays II</title>
+        <link>https://mindbreaker3310.github.io/posts/intersection-of-two-arrays/</link>
+        <pubDate>Wed, 20 Oct 2021 20:33:59 +0800</pubDate>
+        
+        <guid>https://mindbreaker3310.github.io/posts/intersection-of-two-arrays/</guid>
+        <description>&lt;h1 id=&#34;350-intersection-of-two-arrays-ii&#34;&gt;350. Intersection of Two Arrays II&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;題目&#34;&gt;題目&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;給兩個陣列，找出這兩個陣列都有的數值，結果不需按照順序。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Explanation&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;also&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;accepted&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解答&#34;&gt;解答&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Solution&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Intersect&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;Array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;Array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ansList&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;();&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;p2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;ansList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++;&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;p2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ansList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ToArray&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解題思路&#34;&gt;解題思路&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;先把兩個陣列都排序，並分別給他們一個指標，當兩個指標指向的值相等的時候，就加到&lt;code&gt;List&lt;/code&gt;內。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;參考&#34;&gt;參考&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode.com/problems/intersection-of-two-arrays-ii/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://leetcode.com/problems/intersection-of-two-arrays-ii/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Two Sum II | Input array is sorted</title>
+        <link>https://mindbreaker3310.github.io/posts/two-sum-2/</link>
+        <pubDate>Wed, 20 Oct 2021 20:30:23 +0800</pubDate>
+        
+        <guid>https://mindbreaker3310.github.io/posts/two-sum-2/</guid>
+        <description>&lt;h1 id=&#34;167-two-sum-ii---input-array-is-sorted&#34;&gt;167. Two Sum II - Input array is sorted&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;題目&#34;&gt;題目&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;給一個排序過的整數陣列與目標數，找出陣列中的兩個數值相加會等於目標數，並回傳這兩個數分別是第幾個數AKA &lt;code&gt;index+1&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;只會有一個解，且不同重複使用相同的元素&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numbers&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Explanation&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;The&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;6.&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Therefore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numbers&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[-&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Explanation&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;The&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1.&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Therefore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解答&#34;&gt;解答&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Solution&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TwoSum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numbers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;low&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;high&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numbers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;low&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;high&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numbers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;low&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;numbers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;high&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;low&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;high&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;--;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;low&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;high&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解題思路&#34;&gt;解題思路&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在1. Two Sum這題裡面使用&lt;code&gt;Dictionary&lt;/code&gt;的方式也可以，但是這一題它的陣列是已經排序過的，可以使用兩個指標來解決。&lt;/p&gt;
+&lt;p&gt;相加最大與最小值若小於目標數的話，就增加一點，接近目標值&lt;code&gt;low++&lt;/code&gt;，相反的，大於目標值就減少一點&lt;code&gt;high--&lt;/code&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;參考&#34;&gt;參考&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Move Zeroes</title>
+        <link>https://mindbreaker3310.github.io/posts/move-zeroes/</link>
+        <pubDate>Wed, 20 Oct 2021 20:27:32 +0800</pubDate>
+        
+        <guid>https://mindbreaker3310.github.io/posts/move-zeroes/</guid>
+        <description>&lt;h1 id=&#34;283-move-zeroes&#34;&gt;283. Move Zeroes&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;題目&#34;&gt;題目&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;‎給一個陣列，把所有0都丟掉最後面。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解答&#34;&gt;解答&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C#&#34; data-lang=&#34;C#&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Solution&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MoveZeroes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;++;&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;解題思路&#34;&gt;解題思路&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;兩個指標&lt;code&gt;i&lt;/code&gt;、&lt;code&gt;p&lt;/code&gt;，&lt;code&gt;i&lt;/code&gt;每個次都會前進一步，遍歷整個陣列。&lt;code&gt;p&lt;/code&gt;代表0的index位置，當&lt;code&gt;nums[i]&lt;/code&gt;是0的時候&lt;code&gt;p&lt;/code&gt;將不會跟著增加，等&lt;code&gt;nums[i]&lt;/code&gt;不是0的時候，與其互換。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2 id=&#34;參考&#34;&gt;參考&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://leetcode.com/problems/move-zeroes/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://leetcode.com/problems/move-zeroes/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Rotate Array</title>
         <link>https://mindbreaker3310.github.io/posts/rotate-array/</link>
         <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>

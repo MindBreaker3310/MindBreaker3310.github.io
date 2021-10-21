@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Matrix on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/tags/matrix/</link>
+    <description>Recent content in Matrix on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Oct 2021 20:44:35 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/matrix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reshape the Matrix</title>
+      <link>https://mindbreaker3310.github.io/posts/reshape-the-matrix/</link>
+      <pubDate>Thu, 21 Oct 2021 20:44:35 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/reshape-the-matrix/</guid>
+      <description>566. Reshape the Matrix  題目  實作在Matlab非常好用的功能reshape，他可以將matrix變形。
+給一個二維matrix，將其換成r*c 的matrix。
+若不能轉換，則回傳原matrix。
+ 範例  範例1
+Input: mat = [[1,2],[3,4]], r = 1, c = 4 Output: [[1,2,3,4]] 範例2
+Input: mat = [[1,2],[3,4]], r = 2, c = 4 Output: [[1,2],[3,4]]  解答  { public int[][] MatrixReshape(int[][] mat, int r, int c) { int matRows = mat.Length; int matColumns = mat[0].Length; if (matRows * matColumns != r * c) { return mat; } //C#建立多維矩陣的方法 int[][] ans = new int[r][]; for (int i = 0; i &amp;lt; r; i++) { ans[i] = new int[c]; } int x = 0; int y = 0; for (int i = 0; i &amp;lt; r; i++) { for (int j = 0; j &amp;lt; c; j++) { if (y == matColumns) { x++; y = 0; } ans[i][j] = mat[x][y]; y++; } } return ans; } }  解題思路  方法有很多種，這算是最直覺的方式了，先建立要輸出的matrix，再由左至右(i)、由上至下(j)一個一個填入，而填入的數值也是如此移動(x, y)，遇到y == matColumns就換行。</description>
+    </item>
+    
+  </channel>
+</rss>
