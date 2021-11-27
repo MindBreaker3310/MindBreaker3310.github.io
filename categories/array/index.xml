@@ -1,69 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Array on Example Site</title>
-    <link>https://example.com/categories/array/</link>
-    <description>Recent content in Array on Example Site</description>
+    <title>Array on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/categories/array/</link>
+    <description>Recent content in Array on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Oct 2021 20:33:59 +0800</lastBuildDate><atom:link href="https://example.com/categories/array/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Intersection of Two Arrays II</title>
-      <link>https://example.com/posts/intersection-of-two-arrays/</link>
-      <pubDate>Wed, 20 Oct 2021 20:33:59 +0800</pubDate>
-      
-      <guid>https://example.com/posts/intersection-of-two-arrays/</guid>
-      <description>350. Intersection of Two Arrays II  題目  給兩個陣列，找出這兩個陣列都有的數值，結果不需按照順序。
- 範例  Input: nums1 = [1,2,2,1], nums2 = [2,2] Output: [2,2] Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4] Output: [4,9] Explanation: [9,4] is also accepted.  解答  public class Solution { public int[] Intersect(int[] nums1, int[] nums2) { Array.Sort(nums1); Array.Sort(nums2); List&amp;lt;int&amp;gt; ansList = new List&amp;lt;int&amp;gt;(); int p1 = 0; int p2 = 0; while (p1 &amp;lt; nums1.Length &amp;amp;&amp;amp; p2 &amp;lt; nums2.</description>
-    </item>
-    
-    <item>
-      <title>Two Sum II | Input array is sorted</title>
-      <link>https://example.com/posts/two-sum-2/</link>
-      <pubDate>Wed, 20 Oct 2021 20:30:23 +0800</pubDate>
-      
-      <guid>https://example.com/posts/two-sum-2/</guid>
-      <description>167. Two Sum II - Input array is sorted  題目  給一個排序過的整數陣列與目標數，找出陣列中的兩個數值相加會等於目標數，並回傳這兩個數分別是第幾個數AKA index+1。
-只會有一個解，且不同重複使用相同的元素
- 範例  Input: numbers = [2,3,4], target = 6 Output: [1,3] Explanation: The sum of 2 and 4 is 6. Therefore index1 = 1, index2 = 3. Input: numbers = [-1,0], target = -1 Output: [1,2] Explanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2.  解答  public class Solution { public int[] TwoSum(int[] numbers, int target) { int low = 0; int high = numbers.</description>
-    </item>
-    
-    <item>
-      <title>Move Zeroes</title>
-      <link>https://example.com/posts/move-zeroes/</link>
-      <pubDate>Wed, 20 Oct 2021 20:27:32 +0800</pubDate>
-      
-      <guid>https://example.com/posts/move-zeroes/</guid>
-      <description>283. Move Zeroes  題目  ‎給一個陣列，把所有0都丟掉最後面。
- 範例  Input: nums = [0,1,0,3,12] Output: [1,3,12,0,0] Input: nums = [0] Output: [0]  解答  public class Solution { public void MoveZeroes(int[] nums) { int p = 0; for (int i = 0; i &amp;lt; nums.Length; i++) { if (nums[i] != 0) { int temp = nums[p]; nums[p] = nums[i]; nums[i] = temp; } if (nums[p] != 0) { p++; } } } }  解題思路  兩個指標i、p，i每個次都會前進一步，遍歷整個陣列。p代表0的index位置，當nums[i]是0的時候p將不會跟著增加，等nums[i]不是0的時候，與其互換。</description>
-    </item>
-    
+    <lastBuildDate>Tue, 19 Oct 2021 20:11:06 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/array/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rotate Array</title>
-      <link>https://example.com/posts/rotate-array/</link>
+      <link>https://mindbreaker3310.github.io/posts/rotate-array/</link>
       <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
       
-      <guid>https://example.com/posts/rotate-array/</guid>
+      <guid>https://mindbreaker3310.github.io/posts/rotate-array/</guid>
       <description>189. Rotate Array  題目  ‎給一個陣列，將陣列向右旋轉k步。
  範例  Input: nums = [1,2,3,4,5,6,7], k = 3 Output: [5,6,7,1,2,3,4] Explanation: rotate 1 steps to the right: [7,1,2,3,4,5,6] rotate 2 steps to the right: [6,7,1,2,3,4,5] rotate 3 steps to the right: [5,6,7,1,2,3,4] Input: nums = [-1,-100,3,99], k = 2 Output: [3,99,-1,-100] Explanation: rotate 1 steps to the right: [99,-1,-100,3] rotate 2 steps to the right: [3,99,-1,-100]  解答  public class Solution { public void Rotate(int[] nums, int k) { if (nums.</description>
     </item>
     
     <item>
       <title>Squares of a Sorted Array</title>
-      <link>https://example.com/posts/squares-of-a-sorted-array/</link>
+      <link>https://mindbreaker3310.github.io/posts/squares-of-a-sorted-array/</link>
       <pubDate>Tue, 19 Oct 2021 20:07:04 +0800</pubDate>
       
-      <guid>https://example.com/posts/squares-of-a-sorted-array/</guid>
+      <guid>https://mindbreaker3310.github.io/posts/squares-of-a-sorted-array/</guid>
       <description>977. Squares of a Sorted Array  題目  給一個由排序到大的陣列，回傳每個數值都平方的排序陣列。
  範例  Input: nums = [-4,-1,0,3,10] Output: [0,1,9,16,100] Explanation: After squaring, the array becomes [16,1,0,9,100]. After sorting, it becomes [0,1,9,16,100]. Input: nums = [-7,-3,2,3,11] Output: [4,9,9,49,121]  解答  public class Solution { public int[] SortedSquares(int[] nums) { int[] ans = new int[nums.Length]; int i = 0; int j = nums.Length - 1; int p = j; while (i &amp;lt;= j) { if (Math.</description>
     </item>
     
     <item>
       <title>Merge Sorted Array</title>
-      <link>https://example.com/posts/merge-sorted-array/</link>
+      <link>https://mindbreaker3310.github.io/posts/merge-sorted-array/</link>
       <pubDate>Tue, 19 Oct 2021 20:03:08 +0800</pubDate>
       
-      <guid>https://example.com/posts/merge-sorted-array/</guid>
+      <guid>https://mindbreaker3310.github.io/posts/merge-sorted-array/</guid>
       <description>88. Merge Sorted Array  題目  給予兩個非零部分由小到大排序的陣列nums1與nums2，m與n分別代表前面兩個陣列的長度。
 目標要將nums1與nums2合併，替換掉nums1內的0。
  範例  Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3 Output: [1,2,2,3,5,6] Explanation: The arrays we are merging are [1,2,3] and [2,5,6]. The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1. Input: nums1 = [1], m = 1, nums2 = [], n = 0 Output: [1] Explanation: The arrays we are merging are [1] and [].</description>
@@ -71,10 +40,10 @@
     
     <item>
       <title>Two Sum</title>
-      <link>https://example.com/posts/two-sum/</link>
+      <link>https://mindbreaker3310.github.io/posts/two-sum/</link>
       <pubDate>Tue, 19 Oct 2021 20:00:03 +0800</pubDate>
       
-      <guid>https://example.com/posts/two-sum/</guid>
+      <guid>https://mindbreaker3310.github.io/posts/two-sum/</guid>
       <description>1. Two Sum  題目  給一整數陣列與目標數，找出陣列中的兩個數值相加會等於目標數，並回傳這兩個數的index。
 只會有一個解，且不同重複使用相同的元素
  範例  Input: nums = [2,7,11,15], target = 9 Output: [0,1] Output: Because nums[0] + nums[1] == 9, we return [0, 1]. Input: nums = [3,2,4], target = 6 Output: [1,2]  解答  public class Solution { public int[] TwoSum(int[] nums, int target) { Dictionary&amp;lt;int, int&amp;gt; dict = new Dictionary&amp;lt;int, int&amp;gt;(); for (int i = 0; i &amp;lt; nums.Length; i++) { if (dict.</description>
@@ -82,20 +51,20 @@
     
     <item>
       <title>Maximum Subarray</title>
-      <link>https://example.com/posts/maximum-subarray/</link>
+      <link>https://mindbreaker3310.github.io/posts/maximum-subarray/</link>
       <pubDate>Tue, 19 Oct 2021 12:31:43 +0800</pubDate>
       
-      <guid>https://example.com/posts/maximum-subarray/</guid>
+      <guid>https://mindbreaker3310.github.io/posts/maximum-subarray/</guid>
       <description>53. Maximum Subarray  題目  ‎給一個整數陣列，找到&amp;quot;連續&amp;quot;的子陣列（包含至少一個數位），它擁有最大的數值總和，並將其回傳‎‎。
  範例  Input: nums = [-2,1,-3,4,-1,2,1,-5,4] Output: 6 Explanation: [4,-1,2,1] has the largest sum = 6 Input: nums = [1] Output: 1  解答  public class Solution { public int MaxSubArray(int[] nums) { int currentSum = 0; int maxSum = nums[0]; for (int i = 0; i &amp;lt; nums.Length; i++) { currentSum += nums[i]; if (nums[i] &amp;gt; currentSum) { currentSum = nums[i]; } if (currentSum &amp;gt; maxSum) { maxSum = currentSum; } } return maxSum; } }  筆記  currentSum代表從前面往後加的總和，如果當nums[i]比前面加的總和還大時，那就從nums[i]開始重加currentSum = nums[i]</description>
     </item>
     
     <item>
       <title>Contains Duplicate</title>
-      <link>https://example.com/posts/contains-duplicate/</link>
+      <link>https://mindbreaker3310.github.io/posts/contains-duplicate/</link>
       <pubDate>Tue, 19 Oct 2021 11:51:58 +0800</pubDate>
       
-      <guid>https://example.com/posts/contains-duplicate/</guid>
+      <guid>https://mindbreaker3310.github.io/posts/contains-duplicate/</guid>
       <description>217. Contains Duplicate  題目  給一整數陣列，如果任何值在陣列中‎‎至少出現兩次‎‎，回傳true，否則回傳false。
  範例  Input: nums = [1,2,3,1] Output: true Input: nums = [1,2,3,4] Output: false  解答  public class Solution { public bool ContainsDuplicate(int[] nums) { Array.Sort(nums); for (int i = 0; i &amp;lt; nums.Length - 1; i++) { if (nums[i] == nums[i + 1]) { return true; } } return false; } }  筆記  很直覺，先排序好陣列後，若有連續兩個數字相同，及代表有數值重複出現。
  參考  https://leetcode.com/problems/contains-duplicate/</description>

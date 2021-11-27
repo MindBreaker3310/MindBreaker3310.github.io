@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NuGet on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/tags/nuget/</link>
+    <description>Recent content in NuGet on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Nov 2021 14:55:07 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/nuget/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AutoMapper - DI Version</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</link>
+      <pubDate>Thu, 25 Nov 2021 14:55:07 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</guid>
+      <description>AutoMapper 筆記  簡單介紹  可以輕鬆的轉換兩個class，讓程式碼變得更加簡短乾淨。
+ 範例  message CouponModel { int32 id = 1; string productName = 2; string description = 3; int32 amount = 4; } 在Grpc定義的優戶券模型
+public class Coupon { public int Id { get; set; } public string ProductName { get; set; } public string Description { get; set; } public int Amount { get; set; } } 我們自己定義的模型
+原先轉換需要像是這個樣子
+Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.</description>
+    </item>
+    
+  </channel>
+</rss>

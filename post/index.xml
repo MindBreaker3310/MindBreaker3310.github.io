@@ -6,92 +6,44 @@
     <description>Recent content in Posts on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Oct 2021 20:46:32 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Nov 2021 15:57:43 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Reverse Words in a String III</title>
-      <link>https://mindbreaker3310.github.io/posts/reverse-words-in-a-string-iii/</link>
-      <pubDate>Thu, 21 Oct 2021 20:46:32 +0800</pubDate>
+      <title>使用Grpc服務</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/</link>
+      <pubDate>Thu, 25 Nov 2021 15:57:43 +0800</pubDate>
       
-      <guid>https://mindbreaker3310.github.io/posts/reverse-words-in-a-string-iii/</guid>
-      <description>557. Reverse Words in a String III  題目  只反轉句子裡面的單字，而不改變單字的順序。
- 範例  Input: s = &amp;#34;Let&amp;#39;s take LeetCode contest&amp;#34; Output: &amp;#34;s&amp;#39;teL ekat edoCteeL tsetnoc&amp;#34; Input: s = &amp;#34;God Ding&amp;#34; Output: &amp;#34;doG gniD&amp;#34;  解答  public class Solution { public string ReverseWords(string s) { string[] subs = s.Split(&amp;#34; &amp;#34;); for (int i = 0; i &amp;lt; subs.Length; i++) { subs[i] = new string(subs[i].Reverse().ToArray()); } return String.Join(&amp;#34; &amp;#34;, subs); } }  解題思路  先將句子切割成一個個單字的矩陣，再分別把每個單字做轉換，最後再合併成一個字串。</description>
+      <guid>https://mindbreaker3310.github.io/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/</guid>
+      <description>使用Grpc服務  前情提要  購物車的功能需要導入折價券.Grpc的服務
+購物車是Client端
+折價券是Server端
+ 新增Grpc服務的reference  VS for Mac在專案下面就可以直接看到Connected Services Windows則是右鍵 &amp;raquo; Add &amp;raquo; connected services
+選取購物車專案的connected services &amp;raquo; Add new Grpc service reference &amp;raquo; Add &amp;raquo; 參照折價券.Grpc裡面的.proto &amp;raquo; 選擇Client模式
+執行完後，可以看到.csproj多了Grpc服務、專案下也多了protos
+&amp;lt;Protobuf Include=&amp;#34;..\..\Discount\Discount.Grpc\Discount.Grpc\Protos\discount.proto&amp;#34; GrpcServices=&amp;#34;Client&amp;#34;&amp;gt; &amp;lt;OutputDir&amp;gt;obj\Debug\net5.0\&amp;lt;/OutputDir&amp;gt; &amp;lt;Link&amp;gt;Protos\discount.proto&amp;lt;/Link&amp;gt; &amp;lt;/Protobuf&amp;gt; 建置專案後，也會產生ProtoServiceClient等cs檔
+ 參考  https://pjchender.dev/golang/grpc-getting-started/ https://docs.microsoft.com/en-us/aspnet/core/grpc/aspnetcore?view=aspnetcore-6.0&amp;tabs=visual-studio</description>
     </item>
     
     <item>
-      <title>Reverse String</title>
-      <link>https://mindbreaker3310.github.io/posts/reverse-string/</link>
-      <pubDate>Thu, 21 Oct 2021 20:45:46 +0800</pubDate>
+      <title>AutoMapper - DI Version</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</link>
+      <pubDate>Thu, 25 Nov 2021 14:55:07 +0800</pubDate>
       
-      <guid>https://mindbreaker3310.github.io/posts/reverse-string/</guid>
-      <description>344. Reverse String  題目  反轉這個char[]，而不能使用其他記憶體空間。
- 範例  Input: s = [&amp;#34;h&amp;#34;,&amp;#34;e&amp;#34;,&amp;#34;l&amp;#34;,&amp;#34;l&amp;#34;,&amp;#34;o&amp;#34;] Output: [&amp;#34;o&amp;#34;,&amp;#34;l&amp;#34;,&amp;#34;l&amp;#34;,&amp;#34;e&amp;#34;,&amp;#34;h&amp;#34;] Input: s = [&amp;#34;H&amp;#34;,&amp;#34;a&amp;#34;,&amp;#34;n&amp;#34;,&amp;#34;n&amp;#34;,&amp;#34;a&amp;#34;,&amp;#34;h&amp;#34;] Output: [&amp;#34;h&amp;#34;,&amp;#34;a&amp;#34;,&amp;#34;n&amp;#34;,&amp;#34;n&amp;#34;,&amp;#34;a&amp;#34;,&amp;#34;H&amp;#34;]  解答  public class Solution { public void ReverseString(char[] s) { for (int i = 0; i &amp;lt; s.Length/2; i++) { char temp = s[i]; s[i] = s[s.Length - 1 - i]; s[s.Length - 1 - i] = temp; } } }  解題思路  就轉&amp;hellip;
- 參考  https://leetcode.</description>
+      <guid>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</guid>
+      <description>AutoMapper 筆記  簡單介紹  可以輕鬆的轉換兩個class，讓程式碼變得更加簡短乾淨。
+ 範例  message CouponModel { int32 id = 1; string productName = 2; string description = 3; int32 amount = 4; } 在Grpc定義的優戶券模型
+public class Coupon { public int Id { get; set; } public string ProductName { get; set; } public string Description { get; set; } public int Amount { get; set; } } 我們自己定義的模型
+原先轉換需要像是這個樣子
+Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.</description>
     </item>
     
     <item>
-      <title>Pascal&#39;s Triangle</title>
-      <link>https://mindbreaker3310.github.io/posts/rascals-triangle/</link>
-      <pubDate>Thu, 21 Oct 2021 20:45:17 +0800</pubDate>
+      <title>Grpc 筆記</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211124_grpcmemo.md/</link>
+      <pubDate>Wed, 24 Nov 2021 10:12:35 +0800</pubDate>
       
-      <guid>https://mindbreaker3310.github.io/posts/rascals-triangle/</guid>
-      <description>118. Pascal&amp;rsquo;s Triangle  題目  給要得行數，建立出Pascal三角形的陣列。
-Pascal’s Triangle
- 範例  Input: numRows = 5 Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]] Input: numRows = 1 Output: [[1]]  解答  public class Solution { public IList&amp;lt;IList&amp;lt;int&amp;gt;&amp;gt; Generate(int numRows) { //建立二維陣列  int[][] ans = new int[numRows][]; for (int i = 0; i &amp;lt; numRows; i++) { ans[i] = new int[i + 1]; } for (int n = 0; n &amp;lt; numRows; n++) { for (int i = 0; i &amp;lt; ans[n].</description>
-    </item>
-    
-    <item>
-      <title>Reshape the Matrix</title>
-      <link>https://mindbreaker3310.github.io/posts/reshape-the-matrix/</link>
-      <pubDate>Thu, 21 Oct 2021 20:44:35 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/reshape-the-matrix/</guid>
-      <description>566. Reshape the Matrix  題目  實作在Matlab非常好用的功能reshape，他可以將matrix變形。
-給一個二維matrix，將其換成r*c 的matrix。
-若不能轉換，則回傳原matrix。
- 範例  範例1
-Input: mat = [[1,2],[3,4]], r = 1, c = 4 Output: [[1,2,3,4]] 範例2
-Input: mat = [[1,2],[3,4]], r = 2, c = 4 Output: [[1,2],[3,4]]  解答  { public int[][] MatrixReshape(int[][] mat, int r, int c) { int matRows = mat.Length; int matColumns = mat[0].Length; if (matRows * matColumns != r * c) { return mat; } //C#建立多維矩陣的方法 int[][] ans = new int[r][]; for (int i = 0; i &amp;lt; r; i++) { ans[i] = new int[c]; } int x = 0; int y = 0; for (int i = 0; i &amp;lt; r; i++) { for (int j = 0; j &amp;lt; c; j++) { if (y == matColumns) { x++; y = 0; } ans[i][j] = mat[x][y]; y++; } } return ans; } }  解題思路  方法有很多種，這算是最直覺的方式了，先建立要輸出的matrix，再由左至右(i)、由上至下(j)一個一個填入，而填入的數值也是如此移動(x, y)，遇到y == matColumns就換行。</description>
-    </item>
-    
-    <item>
-      <title>Best Time to Buy and Sell Stock</title>
-      <link>https://mindbreaker3310.github.io/posts/best-time-to-buy-and-sell-stock/</link>
-      <pubDate>Wed, 20 Oct 2021 20:36:55 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/best-time-to-buy-and-sell-stock/</guid>
-      <description>121. Best Time to Buy and Sell Stock  題目  給一個陣列代表每日股票的買賣價格，找出最好的買點與賣點。
- 範例  Input: prices = [7,1,5,3,6,4] Output: 5 Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5. Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell. Input: prices = [7,6,4,3,1] Output: 0 Explanation: In this case, no transactions are done and the max profit = 0.</description>
-    </item>
-    
-    <item>
-      <title>Intersection of Two Arrays II</title>
-      <link>https://mindbreaker3310.github.io/posts/intersection-of-two-arrays/</link>
-      <pubDate>Wed, 20 Oct 2021 20:33:59 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/intersection-of-two-arrays/</guid>
-      <description>350. Intersection of Two Arrays II  題目  給兩個陣列，找出這兩個陣列都有的數值，結果不需按照順序。
- 範例  Input: nums1 = [1,2,2,1], nums2 = [2,2] Output: [2,2] Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4] Output: [4,9] Explanation: [9,4] is also accepted.  解答  public class Solution { public int[] Intersect(int[] nums1, int[] nums2) { Array.Sort(nums1); Array.Sort(nums2); List&amp;lt;int&amp;gt; ansList = new List&amp;lt;int&amp;gt;(); int p1 = 0; int p2 = 0; while (p1 &amp;lt; nums1.Length &amp;amp;&amp;amp; p2 &amp;lt; nums2.</description>
-    </item>
-    
-    <item>
-      <title>Two Sum II | Input array is sorted</title>
-      <link>https://mindbreaker3310.github.io/posts/two-sum-2/</link>
-      <pubDate>Wed, 20 Oct 2021 20:30:23 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/two-sum-2/</guid>
-      <description>167. Two Sum II - Input array is sorted  題目  給一個排序過的整數陣列與目標數，找出陣列中的兩個數值相加會等於目標數，並回傳這兩個數分別是第幾個數AKA index+1。
-只會有一個解，且不同重複使用相同的元素
- 範例  Input: numbers = [2,3,4], target = 6 Output: [1,3] Explanation: The sum of 2 and 4 is 6. Therefore index1 = 1, index2 = 3. Input: numbers = [-1,0], target = -1 Output: [1,2] Explanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2.  解答  public class Solution { public int[] TwoSum(int[] numbers, int target) { int low = 0; int high = numbers.</description>
-    </item>
-    
-    <item>
-      <title>Move Zeroes</title>
-      <link>https://mindbreaker3310.github.io/posts/move-zeroes/</link>
-      <pubDate>Wed, 20 Oct 2021 20:27:32 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/move-zeroes/</guid>
-      <description>283. Move Zeroes  題目  ‎給一個陣列，把所有0都丟掉最後面。
- 範例  Input: nums = [0,1,0,3,12] Output: [1,3,12,0,0] Input: nums = [0] Output: [0]  解答  public class Solution { public void MoveZeroes(int[] nums) { int p = 0; for (int i = 0; i &amp;lt; nums.Length; i++) { if (nums[i] != 0) { int temp = nums[p]; nums[p] = nums[i]; nums[i] = temp; } if (nums[p] != 0) { p++; } } } }  解題思路  兩個指標i、p，i每個次都會前進一步，遍歷整個陣列。p代表0的index位置，當nums[i]是0的時候p將不會跟著增加，等nums[i]不是0的時候，與其互換。</description>
+      <guid>https://mindbreaker3310.github.io/posts/post/20211124_grpcmemo.md/</guid>
+      <description>Grpc 筆記  簡單介紹  Grpc是google開發的rpc(Remote Procedure Call)框架，用於電腦與電腦之間的溝通，就像電腦A呼叫電腦B做事情，電腦B做好事情後把結果回傳給電腦A，與一般的api不同的地方在於，電腦A、B在進行Grpc溝通前，都必須有protocal buffers檔案來把格式與方法定義清楚，並使用HTTP/2進行傳輸，快速、低延遲、支持串流。
+ protocal buffers 檔案  syntax = &amp;#34;proto3&amp;#34;;//使用的protocal buffers版本  option csharp_namespace = &amp;#34;MyFirstGrpc.Grpc&amp;#34;;//命名空間  package greeter; // 定義交換資料的格式 message HelloRequest { string name = 1; } // 定義交換資料的格式 message HelloReply { string message = 1; } // 定義呼叫api的方法 service Greeter { // SayHello方法需要輸入參數(HelloRequest格式) 會回傳(HelloReply格式)  rpc SayHello (HelloRequest) returns (HelloReply); }  AppSettings 使用Http2  { &amp;#34;Logging&amp;#34;: { &amp;#34;LogLevel&amp;#34;: { &amp;#34;Default&amp;#34;: &amp;#34;Information&amp;#34;, &amp;#34;Microsoft&amp;#34;: &amp;#34;Warning&amp;#34;, &amp;#34;Microsoft.</description>
     </item>
     
     <item>

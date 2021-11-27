@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C# on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/tags/c#/</link>
+    <description>Recent content in C# on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Nov 2021 15:57:43 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Grpc服務</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/</link>
+      <pubDate>Thu, 25 Nov 2021 15:57:43 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/</guid>
+      <description>使用Grpc服務  前情提要  購物車的功能需要導入折價券.Grpc的服務
+購物車是Client端
+折價券是Server端
+ 新增Grpc服務的reference  VS for Mac在專案下面就可以直接看到Connected Services Windows則是右鍵 &amp;raquo; Add &amp;raquo; connected services
+選取購物車專案的connected services &amp;raquo; Add new Grpc service reference &amp;raquo; Add &amp;raquo; 參照折價券.Grpc裡面的.proto &amp;raquo; 選擇Client模式
+執行完後，可以看到.csproj多了Grpc服務、專案下也多了protos
+&amp;lt;Protobuf Include=&amp;#34;..\..\Discount\Discount.Grpc\Discount.Grpc\Protos\discount.proto&amp;#34; GrpcServices=&amp;#34;Client&amp;#34;&amp;gt; &amp;lt;OutputDir&amp;gt;obj\Debug\net5.0\&amp;lt;/OutputDir&amp;gt; &amp;lt;Link&amp;gt;Protos\discount.proto&amp;lt;/Link&amp;gt; &amp;lt;/Protobuf&amp;gt; 建置專案後，也會產生ProtoServiceClient等cs檔
+ 參考  https://pjchender.dev/golang/grpc-getting-started/ https://docs.microsoft.com/en-us/aspnet/core/grpc/aspnetcore?view=aspnetcore-6.0&amp;tabs=visual-studio</description>
+    </item>
+    
+    <item>
+      <title>AutoMapper - DI Version</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</link>
+      <pubDate>Thu, 25 Nov 2021 14:55:07 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</guid>
+      <description>AutoMapper 筆記  簡單介紹  可以輕鬆的轉換兩個class，讓程式碼變得更加簡短乾淨。
+ 範例  message CouponModel { int32 id = 1; string productName = 2; string description = 3; int32 amount = 4; } 在Grpc定義的優戶券模型
+public class Coupon { public int Id { get; set; } public string ProductName { get; set; } public string Description { get; set; } public int Amount { get; set; } } 我們自己定義的模型
+原先轉換需要像是這個樣子
+Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.</description>
+    </item>
+    
+    <item>
+      <title>Grpc 筆記</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211124_grpcmemo.md/</link>
+      <pubDate>Wed, 24 Nov 2021 10:12:35 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211124_grpcmemo.md/</guid>
+      <description>Grpc 筆記  簡單介紹  Grpc是google開發的rpc(Remote Procedure Call)框架，用於電腦與電腦之間的溝通，就像電腦A呼叫電腦B做事情，電腦B做好事情後把結果回傳給電腦A，與一般的api不同的地方在於，電腦A、B在進行Grpc溝通前，都必須有protocal buffers檔案來把格式與方法定義清楚，並使用HTTP/2進行傳輸，快速、低延遲、支持串流。
+ protocal buffers 檔案  syntax = &amp;#34;proto3&amp;#34;;//使用的protocal buffers版本  option csharp_namespace = &amp;#34;MyFirstGrpc.Grpc&amp;#34;;//命名空間  package greeter; // 定義交換資料的格式 message HelloRequest { string name = 1; } // 定義交換資料的格式 message HelloReply { string message = 1; } // 定義呼叫api的方法 service Greeter { // SayHello方法需要輸入參數(HelloRequest格式) 會回傳(HelloReply格式)  rpc SayHello (HelloRequest) returns (HelloReply); }  AppSettings 使用Http2  { &amp;#34;Logging&amp;#34;: { &amp;#34;LogLevel&amp;#34;: { &amp;#34;Default&amp;#34;: &amp;#34;Information&amp;#34;, &amp;#34;Microsoft&amp;#34;: &amp;#34;Warning&amp;#34;, &amp;#34;Microsoft.</description>
+    </item>
+    
+  </channel>
+</rss>
