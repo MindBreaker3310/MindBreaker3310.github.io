@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clean Architecture on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/tags/clean-architecture/</link>
+    <description>Recent content in Clean Architecture on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Dec 2021 15:52:49 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/clean-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Clean Architecture</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021202_clean_architecture.md/</link>
+      <pubDate>Thu, 02 Dec 2021 15:52:49 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/2021202_clean_architecture.md/</guid>
+      <description>Clean Architecture  介紹  工作一陣子了，維護的系統也已經熟悉的許多了，但還有許多前人的智慧，一時之間是很難理解的XD，這時有一個乾淨的架構，或許上手的時間就可以更短了。
+ 一步步紀錄  建立一個訂單系統使用Clean Architecture
+依照分層創建各個不同的Project， Ordering.API Ordering.Domain Ordering.Application Ordering.infrastructure
+建立相依關係Project右鍵 &amp;gt;&amp;gt; Add &amp;gt;&amp;gt; Reference 相依關係
+ 開發Ordering.Domain Layer  我們要先建立兩個資料夾Common、Entities
+Common 其中Common放的是我們建立Entity的基礎，含有兩個abstract class，EntityBase、ValueObject，
+public abstract class EntityBase { public int Id { get; protected set; } public string CreatedBy { get; set; } public DateTime CreatedDate { get; set; } public string LastModifiedBy { get; set; } public DateTime? LastModifiedDate { get; set; } } 詳細定義與設計可以參考</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DDD on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/tags/ddd/</link>
+    <description>Recent content in DDD on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Nov 2021 14:30:40 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/ddd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Domain Driven Design 領域驅動設計</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021130_ddd.md/</link>
+      <pubDate>Tue, 30 Nov 2021 14:30:40 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/2021130_ddd.md/</guid>
+      <description>Domain Driven Design  關於DDD  隨著科技進步，需求也是越來越複雜，更多的是需要專業領域人員與開發人員共同協作
+DDD是一種基於領域知識來解決複雜業務問題的軟體開發方法論。
+ Ubiquitous Language  使用通用語言就很重要了，講人話，減少溝通成本。 ex:下訂單大家就聽得懂，別講些什麼call Order API、B2C之類的
+ Anemic Model  Anemic Model貧血模型是指那些只有getter、setter沒有行為能力的模型
+LF2邪鬼(地獄火焰)防下功+防上跳+防前跳+防下跳+防上功 為例
+Devil Max = new Devil(); //使用地獄火焰 Max.Defence().Down().Attack(); Max.Defence().Up().Jump(); Max.Defence().Left().Jump(); Max.Defence().Down().Jump(); Max.Defence().Up().Attack(); 導入DDD與專家討論過後，未來開發的人員直接看程式碼也看得懂在幹嘛
+Devil Max = new Devil(); Max.HellFire();  與微服務的關係  很多時候Micorservices不知道怎麼做切割，這時候DDD就提供一個很好的方向去做業務分割。
+ 參考  https://ithelp.ithome.com.tw/articles/10216645 https://forum.gamer.com.tw/C.php?bsn=7648&amp;snA=3299</description>
+    </item>
+    
+  </channel>
+</rss>

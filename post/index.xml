@@ -6,7 +6,85 @@
     <description>Recent content in Posts on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Nov 2021 15:57:43 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Dec 2021 10:55:10 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>指數投資</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211206_%E6%8C%87%E6%95%B8%E6%8A%95%E8%B3%87.md/</link>
+      <pubDate>Mon, 06 Dec 2021 10:55:10 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211206_%E6%8C%87%E6%95%B8%E6%8A%95%E8%B3%87.md/</guid>
+      <description>指數投資  前情提要  在過去學生時期的時候就接觸了股票，總覺得要錢滾錢才能財富自由，把打工的錢都拿去玩看看，當時的選股策略是
+1.股價夠低(因為本金太小買不起太貴的股票，每一次買股票都是All in)
+2.看起來現在在低檔，低到不能再低的感覺
+當時All in買了陽明4塊多還5塊，沒過幾天不知怎麼就噴到漲停，抓到一個低買高賣的節奏，沒多久就把它出清了，獲利4000$多，後來又聽朋友建議去買光學鏡頭股玉晶光，也賺了好幾千，我該不會其實很適合玩股票吧XD，直到我膝蓋中了一箭，南亞科賠20000元，沒想到那麼慘，之後就退出股海了。
+直到現在全球股市一直突破新高，並且出社會領薪水的時候，我，再次回歸！等等這不會是高點的訊號吧QQ
+ 啟蒙  領了薪水後，只能說錢真的賺，現在年輕人基本上沒什麼希望，光活著就已經費盡全力，每週40小時的生命賣給公司，扣掉基本開銷、房租、伙食，可以花的錢也就一萬多吧，還沒有任何娛樂，活著，卻像是個死人，但想到父母為了我也把自己的生命販賣給公司，只為了能讓我有好的生活，我又有什麼好藉口不去努力呢？
+看了一本關於理財的書籍『我用死薪水輕鬆理財賺千萬』，讓我了解的資產配置、再平衡與指數投資的基本概念，書中的內容都淺顯易懂，沒有什麼難以離解的東西。之後也看了網路上許多的文章與影片，清流君、魯爸、yp筆記、多拉王與伯格頭投資指南，都讓我堅信指數投資是個GOOD SHIT~
+ 伯格頭的投資指南
+ evelop a workable plan Invest early and ofter Never bear too much or too little risk Diversify Never try to time the market Use index funds when possible Keep costs low Minimize taxes Invest with simplicity Stay the course    開戶準備  伯格頭的投資指南第7條，Keep costs low，盡可能地減少投資成本。
+成本最低的應該是台股定期定額(新光證券20000內，手續費1元)
+海外複委託美股(富邦證券，0.12%，低消12美金)
+海外複委託英股(富邦證券，0.15%，低消15美金)</description>
+    </item>
+    
+    <item>
+      <title>Clean Architecture</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021202_clean_architecture.md/</link>
+      <pubDate>Thu, 02 Dec 2021 15:52:49 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/2021202_clean_architecture.md/</guid>
+      <description>Clean Architecture  介紹  工作一陣子了，維護的系統也已經熟悉的許多了，但還有許多前人的智慧，一時之間是很難理解的XD，這時有一個乾淨的架構，或許上手的時間就可以更短了。
+ 一步步紀錄  建立一個訂單系統使用Clean Architecture
+依照分層創建各個不同的Project， Ordering.API Ordering.Domain Ordering.Application Ordering.infrastructure
+建立相依關係Project右鍵 &amp;gt;&amp;gt; Add &amp;gt;&amp;gt; Reference 相依關係
+ 開發Ordering.Domain Layer  我們要先建立兩個資料夾Common、Entities
+Common 其中Common放的是我們建立Entity的基礎，含有兩個abstract class，EntityBase、ValueObject，
+public abstract class EntityBase { public int Id { get; protected set; } public string CreatedBy { get; set; } public DateTime CreatedDate { get; set; } public string LastModifiedBy { get; set; } public DateTime? LastModifiedDate { get; set; } } 詳細定義與設計可以參考</description>
+    </item>
+    
+    <item>
+      <title>CQRS</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021201_cqrs.md/</link>
+      <pubDate>Wed, 01 Dec 2021 11:08:44 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/2021201_cqrs.md/</guid>
+      <description>CQRS  筆記  CQRS(Command Query Responsibility Segregation)命令查詢分隔，目前看起來就是不再需要IRepository了，把它拆成Command(負責寫入資料庫的部分)與Query(只負責讀取的部分)。
+可以增加資料庫的效能，Command的部分則會透過event的形式記錄起來再同步到DB上面。
+我還是偏好原本的方法啊XD
+ 參考  https://ithelp.ithome.com.tw/articles/10237458</description>
+    </item>
+    
+    <item>
+      <title>Domain Driven Design 領域驅動設計</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021130_ddd.md/</link>
+      <pubDate>Tue, 30 Nov 2021 14:30:40 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/2021130_ddd.md/</guid>
+      <description>Domain Driven Design  關於DDD  隨著科技進步，需求也是越來越複雜，更多的是需要專業領域人員與開發人員共同協作
+DDD是一種基於領域知識來解決複雜業務問題的軟體開發方法論。
+ Ubiquitous Language  使用通用語言就很重要了，講人話，減少溝通成本。 ex:下訂單大家就聽得懂，別講些什麼call Order API、B2C之類的
+ Anemic Model  Anemic Model貧血模型是指那些只有getter、setter沒有行為能力的模型
+LF2邪鬼(地獄火焰)防下功+防上跳+防前跳+防下跳+防上功 為例
+Devil Max = new Devil(); //使用地獄火焰 Max.Defence().Down().Attack(); Max.Defence().Up().Jump(); Max.Defence().Left().Jump(); Max.Defence().Down().Jump(); Max.Defence().Up().Attack(); 導入DDD與專家討論過後，未來開發的人員直接看程式碼也看得懂在幹嘛
+Devil Max = new Devil(); Max.HellFire();  與微服務的關係  很多時候Micorservices不知道怎麼做切割，這時候DDD就提供一個很好的方向去做業務分割。
+ 參考  https://ithelp.ithome.com.tw/articles/10216645 https://forum.gamer.com.tw/C.php?bsn=7648&amp;snA=3299</description>
+    </item>
+    
+    <item>
+      <title>SOLID、SoC</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021129_solid%E5%8E%9F%E5%89%87.md/</link>
+      <pubDate>Mon, 29 Nov 2021 16:10:40 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/2021129_solid%E5%8E%9F%E5%89%87.md/</guid>
+      <description>SOLID、SoC  SOLID原則  Single responsibility principle 單一功能原則 認為一個class就應該只有一個任務要做，不做其他任務以外的事情，過去是很多不同的需求都用同一個Service，單一功能原則則是提供各種不同的Use Case給各個需求。 SRP示意圖
+Open/ closed principle 開閉原則 一個class或Function對於他的擴展是開放的，但是對於修改是封閉的，意思就是不改變他的行為，但是可以增加新的功能。 就像是電動理髮刀，可以換上各種不同的刀頭(擴展)，但是機身本體是不能修改的(封閉)。
+Liskov substitution principle 里氏替換原則 程式中的物件應該是可以在不改變正確性的前提下被他的子類所替換的概念，我們在使用「繼承」時，重要的是重複使用 (reuse) 已經寫好的行為，而不是將所有繼承的行為全部覆蓋。
+Interface segregation principle 介面隔離原則 很多個客製化的interface比一個通用的interface還要來得更好管理，例如一個政客interface有提出政見()、拜票()、努力工作()，但事實上不是每一個政客都想實作努力工作XD，所以應該方別建兩個interface，政客介面:提出政見()、拜票()與工作介面:努力工作()。
+Dependency inversion principle 依賴反轉原則 各個class之間的相依性應該越低越好，上層的class不該依賴下層的class DIP示意圖
+ SoC(Separation of concerns) 關注點分離  關注點分離表示，以前端的例子來說，在過去我們是以「關注技術」的方式來分離成HTML、CSS、JavaScript，現今主流框架Vue則是採用「關注元件」的方式來分離，每一個Component都有各自的HTML、CSS、JavaScript。
+ 參考  https://zh.wikipedia.org/wiki/SOLID_(%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1) https://medium.com/@f40507777/%E9%96%8B%E6%94%BE%E5%B0%81%E9%96%89%E5%8E%9F%E5%89%87-open-closed-principle-31d61f9d37a5 https://medium.com/%E6%89%8B%E5%AF%AB%E7%AD%86%E8%A8%98/%E7%AC%AC-10-%E7%AB%A0-%E9%A1%9E%E5%88%A5-clean-code-1c7898d11cd7</description>
+    </item>
+    
     <item>
       <title>使用Grpc服務</title>
       <link>https://mindbreaker3310.github.io/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/</link>
@@ -44,100 +122,6 @@ Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.</description>
       <guid>https://mindbreaker3310.github.io/posts/post/20211124_grpcmemo.md/</guid>
       <description>Grpc 筆記  簡單介紹  Grpc是google開發的rpc(Remote Procedure Call)框架，用於電腦與電腦之間的溝通，就像電腦A呼叫電腦B做事情，電腦B做好事情後把結果回傳給電腦A，與一般的api不同的地方在於，電腦A、B在進行Grpc溝通前，都必須有protocal buffers檔案來把格式與方法定義清楚，並使用HTTP/2進行傳輸，快速、低延遲、支持串流。
  protocal buffers 檔案  syntax = &amp;#34;proto3&amp;#34;;//使用的protocal buffers版本  option csharp_namespace = &amp;#34;MyFirstGrpc.Grpc&amp;#34;;//命名空間  package greeter; // 定義交換資料的格式 message HelloRequest { string name = 1; } // 定義交換資料的格式 message HelloReply { string message = 1; } // 定義呼叫api的方法 service Greeter { // SayHello方法需要輸入參數(HelloRequest格式) 會回傳(HelloReply格式)  rpc SayHello (HelloRequest) returns (HelloReply); }  AppSettings 使用Http2  { &amp;#34;Logging&amp;#34;: { &amp;#34;LogLevel&amp;#34;: { &amp;#34;Default&amp;#34;: &amp;#34;Information&amp;#34;, &amp;#34;Microsoft&amp;#34;: &amp;#34;Warning&amp;#34;, &amp;#34;Microsoft.</description>
-    </item>
-    
-    <item>
-      <title>Rotate Array</title>
-      <link>https://mindbreaker3310.github.io/posts/rotate-array/</link>
-      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/rotate-array/</guid>
-      <description>189. Rotate Array  題目  ‎給一個陣列，將陣列向右旋轉k步。
- 範例  Input: nums = [1,2,3,4,5,6,7], k = 3 Output: [5,6,7,1,2,3,4] Explanation: rotate 1 steps to the right: [7,1,2,3,4,5,6] rotate 2 steps to the right: [6,7,1,2,3,4,5] rotate 3 steps to the right: [5,6,7,1,2,3,4] Input: nums = [-1,-100,3,99], k = 2 Output: [3,99,-1,-100] Explanation: rotate 1 steps to the right: [99,-1,-100,3] rotate 2 steps to the right: [3,99,-1,-100]  解答  public class Solution { public void Rotate(int[] nums, int k) { if (nums.</description>
-    </item>
-    
-    <item>
-      <title>Squares of a Sorted Array</title>
-      <link>https://mindbreaker3310.github.io/posts/squares-of-a-sorted-array/</link>
-      <pubDate>Tue, 19 Oct 2021 20:07:04 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/squares-of-a-sorted-array/</guid>
-      <description>977. Squares of a Sorted Array  題目  給一個由排序到大的陣列，回傳每個數值都平方的排序陣列。
- 範例  Input: nums = [-4,-1,0,3,10] Output: [0,1,9,16,100] Explanation: After squaring, the array becomes [16,1,0,9,100]. After sorting, it becomes [0,1,9,16,100]. Input: nums = [-7,-3,2,3,11] Output: [4,9,9,49,121]  解答  public class Solution { public int[] SortedSquares(int[] nums) { int[] ans = new int[nums.Length]; int i = 0; int j = nums.Length - 1; int p = j; while (i &amp;lt;= j) { if (Math.</description>
-    </item>
-    
-    <item>
-      <title>Merge Sorted Array</title>
-      <link>https://mindbreaker3310.github.io/posts/merge-sorted-array/</link>
-      <pubDate>Tue, 19 Oct 2021 20:03:08 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/merge-sorted-array/</guid>
-      <description>88. Merge Sorted Array  題目  給予兩個非零部分由小到大排序的陣列nums1與nums2，m與n分別代表前面兩個陣列的長度。
-目標要將nums1與nums2合併，替換掉nums1內的0。
- 範例  Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3 Output: [1,2,2,3,5,6] Explanation: The arrays we are merging are [1,2,3] and [2,5,6]. The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1. Input: nums1 = [1], m = 1, nums2 = [], n = 0 Output: [1] Explanation: The arrays we are merging are [1] and [].</description>
-    </item>
-    
-    <item>
-      <title>Two Sum</title>
-      <link>https://mindbreaker3310.github.io/posts/two-sum/</link>
-      <pubDate>Tue, 19 Oct 2021 20:00:03 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/two-sum/</guid>
-      <description>1. Two Sum  題目  給一整數陣列與目標數，找出陣列中的兩個數值相加會等於目標數，並回傳這兩個數的index。
-只會有一個解，且不同重複使用相同的元素
- 範例  Input: nums = [2,7,11,15], target = 9 Output: [0,1] Output: Because nums[0] + nums[1] == 9, we return [0, 1]. Input: nums = [3,2,4], target = 6 Output: [1,2]  解答  public class Solution { public int[] TwoSum(int[] nums, int target) { Dictionary&amp;lt;int, int&amp;gt; dict = new Dictionary&amp;lt;int, int&amp;gt;(); for (int i = 0; i &amp;lt; nums.Length; i++) { if (dict.</description>
-    </item>
-    
-    <item>
-      <title>First Bad Version</title>
-      <link>https://mindbreaker3310.github.io/posts/first-bad-version/</link>
-      <pubDate>Tue, 19 Oct 2021 13:26:30 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/first-bad-version/</guid>
-      <description>278. First Bad Version  題目  ‎給一個整數陣列，找到&amp;quot;連續&amp;quot;的子陣列（包含至少一個數位），它擁有最大的數值總和，並將其回傳‎‎。
- 範例  Input: n = 5, bad = 4 Output: 4 Explanation: call isBadVersion(3) -&amp;gt; false call isBadVersion(5) -&amp;gt; true call isBadVersion(4) -&amp;gt; true Then 4 is the first bad version. Input: n = 1, bad = 1 Output: 1  解答  public class Solution : VersionControl { public int FirstBadVersion(int n) { for (int i = n; i &amp;gt;= 1; i--) { if (!</description>
-    </item>
-    
-    <item>
-      <title>Maximum Subarray</title>
-      <link>https://mindbreaker3310.github.io/posts/maximum-subarray/</link>
-      <pubDate>Tue, 19 Oct 2021 12:31:43 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/maximum-subarray/</guid>
-      <description>53. Maximum Subarray  題目  ‎給一個整數陣列，找到&amp;quot;連續&amp;quot;的子陣列（包含至少一個數位），它擁有最大的數值總和，並將其回傳‎‎。
- 範例  Input: nums = [-2,1,-3,4,-1,2,1,-5,4] Output: 6 Explanation: [4,-1,2,1] has the largest sum = 6 Input: nums = [1] Output: 1  解答  public class Solution { public int MaxSubArray(int[] nums) { int currentSum = 0; int maxSum = nums[0]; for (int i = 0; i &amp;lt; nums.Length; i++) { currentSum += nums[i]; if (nums[i] &amp;gt; currentSum) { currentSum = nums[i]; } if (currentSum &amp;gt; maxSum) { maxSum = currentSum; } } return maxSum; } }  筆記  currentSum代表從前面往後加的總和，如果當nums[i]比前面加的總和還大時，那就從nums[i]開始重加currentSum = nums[i]</description>
-    </item>
-    
-    <item>
-      <title>Contains Duplicate</title>
-      <link>https://mindbreaker3310.github.io/posts/contains-duplicate/</link>
-      <pubDate>Tue, 19 Oct 2021 11:51:58 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/contains-duplicate/</guid>
-      <description>217. Contains Duplicate  題目  給一整數陣列，如果任何值在陣列中‎‎至少出現兩次‎‎，回傳true，否則回傳false。
- 範例  Input: nums = [1,2,3,1] Output: true Input: nums = [1,2,3,4] Output: false  解答  public class Solution { public bool ContainsDuplicate(int[] nums) { Array.Sort(nums); for (int i = 0; i &amp;lt; nums.Length - 1; i++) { if (nums[i] == nums[i + 1]) { return true; } } return false; } }  筆記  很直覺，先排序好陣列後，若有連續兩個數字相同，及代表有數值重複出現。
- 參考  https://leetcode.com/problems/contains-duplicate/</description>
-    </item>
-    
-    <item>
-      <title>Search Insert Pposition</title>
-      <link>https://mindbreaker3310.github.io/posts/search-insert-position/</link>
-      <pubDate>Mon, 18 Oct 2021 22:16:12 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/search-insert-position/</guid>
-      <description>35. Search Insert Position  題目  ‎給一個整數陣列，找到&amp;quot;連續&amp;quot;的子陣列（包含至少一個數位），它擁有最大的數值總和，並將其回傳‎‎。
- 範例  Input: nums = [1,3,5,6], target = 5 Output: 2 Input: nums = [1,3,5,6], target = 2 Output: 1  解答  public class Solution { public int SearchInsert(int[] nums, int target) { int low = 0; int high = nums.Length - 1; while (low &amp;lt;= high) { int mid = low + (high - low) / 2; if (nums[mid] == target) { return mid; } else if (nums[mid] &amp;lt; target) { low = mid + 1; } else if (nums[mid] &amp;gt; target) { high = mid - 1; } } return low; } }  筆記  基本上與Binary Search的用法沒有區別，只差在return low的原因是當low &amp;lt;= high時，low的位置剛好會在target應該要在的位置上。</description>
-    </item>
-    
-    <item>
-      <title>Binary search algorithm</title>
-      <link>https://mindbreaker3310.github.io/posts/binary-serarch/</link>
-      <pubDate>Mon, 18 Oct 2021 20:10:11 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/binary-serarch/</guid>
-      <description>704. Binary Search  題目  給一個由小到大排序的整數陣列nums與一個目標整數target，如果target存在於nums之中，回傳該目標數的index，否則回傳-1。
-時間複雜度必須為O(log n)。
- 範例  Input: nums = [-1,0,3,5,9,12], target = 9 Output: 4 Explanation: 9 exists in nums and its index is 4 Input: nums = [-1,0,3,5,9,12], target = 2 Output: -1 Explanation: 2 does not exist in nums so return -1  解答  public class Solution { public int Search(int[] nums, int target) { int low = 0; int high = nums.</description>
     </item>
     
   </channel>

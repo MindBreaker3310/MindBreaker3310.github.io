@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CQRS on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/tags/cqrs/</link>
+    <description>Recent content in CQRS on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Dec 2021 11:08:44 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/cqrs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CQRS</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021201_cqrs.md/</link>
+      <pubDate>Wed, 01 Dec 2021 11:08:44 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/2021201_cqrs.md/</guid>
+      <description>CQRS  筆記  CQRS(Command Query Responsibility Segregation)命令查詢分隔，目前看起來就是不再需要IRepository了，把它拆成Command(負責寫入資料庫的部分)與Query(只負責讀取的部分)。
+可以增加資料庫的效能，Command的部分則會透過event的形式記錄起來再同步到DB上面。
+我還是偏好原本的方法啊XD
+ 參考  https://ithelp.ithome.com.tw/articles/10237458</description>
+    </item>
+    
+  </channel>
+</rss>

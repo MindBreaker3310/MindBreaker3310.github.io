@@ -6,7 +6,70 @@
     <description>Recent content in Tags on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Nov 2021 15:57:43 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Dec 2021 10:55:10 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Investment</title>
+      <link>https://mindbreaker3310.github.io/tags/investment/</link>
+      <pubDate>Mon, 06 Dec 2021 10:55:10 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/investment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Clean Architecture</title>
+      <link>https://mindbreaker3310.github.io/tags/clean-architecture/</link>
+      <pubDate>Thu, 02 Dec 2021 15:52:49 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/clean-architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Disign Principle</title>
+      <link>https://mindbreaker3310.github.io/tags/disign-principle/</link>
+      <pubDate>Thu, 02 Dec 2021 15:52:49 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/disign-principle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CQRS</title>
+      <link>https://mindbreaker3310.github.io/tags/cqrs/</link>
+      <pubDate>Wed, 01 Dec 2021 11:08:44 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/cqrs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DDD</title>
+      <link>https://mindbreaker3310.github.io/tags/ddd/</link>
+      <pubDate>Tue, 30 Nov 2021 14:30:40 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/ddd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Domain Driven Design</title>
+      <link>https://mindbreaker3310.github.io/tags/domain-driven-design/</link>
+      <pubDate>Tue, 30 Nov 2021 14:30:40 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/domain-driven-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SOLID</title>
+      <link>https://mindbreaker3310.github.io/tags/solid/</link>
+      <pubDate>Mon, 29 Nov 2021 16:10:40 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/solid/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>C#</title>
       <link>https://mindbreaker3310.github.io/tags/c#/</link>
@@ -40,78 +103,6 @@
       <pubDate>Thu, 25 Nov 2021 14:55:07 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/tags/nuget/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Algorithm</title>
-      <link>https://mindbreaker3310.github.io/tags/algorithm/</link>
-      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/algorithm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Array</title>
-      <link>https://mindbreaker3310.github.io/tags/array/</link>
-      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/array/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>LeetCode</title>
-      <link>https://mindbreaker3310.github.io/tags/leetcode/</link>
-      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/leetcode/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Medium</title>
-      <link>https://mindbreaker3310.github.io/tags/medium/</link>
-      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/medium/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Two Pointers</title>
-      <link>https://mindbreaker3310.github.io/tags/two-pointers/</link>
-      <pubDate>Tue, 19 Oct 2021 20:11:06 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/two-pointers/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Easy</title>
-      <link>https://mindbreaker3310.github.io/tags/easy/</link>
-      <pubDate>Tue, 19 Oct 2021 20:07:04 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/easy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Structure</title>
-      <link>https://mindbreaker3310.github.io/tags/data-structure/</link>
-      <pubDate>Tue, 19 Oct 2021 20:03:08 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/data-structure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Binary Search</title>
-      <link>https://mindbreaker3310.github.io/tags/binary-search/</link>
-      <pubDate>Tue, 19 Oct 2021 13:26:30 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/binary-search/</guid>
       <description></description>
     </item>
     
