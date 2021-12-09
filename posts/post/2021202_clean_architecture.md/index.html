@@ -121,7 +121,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -205,8 +205,12 @@ Ordering.infrastructure</p>
 </code></pre></div><blockquote>
 <h2 id="開發orderingapplication-layer">開發Ordering.Application Layer</h2>
 </blockquote>
+<p>注重於商業需求而不是實作一些外部系統的東西，DB之類的。
+顧客需要用自己的名子取得訂單</p>
 <p>有三個主要的資料夾Contracts、Features、Behaviors，</p>
+<blockquote>
 <h3 id="contracts">Contracts</h3>
+</blockquote>
 <p>存放各Services的interface</p>
 <ul>
 <li>
@@ -237,14 +241,85 @@ Ordering.infrastructure</p>
 <span class="p">{</span>
     <span class="n">Task</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Order</span><span class="p">&gt;&gt;</span> <span class="n">GetOrdersByUserName</span><span class="p">(</span><span class="kt">string</span> <span class="n">userName</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div><p>Email發送服務介面，Email class建立在Models/Email.cs</p>
+</code></pre></div><ul>
+<li>
+<h4 id="infrastructure">Infrastructure</h4>
+</li>
+</ul>
+<p>Email發送服務介面，Email class建立在Models/Email.cs</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IEmailService</span>
 <span class="p">{</span>
     <span class="n">Task</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span> <span class="n">SendEmail</span><span class="p">(</span><span class="n">Email</span> <span class="n">email</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div><h3 id="features">Features</h3>
-<p>存放Use case，目前只有Order一個Use case，並實作CQRS</p>
+</code></pre></div><blockquote>
+<h3 id="features">Features</h3>
+</blockquote>
+<p>存放Use case，目前只有Orders一個Use case，並實作CQRS。</p>
+<p>建資料夾
+Features/Orders/Commands
+Features/Orders/Queries</p>
+<p>先處理Queries
+Features/Orders/Queries/GetOrdersList/GetOrdersListQuery.cs
+Features/Orders/Queries/GetOrdersList/GetOrdersListQueryHandler.cs
+Features/Orders/Queries/GetOrdersList/OrdersVm.cs</p>
+<p><strong>GetOrdersListQuery</strong>
+IRequest介面來自於MediatR DI Version，裡面<code>List&lt;OrdersVm&gt;</code>代表要回傳的type</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">MediatR</span><span class="p">;</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">GetOrdersListQuery</span> <span class="p">:</span> <span class="n">IRequest</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">OrdersVm</span><span class="p">&gt;&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">UserName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="n">GetOrdersListQuery</span><span class="p">(</span><span class="kt">string</span> <span class="n">userName</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">UserName</span> <span class="p">=</span> <span class="n">userName</span> <span class="p">??</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">ArgumentNullException</span><span class="p">(</span><span class="n">nameof</span><span class="p">(</span><span class="n">userName</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>GetOrdersListQueryHandler</strong>
+當Query被觸發時Handler會負責處理，實作IRequestHandler會得到Handle這個Function，並寫入我們要進行的操作</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">//IRequestHandler&lt;要處理的IRequest, 輸出的type&gt;
+</span><span class="c1"></span><span class="k">public</span> <span class="k">class</span> <span class="nc">GetOrdersListQueryHandler</span> <span class="p">:</span> <span class="n">IRequestHandler</span><span class="p">&lt;</span><span class="n">GetOrdersListQuery</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">OrdersVm</span><span class="p">&gt;&gt;</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">IOrderRepository</span> <span class="m">_</span><span class="n">orderRepository</span><span class="p">;</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">IMapper</span> <span class="m">_</span><span class="n">mapper</span><span class="p">;</span>
+    <span class="c1">//使用在Contract裡面寫的orderRepository
+</span><span class="c1"></span>    <span class="k">public</span> <span class="n">GetOrdersListQueryHandler</span><span class="p">(</span><span class="n">IOrderRepository</span> <span class="n">orderRepository</span><span class="p">,</span> <span class="n">IMapper</span> <span class="n">mapper</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="m">_</span><span class="n">orderRepository</span> <span class="p">=</span> <span class="n">orderRepository</span><span class="p">;</span>
+        <span class="m">_</span><span class="n">mapper</span> <span class="p">=</span> <span class="n">mapper</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">OrdersVm</span><span class="p">&gt;&gt;</span> <span class="n">Handle</span><span class="p">(</span><span class="n">GetOrdersListQuery</span> <span class="n">request</span><span class="p">,</span> <span class="n">CancellationToken</span> <span class="n">cancellationToken</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">orderList</span> <span class="p">=</span> <span class="k">await</span> <span class="m">_</span><span class="n">orderRepository</span><span class="p">.</span><span class="n">GetOrdersByUserName</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">UserName</span><span class="p">);</span>
+        <span class="k">return</span> <span class="m">_</span><span class="n">mapper</span><span class="p">.</span><span class="n">Map</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">OrdersVm</span><span class="p">&gt;&gt;(</span><span class="n">orderList</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>OrdersVm</strong>
+可以看到這個class是放在GetOrdersList裡面，只給這個Use Case用，與Entity層的無關</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">OrdersVm</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">Id</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">UserName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">decimal</span> <span class="n">TotalPrice</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="c1">// BillingAddress
+</span><span class="c1"></span>    <span class="k">public</span> <span class="kt">string</span> <span class="n">FirstName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">LastName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">EmailAddress</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">AddressLine</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Country</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">State</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">ZipCode</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="c1">// Payment
+</span><span class="c1"></span>    <span class="k">public</span> <span class="kt">string</span> <span class="n">CardName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">CardNumber</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Expiration</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">CVV</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">PaymentMethod</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
 <h3 id="behaviors">Behaviors</h3>
+</blockquote>
 <p>驗證User使用的行為是否正常</p>
 <p>application contracts, application features and application behaviors
 presenting business requirements, business use, case and business relations</p>
@@ -350,7 +425,7 @@ presenting business requirements, business use, case and business relations</p>
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> &emsp;
         
-        Font designed by <a href="https://3q.9527.tw/36" target="_blank">9527</a>
+        
     </section>
 </footer>
 
@@ -467,6 +542,7 @@ presenting business requirements, business use, case and business relations</p>
         <li><a href="#contracts">Contracts</a>
           <ol>
             <li><a href="#persistence">Persistence</a></li>
+            <li><a href="#infrastructure">Infrastructure</a></li>
           </ol>
         </li>
         <li><a href="#features">Features</a></li>

@@ -6,7 +6,22 @@
     <description>Recent content in Pages on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://mindbreaker3310.github.io/about/</link>
+      <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/about/</guid>
+      <description>關於我  再平凡不過的一個人
+走上軟體這條不歸路
+發現要學的東西實在太多了
+持續努力學習中~
+ 關於部落格  這個部落格的誕生因為想找個地方寫寫筆記，畢竟有些Bug要遇過才知道怎麼解決，且要能在網路上存取，我試過了一些筆記軟體(GoodNotes、Notability)，兩款都是非常方便的筆記軟體，只不過我的iPad並不支援Apple Pencil，用觸控筆寫起來容易誤觸不是很方便，找著找著就看到很多人在github放上靜態網站，經營自己的部落格，有點意思，要不我也來試試吧。
+原本是只想記錄工作相關的，後來想想記錄一些有的沒的也挺好的XD，有空就寫一寫，看看能不能順便提升我的文筆囉。
+對了這個部落格我是使用Hugo靜態網頁生成器，它可以很輕鬆且快速的把markdown轉換成網頁，且有超多種風格主題可以選擇，可以依照個人喜好去做選擇，而且略懂css的話還可以做一些修改，這邊我是換換字體就覺得很好看了。</description>
+    </item>
+    
     <item>
       <title>Archives</title>
       <link>https://mindbreaker3310.github.io/archives/</link>
@@ -14,17 +29,6 @@
       
       <guid>https://mindbreaker3310.github.io/archives/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://mindbreaker3310.github.io/about/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/about/</guid>
-      <description>Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
-Hugo makes use of a variety of open source projects including:
- https://github.</description>
     </item>
     
     <item>
