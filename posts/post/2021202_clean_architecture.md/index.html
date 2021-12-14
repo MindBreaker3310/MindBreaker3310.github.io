@@ -294,7 +294,7 @@ IRequest介面來自於MediatR DI Version，裡面<code>List&lt;OrdersVm&gt;</co
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p><strong>OrdersVm</strong>
-可以看到這個class是放在GetOrdersList裡面，只給這個Use Case用，與Entity層的無關</p>
+可以看到這個class是放在Queries/GetOrdersList裡面，只給GetOrdersList這個Use Case用，與Entity層的Order.cs無關，雖然他們長得一樣。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">OrdersVm</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="kt">int</span> <span class="n">Id</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
@@ -317,7 +317,12 @@ IRequest介面來自於MediatR DI Version，裡面<code>List&lt;OrdersVm&gt;</co
     <span class="k">public</span> <span class="kt">string</span> <span class="n">CVV</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
     <span class="k">public</span> <span class="kt">int</span> <span class="n">PaymentMethod</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><blockquote>
+</code></pre></div><p>接下來要處理Command的部分</p>
+<p>處理CheckoutOrder
+Features/Orders/Commands/CheckoutOrder/CheckoutOrderCommand.cs
+Features/Orders/Commands/CheckoutOrder/CheckoutOrderCommandHandler.cs</p>
+<p>一樣使用MediatR的功能</p>
+<blockquote>
 <h3 id="behaviors">Behaviors</h3>
 </blockquote>
 <p>驗證User使用的行為是否正常</p>
