@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/tags/windows/</link>
+    <description>Recent content in Windows on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Dec 2021 17:09:56 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>windows排程紀錄主機磁碟狀態</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211217_windows%E6%8E%92%E7%A8%8B%E7%B4%80%E9%8C%84%E4%B8%BB%E6%A9%9F%E7%A3%81%E7%A2%9F%E7%8B%80%E6%85%8B.md/</link>
+      <pubDate>Fri, 17 Dec 2021 17:09:56 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211217_windows%E6%8E%92%E7%A8%8B%E7%B4%80%E9%8C%84%E4%B8%BB%E6%A9%9F%E7%A3%81%E7%A2%9F%E7%8B%80%E6%85%8B.md/</guid>
+      <description>windows排程紀錄主機磁碟狀態  取得磁碟狀態  工作上總是一堆鳥事，在甲方裡工作有時候又要處理一些完全沒有意義的雜事，浪費時間。
+總之因為不明原因，我需要每週紀錄主機的磁碟剩餘容量百分比&amp;hellip;
+要取得磁碟訊息很簡單，使用System.IO的DriveInfo.GetDrives()可以取得所有磁碟，再把DriveInfo的屬性取出來
+string diskStatus = &amp;#34;&amp;#34;; DriveInfo[] allDrives = DriveInfo.GetDrives(); foreach (DriveInfo d in allDrives) { if (d.IsReady == true)//確定磁碟就緒  { int freePercent = (int)(d.TotalFreeSpace / (float)d.TotalSize * 100); diskStatus += $&amp;#34; {d.Name}{freePercent} &amp;#34; } }  寫入紀錄  這邊一切以簡單為主，直接用寫入文字檔的方式來進行
+//如果有額外輸入檔案路徑的話，就把第一個參數當作路徑，沒有就丟在桌面 //若不想在排程器那裡設定開始位置的話，就用絕對路徑吧。 string path = args.Length == 1 ? args[0] : &amp;#34;DiskLog.txt&amp;#34;; //記錄時間 string now = DateRime.Now.ToString(&amp;#34;yyyy/MM/dd HH:mm:ss&amp;#34;); using StreamWriter file = new (path, append: true); file.</description>
+    </item>
+    
+  </channel>
+</rss>

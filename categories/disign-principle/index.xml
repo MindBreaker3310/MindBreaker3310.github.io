@@ -6,20 +6,37 @@
     <description>Recent content in Disign Principle on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Dec 2021 15:52:49 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/disign-principle/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Dec 2021 11:44:52 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/disign-principle/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Clean Architecture</title>
-      <link>https://mindbreaker3310.github.io/posts/post/2021202_clean_architecture.md/</link>
+      <title>簡潔架構 Application Layer</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211217_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bapplication.md/</link>
+      <pubDate>Fri, 17 Dec 2021 11:44:52 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211217_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bapplication.md/</guid>
+      <description>簡潔架構 Application Layer  Application Layer  注重於商業需求而不是實作一些外部系統的東西，DB之類的。 顧客需要用自己的名子取得訂單
+有三個主要的資料夾Contracts、Features、Behaviors，
+ Contracts  存放各Services的interface
+Persistence 基本非同步Repository介面
+//泛型T必需繼承Domina Layer的EntityBase(Id、createdBy、createDate、LastModifiedDate等等的東西) public interface IAsyncRepository&amp;lt;T&amp;gt; where T : EntityBase { Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAllAsync(); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, string includeString = null, bool disableTracking = true); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, List&amp;lt;Expression&amp;lt;Func&amp;lt;T, object&amp;gt;&amp;gt;&amp;gt; includes = null, bool disableTracking = true); Task&amp;lt;T&amp;gt; GetByIdAsync(int id); Task&amp;lt;T&amp;gt; AddAsync(T entity); Task UpdateAsync(T entity); Task DeleteAsync(T entity); } 下訂單Repository介面，Order來自Domian Layer的Entity</description>
+    </item>
+    
+    <item>
+      <title>簡潔架構 Domain Layer</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021202_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bdomain.md/</link>
       <pubDate>Thu, 02 Dec 2021 15:52:49 +0800</pubDate>
       
-      <guid>https://mindbreaker3310.github.io/posts/post/2021202_clean_architecture.md/</guid>
-      <description>Clean Architecture  介紹  工作一陣子了，維護的系統也已經熟悉的許多了，但還有許多前人的智慧，一時之間是很難理解的XD，這時有一個乾淨的架構，或許上手的時間就可以更短了。
- 一步步紀錄  建立一個訂單系統使用Clean Architecture
-依照分層創建各個不同的Project， Ordering.API Ordering.Domain Ordering.Application Ordering.infrastructure
+      <guid>https://mindbreaker3310.github.io/posts/post/2021202_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bdomain.md/</guid>
+      <description>Clean Architecture  介紹  接下來的筆記是根據線上課程Microservices Architecture and Implementation on .NET 5所記錄下來的，講者的口音有點重，聽得有點吃力，他這個專案基本上重做微軟提供的範例專案，電商系統，完美呈現微服務的使用與他的優點，一共把服務切成四個主要的服務，Catalog(商品目錄系統)、Basket(購物車系統)、Discount(折扣系統)、Ordering(訂單系統)，並分別使用不同的資料庫(mongodb、redis、PostgreSQL、MSSQL)、不同的傳輸協定(Rest API、Grpc)、不同的架構(多層式架構、簡潔架構)，最後使用Docker容器化，把他們都整合在一起運作。
+整個系統的架構圖
+工作一陣子了，維護的系統基本也都上手了(龐大的Web Service架構)，但還有許多前人的智慧，一時之間是很難理解的XD，這時有一個乾淨的架構，或許上手的時間就可以更短了。
+ Domain Layer  建立一個訂單系統使用Clean Architecture
+依照分層創建各個不同的Project， Ordering.API Ordering.Domain Ordering.Application Ordering.infrastructure 整個系統的架構圖
 建立相依關係Project右鍵 &amp;gt;&amp;gt; Add &amp;gt;&amp;gt; Reference 相依關係
+詳細定義與設計可以參考
+https://ithelp.ithome.com.tw/articles/10223150 https://ithelp.ithome.com.tw/articles/10223595
  開發Ordering.Domain Layer  我們要先建立兩個資料夾Common、Entities
 Common 其中Common放的是我們建立Entity的基礎，含有兩個abstract class，EntityBase、ValueObject，
-public abstract class EntityBase { public int Id { get; protected set; } public string CreatedBy { get; set; } public DateTime CreatedDate { get; set; } public string LastModifiedBy { get; set; } public DateTime? LastModifiedDate { get; set; } } 詳細定義與設計可以參考</description>
+//我們每一個Entity都要的屬性 public abstract class EntityBase { public int Id { get; protected set; } public string CreatedBy { get; set; } public DateTime CreatedDate { get; set; } public string LastModifiedBy { get; set; } public DateTime?</description>
     </item>
     
     <item>

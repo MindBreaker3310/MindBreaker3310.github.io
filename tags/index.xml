@@ -6,13 +6,94 @@
     <description>Recent content in Tags on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Dec 2021 13:08:10 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Dec 2021 17:09:56 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automation</title>
+      <link>https://mindbreaker3310.github.io/tags/automation/</link>
+      <pubDate>Fri, 17 Dec 2021 17:09:56 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/automation/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>C#</title>
       <link>https://mindbreaker3310.github.io/tags/c#/</link>
-      <pubDate>Tue, 14 Dec 2021 13:08:10 +0800</pubDate>
+      <pubDate>Fri, 17 Dec 2021 17:09:56 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/tags/c#/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://mindbreaker3310.github.io/tags/windows/</link>
+      <pubDate>Fri, 17 Dec 2021 17:09:56 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Clean Architecture</title>
+      <link>https://mindbreaker3310.github.io/tags/clean-architecture/</link>
+      <pubDate>Fri, 17 Dec 2021 11:44:52 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/clean-architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Disign Principle</title>
+      <link>https://mindbreaker3310.github.io/tags/disign-principle/</link>
+      <pubDate>Fri, 17 Dec 2021 11:44:52 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/disign-principle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FluentValidation</title>
+      <link>https://mindbreaker3310.github.io/tags/fluentvalidation/</link>
+      <pubDate>Thu, 16 Dec 2021 14:50:26 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/fluentvalidation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NuGet</title>
+      <link>https://mindbreaker3310.github.io/tags/nuget/</link>
+      <pubDate>Thu, 16 Dec 2021 14:50:26 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/nuget/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iOS</title>
+      <link>https://mindbreaker3310.github.io/tags/ios/</link>
+      <pubDate>Thu, 16 Dec 2021 13:10:12 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Life</title>
+      <link>https://mindbreaker3310.github.io/tags/life/</link>
+      <pubDate>Thu, 16 Dec 2021 13:10:12 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/life/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Line</title>
+      <link>https://mindbreaker3310.github.io/tags/line/</link>
+      <pubDate>Thu, 16 Dec 2021 13:10:12 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/tags/line/</guid>
       <description></description>
     </item>
     
@@ -31,15 +112,6 @@
       <pubDate>Tue, 14 Dec 2021 13:08:10 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/tags/regular-expressions/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Life</title>
-      <link>https://mindbreaker3310.github.io/tags/life/</link>
-      <pubDate>Mon, 13 Dec 2021 17:25:11 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/life/</guid>
       <description></description>
     </item>
     
@@ -85,24 +157,6 @@
       <pubDate>Mon, 06 Dec 2021 10:55:10 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/tags/investment/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Clean Architecture</title>
-      <link>https://mindbreaker3310.github.io/tags/clean-architecture/</link>
-      <pubDate>Thu, 02 Dec 2021 15:52:49 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/clean-architecture/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Disign Principle</title>
-      <link>https://mindbreaker3310.github.io/tags/disign-principle/</link>
-      <pubDate>Thu, 02 Dec 2021 15:52:49 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/tags/disign-principle/</guid>
       <description></description>
     </item>
     
@@ -161,11 +215,11 @@
     </item>
     
     <item>
-      <title>NuGet</title>
-      <link>https://mindbreaker3310.github.io/tags/nuget/</link>
+      <title>AutoMapper</title>
+      <link>https://mindbreaker3310.github.io/tags/automapper/</link>
       <pubDate>Thu, 25 Nov 2021 14:55:07 +0800</pubDate>
       
-      <guid>https://mindbreaker3310.github.io/tags/nuget/</guid>
+      <guid>https://mindbreaker3310.github.io/tags/automapper/</guid>
       <description></description>
     </item>
     
