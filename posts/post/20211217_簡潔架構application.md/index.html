@@ -131,19 +131,19 @@ if (!doNotTrack) {
 </header>
 
     <section class="article-content">
-    <h1 id="簡潔架構-application-layer">簡潔架構 Application Layer</h1>
-<blockquote>
+    <blockquote>
 <h2 id="application-layer">Application Layer</h2>
 </blockquote>
-<p>注重於商業需求而不是實作一些外部系統的東西，DB之類的。
-顧客需要用自己的名子取得訂單</p>
-<p>有三個主要的資料夾Contracts、Features、Behaviors，</p>
+<p>注重於商業需求而不是實作一些外部系統的東西，DB之類的。</p>
+<p>在這一層裡有三個主要的資料夾Contracts、Features、Behaviors，分別為存放服務介面、Use case、驗證用戶行為。</p>
+<p>主要在於Fetures，根據DDD並使用MediatR為每一個需求做獨自的CQRS操作，</p>
 <blockquote>
 <h3 id="contracts">Contracts</h3>
 </blockquote>
-<p>存放各Services的interface</p>
+<p>存放各Services的interface的地方</p>
 <h4 id="persistence">Persistence</h4>
-<p>基本非同步Repository介面</p>
+<p>通用的非同步Repository介面(Asynchronous Generic Repository)</p>
+<p>裡面包含常用的功能。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">//泛型T必需繼承Domina Layer的EntityBase(Id、createdBy、createDate、LastModifiedDate等等的東西)
 </span><span class="c1"></span><span class="k">public</span> <span class="k">interface</span> <span class="n">IAsyncRepository</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">EntityBase</span>
 <span class="p">{</span>
@@ -163,9 +163,9 @@ if (!doNotTrack) {
     <span class="n">Task</span> <span class="n">UpdateAsync</span><span class="p">(</span><span class="n">T</span> <span class="n">entity</span><span class="p">);</span>
     <span class="n">Task</span> <span class="n">DeleteAsync</span><span class="p">(</span><span class="n">T</span> <span class="n">entity</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div><p>下訂單Repository介面，Order來自Domian Layer的Entity</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IOrderRepository</span> <span class="p">:</span> <span class="n">IAsyncRepository</span><span class="p">&lt;</span><span class="n">Order</span><span class="p">&gt;</span>
-<span class="p">{</span>
+</code></pre></div><p>下訂單Repository介面，在這邊我們可以建立自己的方法、功能，後面處理Request時會用到。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">interface</span> <span class="n">IOrderRepository</span> <span class="p">:</span> <span class="n">IAsyncRepository</span><span class="p">&lt;</span><span class="n">Order</span><span class="p">&gt;</span><span class="c1">//Order來自Domian Layer的Entity
+</span><span class="c1"></span><span class="p">{</span>
     <span class="n">Task</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Order</span><span class="p">&gt;&gt;</span> <span class="n">GetOrdersByUserName</span><span class="p">(</span><span class="kt">string</span> <span class="n">userName</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><h4 id="infrastructure">Infrastructure</h4>
@@ -181,9 +181,11 @@ if (!doNotTrack) {
 <p>建資料夾
 Features/Orders/Commands
 Features/Orders/Queries</p>
+<p>Queries只有一個方法，GetOrderList。</p>
+<p>Commands裡面有三個方法，CheckOrder、UpdateOrder、DeleteOrder。</p>
 <h4 id="queriesgetorderlist">Queries/GetOrderList</h4>
-<p>先處理Queries
-Features/Orders/Queries/GetOrdersList/GetOrdersListQuery.cs
+<p>先處理Queries</p>
+<p>Features/Orders/Queries/GetOrdersList/GetOrdersListQuery.cs
 Features/Orders/Queries/GetOrdersList/GetOrdersListQueryHandler.cs
 Features/Orders/Queries/GetOrdersList/OrdersVm.cs</p>
 <p><strong>GetOrdersListQuery</strong>
@@ -382,8 +384,10 @@ IRequest介面來自於MediatR DI Version，裡面<code>List&lt;OrdersVm&gt;</co
         <span class="c1">//前處理的部份到此結束
 </span><span class="c1"></span>        <span class="kt">var</span> <span class="n">response</span> <span class="p">=</span> <span class="k">await</span> <span class="n">next</span><span class="p">();</span><span class="c1">//Handler處理完回傳
 </span><span class="c1"></span>        <span class="c1">//後處理的部分從此開始
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">response</span><span class="p">;</span>
-    <span class="p">}</span>
+</span><span class="c1"></span>        <span class="c1">//....
+</span><span class="c1"></span>        <span class="c1">//後處理結束
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">response</span><span class="p">;</span><span class="c1">//回傳回應結果
+</span><span class="c1"></span>    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><blockquote>
 <h3 id="di-service-collection">DI Service Collection</h3>
@@ -443,6 +447,18 @@ IRequest介面來自於MediatR DI Version，裡面<code>List&lt;OrdersVm&gt;</co
         <h2 class="section-title">Related contents</h2>
         <div class="related-contents">
             <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/posts/post/20211222_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Binfrastructure.md/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">簡潔架構 Infrastructure Layer</h2>
+        </div>
+    </a>
+</article>
                 
                     
 <article class="">

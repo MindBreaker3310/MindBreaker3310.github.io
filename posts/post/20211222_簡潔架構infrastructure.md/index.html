@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='基礎設施的部分'><title>簡潔架構 Infrastructure Layer</title>
+
+<link rel='canonical' href='https://mindbreaker3310.github.io/posts/post/20211222_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Binfrastructure.md/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='簡潔架構 Infrastructure Layer'>
+<meta property='og:description' content='基礎設施的部分'>
+<meta property='og:url' content='https://mindbreaker3310.github.io/posts/post/20211222_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Binfrastructure.md/'>
+<meta property='og:site_name' content='MindBreaker3310'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Disign Principle' /><meta property='article:tag' content='Clean Architecture' /><meta property='article:published_time' content='2021-12-22T13:32:25&#43;08:00'/><meta property='article:modified_time' content='2021-12-22T13:32:25&#43;08:00'/>
+<meta name="twitter:title" content="簡潔架構 Infrastructure Layer">
+<meta name="twitter:description" content="基礎設施的部分">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YZL9P8D9FJ"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YZL9P8D9FJ', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://mindbreaker3310.github.io/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/disign-principle/" >
+                Disign Principle
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/posts/post/20211222_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Binfrastructure.md/">簡潔架構 Infrastructure Layer</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        基礎設施的部分
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 22, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>基礎設施層，將我們Application Layer說的那些處理，連接到資料庫上。</p>
+<p>在這一層我們將使用Entity Framework Core AKA EF Core，EFCore的目的是讓程式設計師能夠以熟習的語言去操作資料庫，而非使用sql語法然後再轉成我們的資料模型。</p>
+<p>先去NuGet裝Microsoft.EntityFrameworkCore.SqlServer，使用.Net 5.0的話版本只支援到5.0.x以下，6.0.0不支援。</p>
+<blockquote>
+<h2 id="orderingapi">Ordering.API</h2>
+</blockquote>
+<p>這跟infrastructure一樣，都是最外面一層，寫一起比較好整理吧</p>
+<h3 id="controller">Controller</h3>
+<p>得利於mediator的handler，我們整個controller就是一個清爽，基本上就是建立Request，丟給Handler來處理，最後把資料回傳就搞定了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[ApiController]</span>
+<span class="na">[Route(&#34;[controller]</span><span class="s">&#34;)]
+</span><span class="s"></span><span class="k">public</span> <span class="k">class</span> <span class="nc">OrderController</span> <span class="p">:</span> <span class="n">ControllerBase</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">IMediator</span> <span class="m">_</span><span class="n">mediator</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="n">OrderController</span><span class="p">(</span><span class="n">IMediator</span> <span class="n">mediator</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="m">_</span><span class="n">mediator</span> <span class="p">=</span> <span class="n">mediator</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="na">
+</span><span class="na">    [HttpGet(&#34;{userName}&#34;, Name = &#34;GetOrder&#34;)]</span>
+<span class="na">    [ProducesResponseType(typeof(IEnumerable&lt;OrdersVm&gt;), (int)HttpStatusCode.OK)]</span>
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">ActionResult</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">OrdersVm</span><span class="p">&gt;&gt;&gt;</span> <span class="n">GetOrdersByUserName</span><span class="p">(</span><span class="kt">string</span> <span class="n">userName</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//建立Request
+</span><span class="c1"></span>        <span class="kt">var</span> <span class="n">query</span> <span class="p">=</span> <span class="k">new</span> <span class="n">GetOrdersListQuery</span><span class="p">(</span><span class="n">userName</span><span class="p">);</span>
+        <span class="c1">//發送給Handler處理
+</span><span class="c1"></span>        <span class="n">List</span><span class="p">&lt;</span><span class="n">OrdersVm</span><span class="p">&gt;</span> <span class="n">orders</span> <span class="p">=</span> <span class="k">await</span> <span class="m">_</span><span class="n">mediator</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">Ok</span><span class="p">(</span><span class="n">orders</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="na">
+</span><span class="na">    [HttpPost(Name = &#34;CheckoutOrder&#34;)]</span>
+<span class="na">    [ProducesResponseType(StatusCodes.Status200OK)]</span>
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">ActionResult</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="n">CheckoutOrder</span><span class="p">([</span><span class="n">FromBody</span><span class="p">]</span> <span class="n">CheckoutOrderCommand</span> <span class="n">command</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">await</span> <span class="m">_</span><span class="n">mediator</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">Ok</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="na">
+</span><span class="na">    [HttpPost(Name = &#34;UpdateOrder&#34;)]</span>
+<span class="na">    [ProducesResponseType(StatusCodes.Status200OK)]</span>
+<span class="na">    [ProducesResponseType(StatusCodes.Status404NotFound)]</span>
+<span class="na">    [ProducesDefaultResponseType]</span>
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">ActionResult</span><span class="p">&gt;</span> <span class="n">UpdateOrder</span><span class="p">([</span><span class="n">FromBody</span><span class="p">]</span> <span class="n">UpdateOrderCommand</span> <span class="n">command</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">await</span> <span class="m">_</span><span class="n">mediator</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">NoContent</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="na">
+</span><span class="na">    [HttpPost(&#34;{id}&#34;, Name = &#34;DeleteOrder&#34;)]</span>
+<span class="na">    [ProducesResponseType(StatusCodes.Status200OK)]</span>
+<span class="na">    [ProducesResponseType(StatusCodes.Status404NotFound)]</span>
+<span class="na">    [ProducesDefaultResponseType]</span>
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">ActionResult</span><span class="p">&gt;</span> <span class="n">DeleteOrder</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">command</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DeleteOrderCommand</span><span class="p">()</span> <span class="p">{</span> <span class="n">Id</span> <span class="p">=</span> <span class="n">id</span> <span class="p">};</span>
+        <span class="k">await</span> <span class="m">_</span><span class="n">mediator</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">NoContent</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<h2 id="persistence">Persistence</h2>
+</blockquote>
+<p>我們在寫入資料庫前要紀錄新增、修改時間。</p>
+<h3 id="ordercontext">OrderContext</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">//繼承EFCore的DbContext框架類別
+</span><span class="c1"></span><span class="k">public</span> <span class="k">class</span> <span class="nc">OrderContext</span> <span class="p">:</span> <span class="n">DbContext</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">OrderContext</span><span class="p">(</span><span class="n">DbContextOptions</span> <span class="n">options</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">//Orders資料表
+</span><span class="c1"></span>    <span class="k">public</span> <span class="n">DbSet</span><span class="p">&lt;</span><span class="n">Order</span><span class="p">&gt;</span> <span class="n">Orders</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="c1">//我們可以override許多DbContext所提供的方法
+</span><span class="c1"></span>    <span class="c1">//複寫SaveChangesAsync功能
+</span><span class="c1"></span>    <span class="k">public</span> <span class="k">override</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">SaveChangesAsync</span><span class="p">(</span><span class="n">CancellationToken</span> <span class="n">cancellationToken</span> <span class="p">=</span> <span class="k">default</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//在儲存變更前修改日期
+</span><span class="c1"></span>        <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">entry</span> <span class="k">in</span> <span class="n">ChangeTracker</span><span class="p">.</span><span class="n">Entries</span><span class="p">&lt;</span><span class="n">EntityBase</span><span class="p">&gt;())</span>
+        <span class="p">{</span>
+            <span class="c1">//判斷寫入的狀態(Added、Unchanged、Modified、Deleted)
+</span><span class="c1"></span>            <span class="k">switch</span> <span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="n">State</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">case</span> <span class="n">EntityState</span><span class="p">.</span><span class="n">Added</span><span class="p">:</span>
+                    <span class="n">entry</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">CreatedDate</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">;</span>
+                    <span class="n">entry</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">CreatedBy</span> <span class="p">=</span> <span class="s">&#34;Max&#34;</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="n">EntityState</span><span class="p">.</span><span class="n">Modified</span><span class="p">:</span>
+                    <span class="n">entry</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">LastModifiedDate</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">;</span>
+                    <span class="n">entry</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">LastModifiedBy</span> <span class="p">=</span> <span class="s">&#34;Max&#34;</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="n">SaveChangesAsync</span><span class="p">(</span><span class="n">cancellationToken</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<h2 id="repositories">Repositories</h2>
+</blockquote>
+<h3 id="repositorybase">RepositoryBase</h3>
+<p>操作資料庫的部分，將在Application layer的IAsyncRepository連起來。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">RepositoryBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">IAsyncRepository</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">EntityBase</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">readonly</span> <span class="n">OrderContext</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="n">RepositoryBase</span><span class="p">(</span><span class="n">OrderContext</span> <span class="n">dbcontext</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="m">_d</span><span class="n">bContext</span> <span class="p">=</span> <span class="n">dbcontext</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span> <span class="n">GetAllAsync</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">Set</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;().</span><span class="n">ToListAsync</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span> <span class="n">GetAsync</span><span class="p">(</span><span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&gt;&gt;</span> <span class="n">predicate</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">Set</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;().</span><span class="n">Where</span><span class="p">(</span><span class="n">predicate</span><span class="p">).</span><span class="n">ToListAsync</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span> <span class="n">GetAsync</span><span class="p">(</span><span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&gt;&gt;</span> <span class="n">predicate</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+                                                    <span class="n">Func</span><span class="p">&lt;</span><span class="n">IQueryable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span> <span class="n">IOrderedQueryable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span> <span class="n">orderBy</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+                                                    <span class="kt">string</span> <span class="n">includeString</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+                                                    <span class="kt">bool</span> <span class="n">disableTracking</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">IQueryable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">query</span> <span class="p">=</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">Set</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">disableTracking</span><span class="p">)</span> <span class="n">query</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="n">AsNoTracking</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrWhiteSpace</span><span class="p">(</span><span class="n">includeString</span><span class="p">))</span> <span class="n">query</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="n">includeString</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">predicate</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="n">query</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">predicate</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">orderBy</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="k">await</span> <span class="n">orderBy</span><span class="p">(</span><span class="n">query</span><span class="p">).</span><span class="n">ToListAsync</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="n">query</span><span class="p">.</span><span class="n">ToListAsync</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span> <span class="n">GetAsync</span><span class="p">(</span><span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&gt;&gt;</span> <span class="n">predicate</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+                                    <span class="n">Func</span><span class="p">&lt;</span><span class="n">IQueryable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span> <span class="n">IOrderedQueryable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span> <span class="n">orderBy</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+                                    <span class="n">List</span><span class="p">&lt;</span><span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;&gt;&gt;</span> <span class="n">includes</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+                                    <span class="kt">bool</span> <span class="n">disableTracking</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">IQueryable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">query</span> <span class="p">=</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">Set</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">disableTracking</span><span class="p">)</span> <span class="n">query</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="n">AsNoTracking</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">includes</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="n">query</span> <span class="p">=</span> <span class="n">includes</span><span class="p">.</span><span class="n">Aggregate</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">include</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">current</span><span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="n">include</span><span class="p">));</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">predicate</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="n">query</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">predicate</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">orderBy</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="k">await</span> <span class="n">orderBy</span><span class="p">(</span><span class="n">query</span><span class="p">).</span><span class="n">ToListAsync</span><span class="p">();</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">query</span><span class="p">.</span><span class="n">ToListAsync</span><span class="p">();</span>
+
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">virtual</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">GetByIdAsync</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">Set</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;().</span><span class="n">FindAsync</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">AddAsync</span><span class="p">(</span><span class="n">T</span> <span class="n">entity</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">Set</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;().</span><span class="n">Add</span><span class="p">(</span><span class="n">entity</span><span class="p">);</span>
+        <span class="k">await</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">SaveChangesAsync</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">entity</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span> <span class="n">UpdateAsync</span><span class="p">(</span><span class="n">T</span> <span class="n">entity</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">entity</span><span class="p">).</span><span class="n">State</span> <span class="p">=</span> <span class="n">EntityState</span><span class="p">.</span><span class="n">Modified</span><span class="p">;</span>
+        <span class="k">await</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">SaveChangesAsync</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span> <span class="n">DeleteAsync</span><span class="p">(</span><span class="n">T</span> <span class="n">entity</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">Set</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;().</span><span class="n">Remove</span><span class="p">(</span><span class="n">entity</span><span class="p">);</span>
+        <span class="k">await</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">SaveChangesAsync</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>實作IOrderRepository</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">OrderRepository</span> <span class="p">:</span> <span class="n">RepositoryBase</span><span class="p">&lt;</span><span class="n">Order</span><span class="p">&gt;,</span> <span class="n">IOrderRepository</span>
+<span class="p">{</span>
+    <span class="c1">//繼承RepositoryBase，也可以使用_dbContext
+</span><span class="c1"></span>    <span class="k">public</span> <span class="n">OrderRepository</span><span class="p">(</span><span class="n">OrderContext</span> <span class="n">dbConext</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">dbConext</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Order</span><span class="p">&gt;&gt;</span> <span class="n">GetOrdersByUserName</span><span class="p">(</span><span class="kt">string</span> <span class="n">userName</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">orderList</span> <span class="p">=</span> <span class="k">await</span> <span class="m">_d</span><span class="n">bContext</span><span class="p">.</span><span class="n">Orders</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">o</span> <span class="p">=&gt;</span> <span class="n">o</span><span class="p">.</span><span class="n">UserName</span> <span class="p">==</span> <span class="n">userName</span><span class="p">).</span><span class="n">ToListAsync</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="n">orderList</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<h2 id="mail">Mail</h2>
+</blockquote>
+<p>Mail Service是使用SendGrid的API，簡單好用。</p>
+<p>NuGet裝SendGrid</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">//繼承我們Application layer的IEmailService
+</span><span class="c1"></span><span class="k">public</span> <span class="k">class</span> <span class="nc">EmailService</span> <span class="p">:</span> <span class="n">IEmailService</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">EmailSettings</span> <span class="m">_</span><span class="n">emailSettings</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">ILogger</span><span class="p">&lt;</span><span class="n">EmailService</span><span class="p">&gt;</span> <span class="m">_l</span><span class="n">ogger</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="n">EmailService</span><span class="p">(</span><span class="n">IOptions</span><span class="p">&lt;</span><span class="n">EmailSettings</span><span class="p">&gt;</span> <span class="n">emailSettings</span><span class="p">,</span> <span class="n">ILogger</span><span class="p">&lt;</span><span class="n">EmailService</span><span class="p">&gt;</span> <span class="n">logger</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="m">_</span><span class="n">emailSettings</span> <span class="p">=</span> <span class="n">emailSettings</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+        <span class="m">_l</span><span class="n">ogger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span> <span class="n">SendEmail</span><span class="p">(</span><span class="n">Email</span> <span class="n">email</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SendGridClient</span><span class="p">(</span><span class="m">_</span><span class="n">emailSettings</span><span class="p">.</span><span class="n">ApiKey</span><span class="p">);</span><span class="c1">//使用SendGrid發送email的服務
+</span><span class="c1"></span>        <span class="kt">var</span> <span class="k">from</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EmailAddress</span><span class="p">(</span><span class="m">_</span><span class="n">emailSettings</span><span class="p">.</span><span class="n">FromAddress</span><span class="p">,</span> <span class="m">_</span><span class="n">emailSettings</span><span class="p">.</span><span class="n">FromName</span><span class="p">);</span><span class="c1">//寄件人
+</span><span class="c1"></span>        <span class="kt">var</span> <span class="n">subject</span> <span class="p">=</span> <span class="n">email</span><span class="p">.</span><span class="n">Subject</span><span class="p">;</span><span class="c1">//主旨
+</span><span class="c1"></span>        <span class="kt">var</span> <span class="n">to</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EmailAddress</span><span class="p">(</span><span class="n">email</span><span class="p">.</span><span class="n">To</span><span class="p">);</span><span class="c1">//收件人
+</span><span class="c1"></span>
+        <span class="c1">//email本體
+</span><span class="c1"></span>        <span class="kt">var</span> <span class="n">emailBody</span> <span class="p">=</span> <span class="n">email</span><span class="p">.</span><span class="n">Body</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">htmlContent</span> <span class="p">=</span> <span class="s">&#34;&lt;strong&gt;and easy to do anywhere, even with C#&lt;/strong&gt;&#34;</span><span class="p">;</span>
+         
+        <span class="kt">var</span> <span class="n">msg</span> <span class="p">=</span> <span class="n">MailHelper</span><span class="p">.</span><span class="n">CreateSingleEmail</span><span class="p">(</span><span class="k">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">emailBody</span><span class="p">,</span> <span class="n">htmlContent</span><span class="p">);</span><span class="c1">//建立信件
+</span><span class="c1"></span>        <span class="kt">var</span> <span class="n">response</span> <span class="p">=</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="n">SendEmailAsync</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="c1">//發送信件
+</span><span class="c1"></span>
+        <span class="k">if</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">StatusCode</span> <span class="p">==</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">HttpStatusCode</span><span class="p">.</span><span class="n">Accepted</span> <span class="p">||</span> <span class="n">response</span><span class="p">.</span><span class="n">StatusCode</span> <span class="p">==</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">HttpStatusCode</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="m">_l</span><span class="n">ogger</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Email發送成功&#34;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="m">_l</span><span class="n">ogger</span><span class="p">.</span><span class="n">LogError</span><span class="p">(</span><span class="s">&#34;Email發送失敗&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<h2 id="di-service-collection">DI Service Collection</h2>
+</blockquote>
+<p>打包要註冊的服務</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">InfrastructureServiceRegistration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">IServiceCollection</span> <span class="n">AddInfrastructureService</span><span class="p">(</span><span class="k">this</span> <span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">,</span> <span class="n">IConfiguration</span> <span class="n">configuration</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//ConnectionString來自於Ordering.API的appsettings.json
+</span><span class="c1"></span>        <span class="n">services</span><span class="p">.</span><span class="n">AddDbContext</span><span class="p">&lt;</span><span class="n">OrderContext</span><span class="p">&gt;(</span><span class="n">options</span> <span class="p">=&gt;</span>
+            <span class="n">options</span><span class="p">.</span><span class="n">UseSqlServer</span><span class="p">(</span><span class="n">configuration</span><span class="p">.</span><span class="n">GetConnectionString</span><span class="p">(</span><span class="s">&#34;OrderingConnectionString&#34;</span><span class="p">)));</span>
+
+        <span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IAsyncRepository</span><span class="p">&lt;&gt;),</span> <span class="k">typeof</span><span class="p">(</span><span class="n">RepositoryBase</span><span class="p">&lt;&gt;));</span>
+        <span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="p">&lt;</span><span class="n">IOrderRepository</span><span class="p">,</span> <span class="n">OrderRepository</span><span class="p">&gt;();</span>
+
+        <span class="n">services</span><span class="p">.</span><span class="n">Configure</span><span class="p">&lt;</span><span class="n">EmailSettings</span><span class="p">&gt;(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="s">&#34;EmailSettings&#34;</span><span class="p">));</span>
+        <span class="n">services</span><span class="p">.</span><span class="n">AddTransient</span><span class="p">&lt;</span><span class="n">IEmailService</span><span class="p">,</span> <span class="n">EmailService</span><span class="p">&gt;();</span>
+
+        <span class="k">return</span> <span class="n">services</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>一次在Order.API的Startup.cs內註冊Application與Infrastructure的服務</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// This method gets called by the runtime. Use this method to add services to the container.
+</span><span class="c1"></span><span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddApplicationServices</span><span class="p">();</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddInfrastructureServices</span><span class="p">(</span><span class="n">Configuration</span><span class="p">);</span>
+
+    <span class="n">services</span><span class="p">.</span><span class="n">AddControllers</span><span class="p">();</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddSwaggerGen</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="n">c</span><span class="p">.</span><span class="n">SwaggerDoc</span><span class="p">(</span><span class="s">&#34;v1&#34;</span><span class="p">,</span> <span class="k">new</span> <span class="n">OpenApiInfo</span> <span class="p">{</span> <span class="n">Title</span> <span class="p">=</span> <span class="s">&#34;Ordering.API&#34;</span><span class="p">,</span> <span class="n">Version</span> <span class="p">=</span> <span class="s">&#34;v1&#34;</span> <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<h2 id="生成migration檔案">生成Migration檔案</h2>
+</blockquote>
+<p>遷移資料庫可以想像成資料庫的版本控制，記錄我們用成對資料庫的資料結構做的變更，保持 EF Core 模型與資料庫結構描述同步，EF Core 模型成為真實來源，請使用移轉。 當變更 EF Core 模型時，這種方式會以遞增方式將對應的結構描述變更套用至資料庫。</p>
+<p>先在Order.API裝Microsoft.EntityFrameworkCore.Tools，我們希望生成的檔案在Infrastructure內，所以接著在Package Manage Console裡把預設專案切換到Order.Infrastructure後，輸入<code>Add-Migration InitialCreate</code>。</p>
+<p>以上是依照課程步驟，這在windows下也許可行，但很遺憾我的在Mac上跑，一直出現錯誤😠。</p>
+<p><code>Unable to create an object of type 'OrderContext'. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728</code></p>
+<p>最後找了很久，在Mac上要生成Migration檔案的步驟如下</p>
+<p>cd 到DbContext的那一個項目資料夾下，這邊是Ordering.Infrastructure/</p>
+<p>接著執行<code>dotnet restore</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-s" data-lang="s"><span class="n">dotnet</span> <span class="n">ef</span> <span class="o">--</span><span class="n">startup</span><span class="o">-</span><span class="n">project</span> <span class="n">..</span><span class="o">/</span><span class="n">Ordering.Api</span><span class="o">/</span> <span class="n">migrations</span> <span class="n">add</span> <span class="n">InitialCreate</span> <span class="o">--</span><span class="n">verbose</span>
+</code></pre></div><p><code>--startup-project</code> 設定啟動專案</p>
+<p><code>migrations add</code> 生成Migration檔案</p>
+<p><code>--verbose</code> 輸出log，方便查詢錯誤</p>
+<p>參考: <a class="link" href="https://stackoverflow.com/questions/55123853/unable-to-create-an-object-of-type-dbcontexts-name-for-the-different-patte"  target="_blank" rel="noopener"
+    >https://stackoverflow.com/questions/55123853/unable-to-create-an-object-of-type-dbcontexts-name-for-the-different-patte</a></p>
+<p>最後會生成一個Migration資料夾，裡面包含紀錄版本的程式碼、紀錄資料模型如何對應到資料庫的，最後是Model快照。</p>
+<p>更多操作或說明: <a class="link" href="https://ithelp.ithome.com.tw/articles/10240606"  target="_blank" rel="noopener"
+    >https://ithelp.ithome.com.tw/articles/10240606</a></p>
+<blockquote>
+<h2 id="遷移資料庫">遷移資料庫</h2>
+</blockquote>
+<p>我們在Order.API的Program裡，在host執行前進行資料庫遷移的動作，並把seeder的方法當作參數傳送進去。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">host</span> <span class="p">=</span> <span class="n">CreateHostBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">).</span><span class="n">Build</span><span class="p">();</span>
+        <span class="c1">//把方法當作參數傳送過去
+</span><span class="c1"></span>        <span class="n">host</span><span class="p">.</span><span class="n">MigrateDatabase</span><span class="p">&lt;</span><span class="n">OrderContext</span><span class="p">&gt;((</span><span class="n">context</span><span class="p">,</span> <span class="n">services</span><span class="p">)=&gt;</span> <span class="p">{</span>
+            <span class="c1">//記得加上using Microsoft.Extensions.DependencyInjection;
+</span><span class="c1"></span>            <span class="c1">//這樣才可以使用GetService的方法
+</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">logger</span> <span class="p">=</span> <span class="n">services</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&lt;</span><span class="n">OrderContextSeed</span><span class="p">&gt;&gt;();</span>
+            <span class="n">OrderContextSeed</span><span class="p">.</span><span class="n">SeedAsync</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">logger</span><span class="p">).</span><span class="n">Wait</span><span class="p">();</span>
+            <span class="p">});</span>
+        <span class="n">host</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>這邊會進行資料庫遷移的動作，若發生錯誤則會重新執行。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">HostExtensions</span>
+<span class="p">{</span>
+    <span class="c1">//Action&lt;A,B&gt;代表兩個輸入不回傳的封裝函數，就像(A,B)=&gt;{ ... }方法
+</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">IHost</span> <span class="n">MigrateDatabase</span><span class="p">&lt;</span><span class="n">TContext</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IHost</span> <span class="n">host</span><span class="p">,</span>
+                                                  <span class="n">Action</span><span class="p">&lt;</span><span class="n">TContext</span><span class="p">,</span> <span class="n">IServiceProvider</span><span class="p">&gt;</span> <span class="n">seeder</span><span class="p">,</span>
+                                                  <span class="kt">int?</span> <span class="n">retry</span> <span class="p">=</span> <span class="m">10</span><span class="p">)</span> <span class="k">where</span> <span class="n">TContext</span> <span class="p">:</span> <span class="n">DbContext</span>
+    <span class="p">{</span>
+        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">scope</span> <span class="p">=</span> <span class="n">host</span><span class="p">.</span><span class="n">Services</span><span class="p">.</span><span class="n">CreateScope</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">services</span> <span class="p">=</span> <span class="n">scope</span><span class="p">.</span><span class="n">ServiceProvider</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">logger</span> <span class="p">=</span> <span class="n">services</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="p">&lt;</span><span class="n">ILogger</span><span class="p">&lt;</span><span class="n">TContext</span><span class="p">&gt;&gt;();</span>
+            <span class="kt">var</span> <span class="n">context</span> <span class="p">=</span> <span class="n">services</span><span class="p">.</span><span class="n">GetService</span><span class="p">&lt;</span><span class="n">TContext</span><span class="p">&gt;();</span><span class="c1">//取得OrderContext的地方
+</span><span class="c1"></span>            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="n">logger</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">$&#34;開始遷移資料庫成{typeof(TContext).Name}的形狀&#34;</span><span class="p">);</span>
+                <span class="n">context</span><span class="p">.</span><span class="n">Database</span><span class="p">.</span><span class="n">Migrate</span><span class="p">();</span><span class="c1">//執行遷移
+</span><span class="c1"></span>                <span class="n">seeder</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">services</span><span class="p">);</span><span class="c1">//執行seeder，傳送進來的方法。
+</span><span class="c1"></span>                <span class="n">logger</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">$&#34;遷移資料庫成{typeof(TContext).Name}的形狀結束&#34;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">err</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">logger</span><span class="p">.</span><span class="n">LogError</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="s">&#34;寫入資料庫時發生錯誤&#34;</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">retry</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">retry</span><span class="p">--;</span>
+                    <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">);</span>
+                    <span class="n">MigrateDatabase</span><span class="p">&lt;</span><span class="n">TContext</span><span class="p">&gt;(</span><span class="n">host</span><span class="p">,</span> <span class="n">seeder</span><span class="p">,</span> <span class="n">retry</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">host</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>之所以要這樣寫的原因是<code>MigrateDataBase&lt;TContext&gt;</code>是透過泛型來處理，</p>
+<p>直到<code>var context = services.GetService&lt;TContext&gt;();</code>才取得OrderContext的地方</p>
+<p>寫在裡面並沒有辦法確定TContext的類型，寫在外面的話就可以確定</p>
+<p>因為<code>host.MigrateDatabase&lt;OrderContext&gt;</code>在這邊就確定型別的同時，也確定seeder的第一個參數了</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/disign-principle/">Disign Principle</a>
+        
+            <a href="/tags/clean-architecture/">Clean Architecture</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/posts/post/20211217_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bapplication.md/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">簡潔架構 Application Layer</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/posts/post/2021202_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bdomain.md/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">簡潔架構 Domain Layer</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/posts/post/2021201_cqrs.md/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CQRS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/posts/post/2021130_ddd.md/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Domain Driven Design 領域驅動設計</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/posts/post/2021129_solid%E5%8E%9F%E5%89%87.md/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SOLID、SoC</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2021 MindBreaker3310
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.2.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> &emsp;
+        
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#orderingapi">Ordering.API</a>
+      <ol>
+        <li><a href="#controller">Controller</a></li>
+      </ol>
+    </li>
+    <li><a href="#persistence">Persistence</a>
+      <ol>
+        <li><a href="#ordercontext">OrderContext</a></li>
+      </ol>
+    </li>
+    <li><a href="#repositories">Repositories</a>
+      <ol>
+        <li><a href="#repositorybase">RepositoryBase</a></li>
+      </ol>
+    </li>
+    <li><a href="#mail">Mail</a></li>
+    <li><a href="#di-service-collection">DI Service Collection</a></li>
+    <li><a href="#生成migration檔案">生成Migration檔案</a></li>
+    <li><a href="#遷移資料庫">遷移資料庫</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

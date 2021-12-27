@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/categories/shell/</link>
+    <description>Recent content in Shell on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Dec 2021 09:46:07 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nslookup查詢ip位置</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211223_nslookup%E6%9F%A5%E8%A9%A2ip%E4%BD%8D%E7%BD%AE.md/</link>
+      <pubDate>Thu, 23 Dec 2021 09:46:07 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211223_nslookup%E6%9F%A5%E8%A9%A2ip%E4%BD%8D%E7%BD%AE.md/</guid>
+      <description>nslookup  紀錄一下今天學到的指令，想要查詢網站或是資料庫的ip位置，就可以使用nslookup來查詢，在windows、mac也都可以用。
+MacBook-Air ~ % nslookup www.google.com Server:	172.20.10.1 Address:	172.20.10.1#53 Non-authoritative answer: Name:	www.google.com Address: 142.251.42.228 前面是DNS的位置
+Non-authoritative answer則是代表直接讀取DNS暫存，未認證的答案。</description>
+    </item>
+    
+  </channel>
+</rss>

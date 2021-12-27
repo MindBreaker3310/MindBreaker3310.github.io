@@ -6,13 +6,58 @@
     <description>Recent content in Categories on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Dec 2021 17:09:56 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Dec 2021 10:52:40 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker</title>
+      <link>https://mindbreaker3310.github.io/categories/docker/</link>
+      <pubDate>Mon, 27 Dec 2021 10:52:40 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>https://mindbreaker3310.github.io/categories/shell/</link>
+      <pubDate>Thu, 23 Dec 2021 09:46:07 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/shell/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>C#</title>
       <link>https://mindbreaker3310.github.io/categories/c#/</link>
-      <pubDate>Fri, 17 Dec 2021 17:09:56 +0800</pubDate>
+      <pubDate>Wed, 22 Dec 2021 15:24:54 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/categories/c#/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Disign Principle</title>
+      <link>https://mindbreaker3310.github.io/categories/disign-principle/</link>
+      <pubDate>Wed, 22 Dec 2021 13:32:25 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/disign-principle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Network</title>
+      <link>https://mindbreaker3310.github.io/categories/network/</link>
+      <pubDate>Tue, 21 Dec 2021 13:22:15 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Life</title>
+      <link>https://mindbreaker3310.github.io/categories/life/</link>
+      <pubDate>Tue, 21 Dec 2021 09:41:12 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/categories/life/</guid>
       <description></description>
     </item>
     
@@ -26,29 +71,11 @@
     </item>
     
     <item>
-      <title>Disign Principle</title>
-      <link>https://mindbreaker3310.github.io/categories/disign-principle/</link>
-      <pubDate>Fri, 17 Dec 2021 11:44:52 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/categories/disign-principle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>NuGet</title>
       <link>https://mindbreaker3310.github.io/categories/nuget/</link>
       <pubDate>Thu, 16 Dec 2021 14:50:26 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/categories/nuget/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Life</title>
-      <link>https://mindbreaker3310.github.io/categories/life/</link>
-      <pubDate>Thu, 16 Dec 2021 13:10:12 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/categories/life/</guid>
       <description></description>
     </item>
     
@@ -64,7 +91,7 @@
     <item>
       <title>Micorservices</title>
       <link>https://mindbreaker3310.github.io/categories/micorservices/</link>
-      <pubDate>Thu, 25 Nov 2021 15:57:43 +0800</pubDate>
+      <pubDate>Wed, 24 Nov 2021 10:12:35 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/categories/micorservices/</guid>
       <description></description>

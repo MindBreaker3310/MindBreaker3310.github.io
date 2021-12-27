@@ -257,12 +257,11 @@ if (!doNotTrack) {
 </header>
 
     <section class="article-content">
-    <h1 id="fluentvalidation">FluentValidation</h1>
-<blockquote>
-<h2 id="介紹">介紹</h2>
+    <blockquote>
+<h2 id="筆記">筆記</h2>
 </blockquote>
 <p>雖說在工作上能不用第三方套件就不用，但練習的時候想做什麼就做什麼吧，一切輕鬆、簡單最好了。可以考慮用看看。</p>
-<p>紀錄一下常用的功能</p>
+<p>紀錄一下常用的功能，範例取自訂單結帳前處理的部分。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">FluentValidation</span><span class="p">;</span><span class="c1">//使用套件
 </span><span class="c1"></span><span class="k">public</span> <span class="k">class</span> <span class="nc">CheckoutOrderCommandValidator</span> <span class="p">:</span> <span class="n">AbstractValidator</span><span class="p">&lt;</span><span class="n">CheckoutOrderCommand</span><span class="p">&gt;</span><span class="c1">//要驗證的class
 </span><span class="c1"></span><span class="p">{</span>
@@ -282,8 +281,30 @@ if (!doNotTrack) {
             <span class="p">.</span><span class="n">GreaterThan</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">WithMessage</span><span class="p">(</span><span class="s">&#34;TotalPrice 需要大於0&#34;</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>雖說正則表達式、Data Annotation也可以做到，這個看起來還蠻易讀的。</p>
+</code></pre></div><p>取得各個Validator</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">//這將會讀取所有Validator，只要有繼承AbstractValidator&lt;TRequest&gt;(來自FluentValidation)
+</span><span class="c1"></span><span class="k">private</span> <span class="k">readonly</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">IValidator</span><span class="p">&lt;</span><span class="n">TRequest</span><span class="p">&gt;&gt;</span> <span class="m">_</span><span class="n">validators</span><span class="p">;</span>
 
+<span class="k">public</span> <span class="n">ValidationBehaviour</span><span class="p">(</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">IValidator</span><span class="p">&lt;</span><span class="n">TRequest</span><span class="p">&gt;&gt;</span> <span class="n">validators</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="m">_</span><span class="n">validators</span> <span class="p">=</span> <span class="n">validators</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>使用Validator</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">if</span> <span class="p">(</span><span class="m">_</span><span class="n">validators</span><span class="p">.</span><span class="n">Any</span><span class="p">())</span><span class="c1">//如果有Validator的話
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="c1">//驗證輸入
+</span><span class="c1"></span>    <span class="kt">var</span> <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ValidationContext</span><span class="p">&lt;</span><span class="n">TRequest</span><span class="p">&gt;(</span><span class="n">request</span><span class="p">);</span>
+    <span class="c1">//等待所有非同步執行結果 ( 對所有驗證項目進行非同步工作  )
+</span><span class="c1"></span>    <span class="kt">var</span> <span class="n">validationResults</span> <span class="p">=</span> <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">WhenAll</span><span class="p">(</span><span class="m">_</span><span class="n">validators</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">v</span> <span class="p">=&gt;</span> <span class="n">v</span><span class="p">.</span><span class="n">ValidateAsync</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">cancellationToken</span><span class="p">)));</span>
+    <span class="c1">//查看結果
+</span><span class="c1"></span>    <span class="kt">var</span> <span class="n">failures</span> <span class="p">=</span> <span class="n">validationResults</span><span class="p">.</span><span class="n">SelectMany</span><span class="p">(</span><span class="n">r</span> <span class="p">=&gt;</span> <span class="n">r</span><span class="p">.</span><span class="n">Errors</span><span class="p">).</span><span class="n">Where</span><span class="p">(</span><span class="n">f</span> <span class="p">=&gt;</span> <span class="n">f</span> <span class="p">!=</span> <span class="k">null</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span>
+    <span class="c1">//如果有錯的話
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">failures</span><span class="p">.</span><span class="n">Count</span> <span class="p">!=</span> <span class="m">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">ValidationException</span><span class="p">(</span><span class="n">failures</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 </section>
 
 
@@ -327,6 +348,18 @@ if (!doNotTrack) {
                 
                     
 <article class="">
+    <a href="/posts/post/20211222_linqexpression.md/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Linq Expression</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
     <a href="/posts/post/20211217_windows%E6%8E%92%E7%A8%8B%E7%B4%80%E9%8C%84%E4%B8%BB%E6%A9%9F%E7%A3%81%E7%A2%9F%E7%8B%80%E6%85%8B.md/">
         
         
@@ -345,18 +378,6 @@ if (!doNotTrack) {
 
         <div class="article-details">
             <h2 class="article-title">正則表達式筆記</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="">
-    <a href="/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">使用Grpc服務</h2>
         </div>
     </a>
 </article>

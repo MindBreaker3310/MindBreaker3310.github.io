@@ -6,18 +6,34 @@
     <description>Recent content in Disign Principle on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Dec 2021 11:44:52 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/disign-principle/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Dec 2021 13:32:25 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/disign-principle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>簡潔架構 Infrastructure Layer</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211222_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Binfrastructure.md/</link>
+      <pubDate>Wed, 22 Dec 2021 13:32:25 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211222_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Binfrastructure.md/</guid>
+      <description>基礎設施層，將我們Application Layer說的那些處理，連接到資料庫上。
+在這一層我們將使用Entity Framework Core AKA EF Core，EFCore的目的是讓程式設計師能夠以熟習的語言去操作資料庫，而非使用sql語法然後再轉成我們的資料模型。
+先去NuGet裝Microsoft.EntityFrameworkCore.SqlServer，使用.Net 5.0的話版本只支援到5.0.x以下，6.0.0不支援。
+ Ordering.API  這跟infrastructure一樣，都是最外面一層，寫一起比較好整理吧
+Controller 得利於mediator的handler，我們整個controller就是一個清爽，基本上就是建立Request，丟給Handler來處理，最後把資料回傳就搞定了。
+[ApiController] [Route(&amp;#34;[controller]&amp;#34;)] public class OrderController : ControllerBase { private readonly IMediator _mediator; public OrderController(IMediator mediator) { _mediator = mediator; } [HttpGet(&amp;#34;{userName}&amp;#34;, Name = &amp;#34;GetOrder&amp;#34;)] [ProducesResponseType(typeof(IEnumerable&amp;lt;OrdersVm&amp;gt;), (int)HttpStatusCode.OK)] public async Task&amp;lt;ActionResult&amp;lt;IEnumerable&amp;lt;OrdersVm&amp;gt;&amp;gt;&amp;gt; GetOrdersByUserName(string userName) { //建立Request  var query = new GetOrdersListQuery(userName); //發送給Handler處理  List&amp;lt;OrdersVm&amp;gt; orders = await _mediator.Send(query); return Ok(orders); } [HttpPost(Name = &amp;#34;CheckoutOrder&amp;#34;)] [ProducesResponseType(StatusCodes.Status200OK)] public async Task&amp;lt;ActionResult&amp;lt;int&amp;gt;&amp;gt; CheckoutOrder([FromBody] CheckoutOrderCommand command) { var result = await _mediator.</description>
+    </item>
+    
     <item>
       <title>簡潔架構 Application Layer</title>
       <link>https://mindbreaker3310.github.io/posts/post/20211217_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bapplication.md/</link>
       <pubDate>Fri, 17 Dec 2021 11:44:52 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211217_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bapplication.md/</guid>
-      <description>簡潔架構 Application Layer  Application Layer  注重於商業需求而不是實作一些外部系統的東西，DB之類的。 顧客需要用自己的名子取得訂單
-有三個主要的資料夾Contracts、Features、Behaviors，
- Contracts  存放各Services的interface
-Persistence 基本非同步Repository介面
-//泛型T必需繼承Domina Layer的EntityBase(Id、createdBy、createDate、LastModifiedDate等等的東西) public interface IAsyncRepository&amp;lt;T&amp;gt; where T : EntityBase { Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAllAsync(); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, string includeString = null, bool disableTracking = true); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, List&amp;lt;Expression&amp;lt;Func&amp;lt;T, object&amp;gt;&amp;gt;&amp;gt; includes = null, bool disableTracking = true); Task&amp;lt;T&amp;gt; GetByIdAsync(int id); Task&amp;lt;T&amp;gt; AddAsync(T entity); Task UpdateAsync(T entity); Task DeleteAsync(T entity); } 下訂單Repository介面，Order來自Domian Layer的Entity</description>
+      <description>Application Layer  注重於商業需求而不是實作一些外部系統的東西，DB之類的。
+在這一層裡有三個主要的資料夾Contracts、Features、Behaviors，分別為存放服務介面、Use case、驗證用戶行為。
+主要在於Fetures，根據DDD並使用MediatR為每一個需求做獨自的CQRS操作，
+ Contracts  存放各Services的interface的地方
+Persistence 通用的非同步Repository介面(Asynchronous Generic Repository)
+裡面包含常用的功能。
+//泛型T必需繼承Domina Layer的EntityBase(Id、createdBy、createDate、LastModifiedDate等等的東西) public interface IAsyncRepository&amp;lt;T&amp;gt; where T : EntityBase { Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAllAsync(); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, string includeString = null, bool disableTracking = true); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, List&amp;lt;Expression&amp;lt;Func&amp;lt;T, object&amp;gt;&amp;gt;&amp;gt; includes = null, bool disableTracking = true); Task&amp;lt;T&amp;gt; GetByIdAsync(int id); Task&amp;lt;T&amp;gt; AddAsync(T entity); Task UpdateAsync(T entity); Task DeleteAsync(T entity); } 下訂單Repository介面，在這邊我們可以建立自己的方法、功能，後面處理Request時會用到。</description>
     </item>
     
     <item>
@@ -26,7 +42,7 @@ Persistence 基本非同步Repository介面
       <pubDate>Thu, 02 Dec 2021 15:52:49 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/2021202_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bdomain.md/</guid>
-      <description>Clean Architecture  介紹  接下來的筆記是根據線上課程Microservices Architecture and Implementation on .NET 5所記錄下來的，講者的口音有點重，聽得有點吃力，他這個專案基本上重做微軟提供的範例專案，電商系統，完美呈現微服務的使用與他的優點，一共把服務切成四個主要的服務，Catalog(商品目錄系統)、Basket(購物車系統)、Discount(折扣系統)、Ordering(訂單系統)，並分別使用不同的資料庫(mongodb、redis、PostgreSQL、MSSQL)、不同的傳輸協定(Rest API、Grpc)、不同的架構(多層式架構、簡潔架構)，最後使用Docker容器化，把他們都整合在一起運作。
+      <description>介紹  接下來的筆記是根據線上課程Microservices Architecture and Implementation on .NET 5所記錄下來的，講者的口音有點重，聽得有點吃力，他這個專案基本上重做微軟提供的範例專案，電商系統，完美呈現微服務的使用與他的優點，一共把服務切成四個主要的服務，Catalog(商品目錄系統)、Basket(購物車系統)、Discount(折扣系統)、Ordering(訂單系統)，並分別使用不同的資料庫(mongodb、redis、PostgreSQL、MSSQL)、不同的傳輸協定(Rest API、Grpc)、不同的架構(多層式架構、簡潔架構)，最後使用Docker容器化，把他們都整合在一起運作。
 整個系統的架構圖
 工作一陣子了，維護的系統基本也都上手了(龐大的Web Service架構)，但還有許多前人的智慧，一時之間是很難理解的XD，這時有一個乾淨的架構，或許上手的時間就可以更短了。
  Domain Layer  建立一個訂單系統使用Clean Architecture
@@ -45,7 +61,7 @@ Common 其中Common放的是我們建立Entity的基礎，含有兩個abstract c
       <pubDate>Wed, 01 Dec 2021 11:08:44 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/2021201_cqrs.md/</guid>
-      <description>CQRS  筆記  CQRS(Command Query Responsibility Segregation)命令查詢分隔，目前看起來就是不再需要IRepository了，把它拆成Command(負責寫入資料庫的部分)與Query(只負責讀取的部分)。
+      <description>筆記  CQRS(Command Query Responsibility Segregation)命令查詢分隔，目前看起來就是不再需要IRepository了，把它拆成Command(負責寫入資料庫的部分)與Query(只負責讀取的部分)。
 可以增加資料庫的效能，Command的部分則會透過event的形式記錄起來再同步到DB上面。
 我還是偏好原本的方法啊XD
  參考  https://ithelp.ithome.com.tw/articles/10237458</description>
@@ -57,7 +73,7 @@ Common 其中Common放的是我們建立Entity的基礎，含有兩個abstract c
       <pubDate>Tue, 30 Nov 2021 14:30:40 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/2021130_ddd.md/</guid>
-      <description>Domain Driven Design  關於DDD  隨著科技進步，需求也是越來越複雜，更多的是需要專業領域人員與開發人員共同協作
+      <description>關於DDD  隨著科技進步，需求也是越來越複雜，更多的是需要專業領域人員與開發人員共同協作
 DDD是一種基於領域知識來解決複雜業務問題的軟體開發方法論。
  Ubiquitous Language  使用通用語言就很重要了，講人話，減少溝通成本。 ex:下訂單大家就聽得懂，別講些什麼call Order API、B2C之類的
  Anemic Model  Anemic Model貧血模型是指那些只有getter、setter沒有行為能力的模型
@@ -73,7 +89,7 @@ Devil Max = new Devil(); Max.HellFire();  與微服務的關係  很多時候Mic
       <pubDate>Mon, 29 Nov 2021 16:10:40 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/2021129_solid%E5%8E%9F%E5%89%87.md/</guid>
-      <description>SOLID、SoC  SOLID原則  Single responsibility principle 單一功能原則 認為一個class就應該只有一個任務要做，不做其他任務以外的事情，過去是很多不同的需求都用同一個Service，單一功能原則則是提供各種不同的Use Case給各個需求。 SRP示意圖
+      <description>SOLID原則  Single responsibility principle 單一功能原則 認為一個class就應該只有一個任務要做，不做其他任務以外的事情，過去是很多不同的需求都用同一個Service，單一功能原則則是提供各種不同的Use Case給各個需求。 SRP示意圖
 Open/ closed principle 開閉原則 一個class或Function對於他的擴展是開放的，但是對於修改是封閉的，意思就是不改變他的行為，但是可以增加新的功能。 就像是電動理髮刀，可以換上各種不同的刀頭(擴展)，但是機身本體是不能修改的(封閉)。
 Liskov substitution principle 里氏替換原則 程式中的物件應該是可以在不改變正確性的前提下被他的子類所替換的概念，我們在使用「繼承」時，重要的是重複使用 (reuse) 已經寫好的行為，而不是將所有繼承的行為全部覆蓋。
 Interface segregation principle 介面隔離原則 很多個客製化的interface比一個通用的interface還要來得更好管理，例如一個政客interface有提出政見()、拜票()、努力工作()，但事實上不是每一個政客都想實作努力工作XD，所以應該方別建兩個interface，政客介面:提出政見()、拜票()與工作介面:努力工作()。

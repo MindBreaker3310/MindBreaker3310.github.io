@@ -135,14 +135,15 @@ if (!doNotTrack) {
 </header>
 
     <section class="article-content">
-    <h1 id="grpc-筆記">Grpc 筆記</h1>
-<blockquote>
-<h2 id="簡單介紹">簡單介紹</h2>
+    <blockquote>
+<h2 id="筆記">筆記</h2>
 </blockquote>
 <p>Grpc是google開發的rpc(Remote Procedure Call)框架，用於電腦與電腦之間的溝通，就像電腦A呼叫電腦B做事情，電腦B做好事情後把結果回傳給電腦A，與一般的api不同的地方在於，電腦A、B在進行Grpc溝通前，都必須有protocal buffers檔案來把格式與方法定義清楚，並使用HTTP/2進行傳輸，快速、低延遲、支持串流。</p>
 <blockquote>
 <h2 id="protocal-buffers-檔案">protocal buffers 檔案</h2>
 </blockquote>
+<p>在VS裡面，Add &raquo; New Project &raquo; 選gRPC Service &raquo; &hellip;一些基本設定</p>
+<p>生成新gRPC Service後，裡面會有.proto檔案</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">syntax</span> <span class="p">=</span> <span class="s">&#34;proto3&#34;</span><span class="p">;</span><span class="c1">//使用的protocal buffers版本
 </span><span class="c1"></span>
 <span class="n">option</span> <span class="n">csharp_namespace</span> <span class="p">=</span> <span class="s">&#34;MyFirstGrpc.Grpc&#34;</span><span class="p">;</span><span class="c1">//命名空間
@@ -262,11 +263,26 @@ if (!doNotTrack) {
 透過<code>services.AddGrpc();</code>註冊Grpc服務，方可使用Grpc。
 透過<code>endpoints.MapGrpcService&lt;GreeterService&gt;();</code>把所有Grpc服務部署到Routing Pipeline裡</p>
 <blockquote>
+<h2 id="新增grpc服務的reference">新增Grpc服務的reference</h2>
+</blockquote>
+<p>購物車的功能需要導入折價券.Grpc的服務</p>
+<p>購物車是Client端</p>
+<p>折價券是Server端</p>
+<p>VS for Mac在專案下面就可以直接看到Connected Services
+Windows則是右鍵 &raquo; Add &raquo; connected services</p>
+<p>選取購物車專案的connected services &raquo; Add new Grpc service reference &raquo; Add &raquo; 參照折價券.Grpc裡面的.proto &raquo; 選擇Client模式</p>
+<p>執行完後，可以看到.csproj多了Grpc服務、專案下也多了protos</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="p">&lt;</span><span class="n">Protobuf</span> <span class="n">Include</span><span class="p">=</span><span class="s">&#34;..\..\Discount\Discount.Grpc\Discount.Grpc\Protos\discount.proto&#34;</span> <span class="n">GrpcServices</span><span class="p">=</span><span class="s">&#34;Client&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">OutputDir</span><span class="p">&gt;</span><span class="n">obj</span><span class="err">\</span><span class="n">Debug</span><span class="err">\</span><span class="n">net5</span><span class="p">.</span><span class="m">0</span><span class="err">\</span><span class="p">&lt;/</span><span class="n">OutputDir</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">Link</span><span class="p">&gt;</span><span class="n">Protos</span><span class="err">\</span><span class="n">discount</span><span class="p">.</span><span class="n">proto</span><span class="p">&lt;/</span><span class="n">Link</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="n">Protobuf</span><span class="p">&gt;</span>
+</code></pre></div><p>建置專案後，也會產生ProtoServiceClient等cs檔</p>
+<blockquote>
 <h2 id="參考">參考</h2>
 </blockquote>
 <p><a class="link" href="https://pjchender.dev/golang/grpc-getting-started/"  target="_blank" rel="noopener"
-    >https://pjchender.dev/golang/grpc-getting-started/</a>
-<a class="link" href="https://docs.microsoft.com/en-us/aspnet/core/grpc/aspnetcore?view=aspnetcore-6.0&amp;tabs=visual-studio"  target="_blank" rel="noopener"
+    >https://pjchender.dev/golang/grpc-getting-started/</a></p>
+<p><a class="link" href="https://docs.microsoft.com/en-us/aspnet/core/grpc/aspnetcore?view=aspnetcore-6.0&amp;tabs=visual-studio"  target="_blank" rel="noopener"
     >https://docs.microsoft.com/en-us/aspnet/core/grpc/aspnetcore?view=aspnetcore-6.0&tabs=visual-studio</a></p>
 
 </section>
@@ -312,12 +328,12 @@ if (!doNotTrack) {
                 
                     
 <article class="">
-    <a href="/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/">
+    <a href="/posts/post/20211222_linqexpression.md/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">使用Grpc服務</h2>
+            <h2 class="article-title">Linq Expression</h2>
         </div>
     </a>
 </article>
@@ -495,12 +511,13 @@ if (!doNotTrack) {
                 <div class="widget--toc">
                     <nav id="TableOfContents">
   <ol>
-    <li><a href="#簡單介紹">簡單介紹</a></li>
+    <li><a href="#筆記">筆記</a></li>
     <li><a href="#protocal-buffers-檔案">protocal buffers 檔案</a></li>
     <li><a href="#appsettings-使用http2">AppSettings 使用Http2</a></li>
     <li><a href="#產生service-class檔案">產生Service class檔案</a></li>
     <li><a href="#greeterservice-實作">GreeterService 實作</a></li>
     <li><a href="#註冊grpc服務">註冊Grpc服務</a></li>
+    <li><a href="#新增grpc服務的reference">新增Grpc服務的reference</a></li>
     <li><a href="#參考">參考</a></li>
   </ol>
 </nav>

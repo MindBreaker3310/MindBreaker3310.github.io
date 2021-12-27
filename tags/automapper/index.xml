@@ -13,11 +13,11 @@
       <pubDate>Thu, 25 Nov 2021 14:55:07 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</guid>
-      <description>AutoMapper 筆記  簡單介紹  可以輕鬆的轉換兩個class，讓程式碼變得更加簡短乾淨。
- 範例  message CouponModel { int32 id = 1; string productName = 2; string description = 3; int32 amount = 4; } 在Grpc定義的優戶券模型
+      <description>筆記  可以輕鬆的轉換兩個class，讓程式碼變得更加簡短乾淨。
+message CouponModel { int32 id = 1; string productName = 2; string description = 3; int32 amount = 4; } 在Grpc定義的優戶券模型
 public class Coupon { public int Id { get; set; } public string ProductName { get; set; } public string Description { get; set; } public int Amount { get; set; } } 我們自己定義的模型
 原先轉換需要像是這個樣子
-Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.</description>
+Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.Id, productName = coupon.</description>
     </item>
     
   </channel>

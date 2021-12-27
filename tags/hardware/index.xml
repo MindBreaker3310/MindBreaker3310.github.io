@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hardware on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/tags/hardware/</link>
+    <description>Recent content in Hardware on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Dec 2021 09:41:12 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WD Blue™ SN550 小開箱</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211220_sn550%E9%96%8B%E7%AE%B1.md/</link>
+      <pubDate>Tue, 21 Dec 2021 09:41:12 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211220_sn550%E9%96%8B%E7%AE%B1.md/</guid>
+      <description>購買原因  加入了XBOX Game Pass後，遊戲玩不完，空間不夠放了啊，原先地平線5是放在傳統硬碟裡，開車開到一半，路直接不見，進入遊戲也要等個3分鐘，速度實在太慢了。
+沒什麼時間做功課，趕在雙12結束前下單優惠比較多，原本想要透過pchome+Line導購，一沒注意時間錯過了導購回饋的時間，改去蝦皮原價屋買，回饋少了一點，但也還行吧，2244$，沒時間解釋了，快上車。
+由於我的主機板x470i剩主板後面一個m.2插槽可以用，背面沒有散熱片可以用，itx機殼又容易積熱，所以主要訴求是希望硬碟溫度能夠低，發熱量小點。
+藍藍的看起來很清涼🥶
+順帶一提，過去擁有不少顆傳統硬碟(大概8、9顆)，只壞過WD牌的，個人覺得最耐操的是HGST(在被WD買下前)，可惜現在都買不到了，現在這顆我也還在服役，就是速度慢了些。再給吃過HGST口水的WD一個機會。
+ 移動遊戲到新硬碟裡  設定 &amp;raquo; 應用程式 &amp;raquo; 找到遊戲 &amp;raquo; 移動
+就可以直接移動到新的硬碟去了，還好不用重新下載幾百G的檔案。
+ 曬一下電腦照  itx就是桌面吸塵器
+這台電腦自從裝好後就再也沒拆過了，這組裝實在太麻煩了XD，有夠難裝，線也是我自己弄的，組完還蠻有成就感的。兩年前組好(顯卡二手+線材+沿用舊傳統硬碟)總花費大概為30000出頭，是非常貴的一格價格，我把實習賺的錢全部都砸在這台電腦上，要組itx很多東西都是要買特定規格的，能省錢的地方不多，而且電腦通常一組就好幾年，可以買價格合理，品質耐用的產品。
+ CPU AMD Ryzen™ 5 3600 主機板 ROG STRIX X470-I GAMING 記憶體 Micron Ballistix Sport LT 3200 8G *2 顯示卡 ROG-STRIX-GTX1060-O6G-GAMING 電源 CORSAIR SF450 80Plus SSD PLEXTOR M9PeGn 1TB M.2 2280 PCIe SSD SSD WD Blue™ SN550 NVMe™ 硬碟 硬碟 機殼 K01 6.</description>
+    </item>
+    
+  </channel>
+</rss>

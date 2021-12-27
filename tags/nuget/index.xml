@@ -13,9 +13,11 @@
       <pubDate>Thu, 16 Dec 2021 14:50:26 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211216_fluentvalidation%E9%A9%97%E8%AD%89%E5%A5%97%E4%BB%B6.md/</guid>
-      <description>FluentValidation  介紹  雖說在工作上能不用第三方套件就不用，但練習的時候想做什麼就做什麼吧，一切輕鬆、簡單最好了。可以考慮用看看。
-紀錄一下常用的功能
-using FluentValidation;//使用套件 public class CheckoutOrderCommandValidator : AbstractValidator&amp;lt;CheckoutOrderCommand&amp;gt;//要驗證的class { public CheckoutOrderCommandValidator() { //p代表property  RuleFor(p =&amp;gt; p.UserName)//驗證UserName  .NotEmpty().WithMessage(&amp;#34;UserName 必填&amp;#34;)//不可為空值，若為空值回傳訊息  .NotNull() .MaximumLength(50).WithMessage(&amp;#34;UserName 字數過長&amp;#34;); RuleFor(p =&amp;gt; p.EmailAddress) .NotEmpty().WithMessage(&amp;#34;EmailAddress 必填&amp;#34;); RuleFor(p =&amp;gt; p.TotalPrice) .NotEmpty().WithMessage(&amp;#34;TotalPrice 必填&amp;#34;) .GreaterThan(0).WithMessage(&amp;#34;TotalPrice 需要大於0&amp;#34;); } } 雖說正則表達式、Data Annotation也可以做到，這個看起來還蠻易讀的。</description>
+      <description>筆記  雖說在工作上能不用第三方套件就不用，但練習的時候想做什麼就做什麼吧，一切輕鬆、簡單最好了。可以考慮用看看。
+紀錄一下常用的功能，範例取自訂單結帳前處理的部分。
+using FluentValidation;//使用套件 public class CheckoutOrderCommandValidator : AbstractValidator&amp;lt;CheckoutOrderCommand&amp;gt;//要驗證的class { public CheckoutOrderCommandValidator() { //p代表property  RuleFor(p =&amp;gt; p.UserName)//驗證UserName  .NotEmpty().WithMessage(&amp;#34;UserName 必填&amp;#34;)//不可為空值，若為空值回傳訊息  .NotNull() .MaximumLength(50).WithMessage(&amp;#34;UserName 字數過長&amp;#34;); RuleFor(p =&amp;gt; p.EmailAddress) .NotEmpty().WithMessage(&amp;#34;EmailAddress 必填&amp;#34;); RuleFor(p =&amp;gt; p.TotalPrice) .NotEmpty().WithMessage(&amp;#34;TotalPrice 必填&amp;#34;) .GreaterThan(0).WithMessage(&amp;#34;TotalPrice 需要大於0&amp;#34;); } } 取得各個Validator
+//這將會讀取所有Validator，只要有繼承AbstractValidator&amp;lt;TRequest&amp;gt;(來自FluentValidation) private readonly IEnumerable&amp;lt;IValidator&amp;lt;TRequest&amp;gt;&amp;gt; _validators; public ValidationBehaviour(IEnumerable&amp;lt;IValidator&amp;lt;TRequest&amp;gt;&amp;gt; validators) { _validators = validators; } 使用Validator
+if (_validators.Any())//如果有Validator的話 { //驗證輸入  var context = new ValidationContext&amp;lt;TRequest&amp;gt;(request); //等待所有非同步執行結果 ( 對所有驗證項目進行非同步工作 )  var validationResults = await Task.</description>
     </item>
     
     <item>
@@ -24,11 +26,11 @@ using FluentValidation;//使用套件 public class CheckoutOrderCommandValidator
       <pubDate>Thu, 25 Nov 2021 14:55:07 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</guid>
-      <description>AutoMapper 筆記  簡單介紹  可以輕鬆的轉換兩個class，讓程式碼變得更加簡短乾淨。
- 範例  message CouponModel { int32 id = 1; string productName = 2; string description = 3; int32 amount = 4; } 在Grpc定義的優戶券模型
+      <description>筆記  可以輕鬆的轉換兩個class，讓程式碼變得更加簡短乾淨。
+message CouponModel { int32 id = 1; string productName = 2; string description = 3; int32 amount = 4; } 在Grpc定義的優戶券模型
 public class Coupon { public int Id { get; set; } public string ProductName { get; set; } public string Description { get; set; } public int Amount { get; set; } } 我們自己定義的模型
 原先轉換需要像是這個樣子
-Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.</description>
+Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.Id, productName = coupon.</description>
     </item>
     
   </channel>

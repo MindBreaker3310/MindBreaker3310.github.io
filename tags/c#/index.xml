@@ -6,14 +6,26 @@
     <description>Recent content in C# on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Dec 2021 17:09:56 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Dec 2021 15:24:54 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linq Expression</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211222_linqexpression.md/</link>
+      <pubDate>Wed, 22 Dec 2021 15:24:54 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211222_linqexpression.md/</guid>
+      <description>簡單介紹  在先前的簡潔架構Application Layer有寫通用的非同步Repository介面(Asynchronous Generic Repository)
+在這裡面有很多奇怪的東西😱
+先來看看通用的非同步Repository介面長什麼樣子
+public interface IAsyncRepository&amp;lt;T&amp;gt; where T : EntityBase { Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAllAsync(); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, string includeString = null, bool disableTracking = true); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, List&amp;lt;Expression&amp;lt;Func&amp;lt;T, object&amp;gt;&amp;gt;&amp;gt; includes = null, bool disableTracking = true); Task&amp;lt;T&amp;gt; GetByIdAsync(int id); Task&amp;lt;T&amp;gt; AddAsync(T entity); Task UpdateAsync(T entity); Task DeleteAsync(T entity); } 在GetAsync()裡面有很多東西Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt;、Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt;、List&amp;lt;Expression&amp;lt;Func&amp;lt;T, object&amp;gt;&amp;gt;&amp;gt;</description>
+    </item>
+    
     <item>
       <title>windows排程紀錄主機磁碟狀態</title>
       <link>https://mindbreaker3310.github.io/posts/post/20211217_windows%E6%8E%92%E7%A8%8B%E7%B4%80%E9%8C%84%E4%B8%BB%E6%A9%9F%E7%A3%81%E7%A2%9F%E7%8B%80%E6%85%8B.md/</link>
       <pubDate>Fri, 17 Dec 2021 17:09:56 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211217_windows%E6%8E%92%E7%A8%8B%E7%B4%80%E9%8C%84%E4%B8%BB%E6%A9%9F%E7%A3%81%E7%A2%9F%E7%8B%80%E6%85%8B.md/</guid>
-      <description>windows排程紀錄主機磁碟狀態  取得磁碟狀態  工作上總是一堆鳥事，在甲方裡工作有時候又要處理一些完全沒有意義的雜事，浪費時間。
+      <description>取得磁碟狀態  工作上總是一堆鳥事，在甲方裡工作有時候又要處理一些完全沒有意義的雜事，浪費時間。
 總之因為不明原因，我需要每週紀錄主機的磁碟剩餘容量百分比&amp;hellip;
 要取得磁碟訊息很簡單，使用System.IO的DriveInfo.GetDrives()可以取得所有磁碟，再把DriveInfo的屬性取出來
 string diskStatus = &amp;#34;&amp;#34;; DriveInfo[] allDrives = DriveInfo.GetDrives(); foreach (DriveInfo d in allDrives) { if (d.IsReady == true)//確定磁碟就緒  { int freePercent = (int)(d.TotalFreeSpace / (float)d.TotalSize * 100); diskStatus += $&amp;#34; {d.Name}{freePercent} &amp;#34; } }  寫入紀錄  這邊一切以簡單為主，直接用寫入文字檔的方式來進行
@@ -26,9 +38,11 @@ string diskStatus = &amp;#34;&amp;#34;; DriveInfo[] allDrives = DriveInfo.GetDri
       <pubDate>Thu, 16 Dec 2021 14:50:26 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211216_fluentvalidation%E9%A9%97%E8%AD%89%E5%A5%97%E4%BB%B6.md/</guid>
-      <description>FluentValidation  介紹  雖說在工作上能不用第三方套件就不用，但練習的時候想做什麼就做什麼吧，一切輕鬆、簡單最好了。可以考慮用看看。
-紀錄一下常用的功能
-using FluentValidation;//使用套件 public class CheckoutOrderCommandValidator : AbstractValidator&amp;lt;CheckoutOrderCommand&amp;gt;//要驗證的class { public CheckoutOrderCommandValidator() { //p代表property  RuleFor(p =&amp;gt; p.UserName)//驗證UserName  .NotEmpty().WithMessage(&amp;#34;UserName 必填&amp;#34;)//不可為空值，若為空值回傳訊息  .NotNull() .MaximumLength(50).WithMessage(&amp;#34;UserName 字數過長&amp;#34;); RuleFor(p =&amp;gt; p.EmailAddress) .NotEmpty().WithMessage(&amp;#34;EmailAddress 必填&amp;#34;); RuleFor(p =&amp;gt; p.TotalPrice) .NotEmpty().WithMessage(&amp;#34;TotalPrice 必填&amp;#34;) .GreaterThan(0).WithMessage(&amp;#34;TotalPrice 需要大於0&amp;#34;); } } 雖說正則表達式、Data Annotation也可以做到，這個看起來還蠻易讀的。</description>
+      <description>筆記  雖說在工作上能不用第三方套件就不用，但練習的時候想做什麼就做什麼吧，一切輕鬆、簡單最好了。可以考慮用看看。
+紀錄一下常用的功能，範例取自訂單結帳前處理的部分。
+using FluentValidation;//使用套件 public class CheckoutOrderCommandValidator : AbstractValidator&amp;lt;CheckoutOrderCommand&amp;gt;//要驗證的class { public CheckoutOrderCommandValidator() { //p代表property  RuleFor(p =&amp;gt; p.UserName)//驗證UserName  .NotEmpty().WithMessage(&amp;#34;UserName 必填&amp;#34;)//不可為空值，若為空值回傳訊息  .NotNull() .MaximumLength(50).WithMessage(&amp;#34;UserName 字數過長&amp;#34;); RuleFor(p =&amp;gt; p.EmailAddress) .NotEmpty().WithMessage(&amp;#34;EmailAddress 必填&amp;#34;); RuleFor(p =&amp;gt; p.TotalPrice) .NotEmpty().WithMessage(&amp;#34;TotalPrice 必填&amp;#34;) .GreaterThan(0).WithMessage(&amp;#34;TotalPrice 需要大於0&amp;#34;); } } 取得各個Validator
+//這將會讀取所有Validator，只要有繼承AbstractValidator&amp;lt;TRequest&amp;gt;(來自FluentValidation) private readonly IEnumerable&amp;lt;IValidator&amp;lt;TRequest&amp;gt;&amp;gt; _validators; public ValidationBehaviour(IEnumerable&amp;lt;IValidator&amp;lt;TRequest&amp;gt;&amp;gt; validators) { _validators = validators; } 使用Validator
+if (_validators.Any())//如果有Validator的話 { //驗證輸入  var context = new ValidationContext&amp;lt;TRequest&amp;gt;(request); //等待所有非同步執行結果 ( 對所有驗證項目進行非同步工作 )  var validationResults = await Task.</description>
     </item>
     
     <item>
@@ -37,7 +51,7 @@ using FluentValidation;//使用套件 public class CheckoutOrderCommandValidator
       <pubDate>Tue, 14 Dec 2021 13:08:10 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211214_%E6%AD%A3%E5%89%87%E8%A1%A8%E9%81%94%E5%BC%8F.md/</guid>
-      <description>正則表達式筆記  筆記  工作上剛好遇到一個需求，要過濾用戶輸入的英文ID
+      <description>筆記  工作上剛好遇到一個需求，要過濾用戶輸入的英文ID
  判斷規則
  格式限定半形大寫英文 符號只能輸入.、-、/、\還有空白 長度最長為50字元 至少有三個英文字，不可只有符號   原本打算先判斷輸入的正確的英文與符號且長度為3~50，在判斷英文字至少三個。
 using System.Text.RegularExpressions; string EnglishName = &amp;#34;TEST-123&amp;#34;//user input Regex.IsMatch(EnglishName, &amp;#34;@^[A-Z//.\\\s]{3,50}$&amp;#34;); Regex.IsMatch(EnglishName, &amp;#34;@^[A-Z{3,}$&amp;#34;); 使用預查來處理這個問題
@@ -47,32 +61,16 @@ Regex.IsMatch(EnglishName, &amp;#34;@^(?=.*[A-Z].*[A-Z].*[A-Z])[A-Z//.\\\s]{3,50
     </item>
     
     <item>
-      <title>使用Grpc服務</title>
-      <link>https://mindbreaker3310.github.io/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/</link>
-      <pubDate>Thu, 25 Nov 2021 15:57:43 +0800</pubDate>
-      
-      <guid>https://mindbreaker3310.github.io/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/</guid>
-      <description>使用Grpc服務  前情提要  購物車的功能需要導入折價券.Grpc的服務
-購物車是Client端
-折價券是Server端
- 新增Grpc服務的reference  VS for Mac在專案下面就可以直接看到Connected Services Windows則是右鍵 &amp;raquo; Add &amp;raquo; connected services
-選取購物車專案的connected services &amp;raquo; Add new Grpc service reference &amp;raquo; Add &amp;raquo; 參照折價券.Grpc裡面的.proto &amp;raquo; 選擇Client模式
-執行完後，可以看到.csproj多了Grpc服務、專案下也多了protos
-&amp;lt;Protobuf Include=&amp;#34;..\..\Discount\Discount.Grpc\Discount.Grpc\Protos\discount.proto&amp;#34; GrpcServices=&amp;#34;Client&amp;#34;&amp;gt; &amp;lt;OutputDir&amp;gt;obj\Debug\net5.0\&amp;lt;/OutputDir&amp;gt; &amp;lt;Link&amp;gt;Protos\discount.proto&amp;lt;/Link&amp;gt; &amp;lt;/Protobuf&amp;gt; 建置專案後，也會產生ProtoServiceClient等cs檔
- 參考  https://pjchender.dev/golang/grpc-getting-started/ https://docs.microsoft.com/en-us/aspnet/core/grpc/aspnetcore?view=aspnetcore-6.0&amp;tabs=visual-studio</description>
-    </item>
-    
-    <item>
       <title>AutoMapper - DI Version</title>
       <link>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</link>
       <pubDate>Thu, 25 Nov 2021 14:55:07 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211125_automapper.md/</guid>
-      <description>AutoMapper 筆記  簡單介紹  可以輕鬆的轉換兩個class，讓程式碼變得更加簡短乾淨。
- 範例  message CouponModel { int32 id = 1; string productName = 2; string description = 3; int32 amount = 4; } 在Grpc定義的優戶券模型
+      <description>筆記  可以輕鬆的轉換兩個class，讓程式碼變得更加簡短乾淨。
+message CouponModel { int32 id = 1; string productName = 2; string description = 3; int32 amount = 4; } 在Grpc定義的優戶券模型
 public class Coupon { public int Id { get; set; } public string ProductName { get; set; } public string Description { get; set; } public int Amount { get; set; } } 我們自己定義的模型
 原先轉換需要像是這個樣子
-Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.</description>
+Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.Id, productName = coupon.</description>
     </item>
     
     <item>
@@ -81,8 +79,10 @@ Coupon coupon; CouponModel cm = new CouponModel{ id = coupon.</description>
       <pubDate>Wed, 24 Nov 2021 10:12:35 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211124_grpcmemo.md/</guid>
-      <description>Grpc 筆記  簡單介紹  Grpc是google開發的rpc(Remote Procedure Call)框架，用於電腦與電腦之間的溝通，就像電腦A呼叫電腦B做事情，電腦B做好事情後把結果回傳給電腦A，與一般的api不同的地方在於，電腦A、B在進行Grpc溝通前，都必須有protocal buffers檔案來把格式與方法定義清楚，並使用HTTP/2進行傳輸，快速、低延遲、支持串流。
- protocal buffers 檔案  syntax = &amp;#34;proto3&amp;#34;;//使用的protocal buffers版本  option csharp_namespace = &amp;#34;MyFirstGrpc.Grpc&amp;#34;;//命名空間  package greeter; // 定義交換資料的格式 message HelloRequest { string name = 1; } // 定義交換資料的格式 message HelloReply { string message = 1; } // 定義呼叫api的方法 service Greeter { // SayHello方法需要輸入參數(HelloRequest格式) 會回傳(HelloReply格式)  rpc SayHello (HelloRequest) returns (HelloReply); }  AppSettings 使用Http2  { &amp;#34;Logging&amp;#34;: { &amp;#34;LogLevel&amp;#34;: { &amp;#34;Default&amp;#34;: &amp;#34;Information&amp;#34;, &amp;#34;Microsoft&amp;#34;: &amp;#34;Warning&amp;#34;, &amp;#34;Microsoft.</description>
+      <description>筆記  Grpc是google開發的rpc(Remote Procedure Call)框架，用於電腦與電腦之間的溝通，就像電腦A呼叫電腦B做事情，電腦B做好事情後把結果回傳給電腦A，與一般的api不同的地方在於，電腦A、B在進行Grpc溝通前，都必須有protocal buffers檔案來把格式與方法定義清楚，並使用HTTP/2進行傳輸，快速、低延遲、支持串流。
+ protocal buffers 檔案  在VS裡面，Add &amp;raquo; New Project &amp;raquo; 選gRPC Service &amp;raquo; &amp;hellip;一些基本設定
+生成新gRPC Service後，裡面會有.proto檔案
+syntax = &amp;#34;proto3&amp;#34;;//使用的protocal buffers版本  option csharp_namespace = &amp;#34;MyFirstGrpc.Grpc&amp;#34;;//命名空間  package greeter; // 定義交換資料的格式 message HelloRequest { string name = 1; } // 定義交換資料的格式 message HelloReply { string message = 1; } // 定義呼叫api的方法 service Greeter { // SayHello方法需要輸入參數(HelloRequest格式) 會回傳(HelloReply格式)  rpc SayHello (HelloRequest) returns (HelloReply); }  AppSettings 使用Http2  { &amp;#34;Logging&amp;#34;: { &amp;#34;LogLevel&amp;#34;: { &amp;#34;Default&amp;#34;: &amp;#34;Information&amp;#34;, &amp;#34;Microsoft&amp;#34;: &amp;#34;Warning&amp;#34;, &amp;#34;Microsoft.</description>
     </item>
     
   </channel>

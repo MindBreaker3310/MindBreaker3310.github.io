@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/categories/docker/</link>
+    <description>Recent content in Docker on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Dec 2021 10:52:40 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker容器化</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211227_docker%E5%AE%B9%E5%99%A8%E5%8C%96_mssqlserver.md/</link>
+      <pubDate>Mon, 27 Dec 2021 10:52:40 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211227_docker%E5%AE%B9%E5%99%A8%E5%8C%96_mssqlserver.md/</guid>
+      <description>建立Dockerfile  對專案項目按右鍵 &amp;raquo; Add &amp;raquo; Docker Support &amp;raquo; Linux &amp;raquo; 確定
+該項目下面就會有Dockerfile，裡面是建立容器的指令文字檔
+ 建立Docker Compose  對專案項目按右鍵 &amp;raquo; Add &amp;raquo; Container Orchestrator Support(容器協調器支援) &amp;raquo; Docker Compose &amp;raquo; Linux &amp;raquo; 確定
+可以將多個container合而為一，也會多一個Docker Compose 項目
+#docker-compose.ymlservice:orderdb:#加入的serviceimage:mcr.microsoft.com/mssql/server:2019-latest#pull映像檔的位置#docker-compose.override.ymlservice:orderdb:container_name:orderdbenvironment:ACCEPT_EULA:&amp;#34;Y&amp;#34;SA_PASSWORD:&amp;#34;Max4129889&amp;#34;#system administrator密碼restart:alwaysports:- &amp;#34;1433:1433&amp;#34; 整合、執行映像檔  在終端機執行Docker-compose
+docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml up -d 到這邊基本上就搞定了，查看一下容器有沒有好好運作~
+docker ps  SQL GUI  在windows裡的Visual Studio可以使用Server Explorer直接連線DB進行查看
+在Mac下的Visual Studio貌似沒有這個功能，必須改用別的工具來進行查看
+DBreaver
+免費、好用、支持多種DB，推薦一下~😄
+ 參考  https://hub.docker.com/_/microsoft-mssql-server
+https://docs.microsoft.com/zh-tw/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&amp;pivots=cs1-bash</description>
+    </item>
+    
+  </channel>
+</rss>

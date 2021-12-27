@@ -13,7 +13,7 @@
       <pubDate>Tue, 14 Dec 2021 13:08:10 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/20211214_%E6%AD%A3%E5%89%87%E8%A1%A8%E9%81%94%E5%BC%8F.md/</guid>
-      <description>正則表達式筆記  筆記  工作上剛好遇到一個需求，要過濾用戶輸入的英文ID
+      <description>筆記  工作上剛好遇到一個需求，要過濾用戶輸入的英文ID
  判斷規則
  格式限定半形大寫英文 符號只能輸入.、-、/、\還有空白 長度最長為50字元 至少有三個英文字，不可只有符號   原本打算先判斷輸入的正確的英文與符號且長度為3~50，在判斷英文字至少三個。
 using System.Text.RegularExpressions; string EnglishName = &amp;#34;TEST-123&amp;#34;//user input Regex.IsMatch(EnglishName, &amp;#34;@^[A-Z//.\\\s]{3,50}$&amp;#34;); Regex.IsMatch(EnglishName, &amp;#34;@^[A-Z{3,}$&amp;#34;); 使用預查來處理這個問題

@@ -13,7 +13,7 @@
       <pubDate>Tue, 30 Nov 2021 14:30:40 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/2021130_ddd.md/</guid>
-      <description>Domain Driven Design  關於DDD  隨著科技進步，需求也是越來越複雜，更多的是需要專業領域人員與開發人員共同協作
+      <description>關於DDD  隨著科技進步，需求也是越來越複雜，更多的是需要專業領域人員與開發人員共同協作
 DDD是一種基於領域知識來解決複雜業務問題的軟體開發方法論。
  Ubiquitous Language  使用通用語言就很重要了，講人話，減少溝通成本。 ex:下訂單大家就聽得懂，別講些什麼call Order API、B2C之類的
  Anemic Model  Anemic Model貧血模型是指那些只有getter、setter沒有行為能力的模型

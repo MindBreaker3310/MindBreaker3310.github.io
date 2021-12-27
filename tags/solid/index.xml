@@ -13,7 +13,7 @@
       <pubDate>Mon, 29 Nov 2021 16:10:40 +0800</pubDate>
       
       <guid>https://mindbreaker3310.github.io/posts/post/2021129_solid%E5%8E%9F%E5%89%87.md/</guid>
-      <description>SOLID、SoC  SOLID原則  Single responsibility principle 單一功能原則 認為一個class就應該只有一個任務要做，不做其他任務以外的事情，過去是很多不同的需求都用同一個Service，單一功能原則則是提供各種不同的Use Case給各個需求。 SRP示意圖
+      <description>SOLID原則  Single responsibility principle 單一功能原則 認為一個class就應該只有一個任務要做，不做其他任務以外的事情，過去是很多不同的需求都用同一個Service，單一功能原則則是提供各種不同的Use Case給各個需求。 SRP示意圖
 Open/ closed principle 開閉原則 一個class或Function對於他的擴展是開放的，但是對於修改是封閉的，意思就是不改變他的行為，但是可以增加新的功能。 就像是電動理髮刀，可以換上各種不同的刀頭(擴展)，但是機身本體是不能修改的(封閉)。
 Liskov substitution principle 里氏替換原則 程式中的物件應該是可以在不改變正確性的前提下被他的子類所替換的概念，我們在使用「繼承」時，重要的是重複使用 (reuse) 已經寫好的行為，而不是將所有繼承的行為全部覆蓋。
 Interface segregation principle 介面隔離原則 很多個客製化的interface比一個通用的interface還要來得更好管理，例如一個政客interface有提出政見()、拜票()、努力工作()，但事實上不是每一個政客都想實作努力工作XD，所以應該方別建兩個interface，政客介面:提出政見()、拜票()與工作介面:努力工作()。
