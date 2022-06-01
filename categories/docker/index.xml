@@ -37,10 +37,8 @@ public class IntegrationBaseEvent { public IntegrationBaseEvent() { Id = Guid.Ne
 docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml up -d 到這邊基本上就搞定了，查看一下容器有沒有好好運作~
 如果出現ERROR: yaml.parser.ParserError: while parsing a block mapping之類的錯誤
 很有可能是排版有誤，可以透過yml檢視器來進行查看
-docker ps  SQL GUI  在windows裡的Visual Studio可以使用Server Explorer直接連線DB進行查看
-在Mac下的Visual Studio貌似沒有這個功能，必須改用別的工具來進行查看
-DBreaver
-免費、好用、支持多種DB，推薦一下~😄</description>
+出現docker.errors.DockerException: Error while fetching server API version: (&#39;Connection aborted.&#39;, ConnectionRefusedError(61, &#39;Connection refused&#39;))無法連線等問題
+需要先開啟Docker Desktop後再執行</description>
     </item>
     
   </channel>

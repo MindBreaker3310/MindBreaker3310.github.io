@@ -619,6 +619,8 @@
 &lt;p&gt;如果出現&lt;code&gt;ERROR: yaml.parser.ParserError: while parsing a block mapping&lt;/code&gt;之類的錯誤&lt;/p&gt;
 &lt;p&gt;很有可能是排版有誤，可以透過&lt;a class=&#34;link&#34; href=&#34;https://codebeautify.org/yaml-validator&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;yml檢視器&lt;/a&gt;來進行查看&lt;/p&gt;
+&lt;p&gt;出現&lt;code&gt;docker.errors.DockerException: Error while fetching server API version: (&#39;Connection aborted.&#39;, ConnectionRefusedError(61, &#39;Connection refused&#39;))&lt;/code&gt;無法連線等問題&lt;/p&gt;
+&lt;p&gt;需要先開啟Docker Desktop後再執行&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-s&#34; data-lang=&#34;s&#34;&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ps&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
 &lt;h2 id=&#34;sql-gui&#34;&gt;SQL GUI&lt;/h2&gt;
