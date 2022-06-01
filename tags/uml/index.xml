@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UML on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/tags/uml/</link>
+    <description>Recent content in UML on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Jan 2022 13:31:49 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/uml/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>學習UML</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20220126%E5%AD%B8%E7%BF%92uml.md/</link>
+      <pubDate>Wed, 26 Jan 2022 13:31:49 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20220126%E5%AD%B8%E7%BF%92uml.md/</guid>
+      <description>筆記  老闆最近希望讓我去開發與設計一個管理公司內部合約與公文的檔管系統
+以前在學校學習的已經還給老師啦XD
+趁這個機會複習一下
+一個系統開發不只包含了coding也同時有設計、品管、預算、測試、寫文件、上線與維護
+常用的開發流程分為Waterfall與Agile
+ Waterfall  Waterfall最適合幾乎確定需求且開發中不會有太多變動
+主要可以分為五個步驟
+ 收集與分析需求 決定系統架構 實作 驗證 維護   收集與分析需求 與利益相關者保持距離並徹底紀錄需求
+下面已建立note app為例
+可以使用“必須”來條列式需求
+  功能需求：
+ APP必須可以記錄文字，也可以插入圖片或手寫塗鴉。 部分筆記內容必須設定密碼，避免被別人看見。 筆記內容必須可以自動同步到雲端硬碟上。    非功能性需求：
+ 必須支援ios10或更新版 必須減少不必要的資料傳輸，以降低伺服器的負擔    從功能需求我們可以分析出三個情境(epic)
+ 筆記的建立與編輯 隱私問題 雲端同步    情境1：筆記建立與編輯
+ 身為一個user，我要可以快速記下筆記。 身為一個user，我要能把圖片以附件的方式附上，避免影響到筆記的排版。 身為一個user，我要有手寫功能，讓我的筆記更有溫度。    情境2：隱私
+ 身為一個user，我要建立隱私筆記，只有我能存取它。 身為一個user，我要用密碼保護我的隱私筆記。    情境3：雲端同步
+ 身為一個user，我要打開app時，資料就已經同步成最新版。 身為一個user，我要能夠自動同步到雲端硬碟上，隨時備份不怕資料不見。    依照情境畫出Use Cases圖</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,26 @@
     <description>Recent content in C# on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Dec 2021 15:24:54 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/c#/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Jan 2022 13:20:59 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/c#/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>APIGateway筆記</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20220114_apigateway%E7%AD%86%E8%A8%98.md/</link>
+      <pubDate>Fri, 14 Jan 2022 13:20:59 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20220114_apigateway%E7%AD%86%E8%A8%98.md/</guid>
+      <description>筆記  Api Gateway的設計有好幾種，通常來說一般只用一個Api Gw來當一個入口並不是個好主意，可以設計成SPA網頁用一個、手機App用一個、傳統網站用一個。
+這邊使用的Api Gw是Ocelot
+Ocelot是一個輕量化、容易擴充、開源的專案👍
+ 前置作業  開啟新專案 &amp;raquo; Empty .Net Project
+NuGet安裝必要套件Ocelot
+如果要使用快取功能的話，還要安裝Ocelot.Cache.CacheManager
+ 註冊與使用Ocelot服務 要使用快取功能才要加上AddCacheManager
+public void ConfigureServices(IServiceCollection services) { services.AddOcelot() .AddCacheManager(settings =&amp;gt; settings.WithDictionaryHandle()); } public async void Configure(IApplicationBuilder app, IWebHostEnvironment env) { //前略...  await app.UseOcelot(); }  建立閘道路由json檔案 建立一個類似appsettings.json依照環境是Development還是Debug來覆寫的檔案
+ celot.json(維持空的)  ocelot.Development.json ocelot.Local.json(本地測試)    依照命名VS會自動合併
+專案的環境變數ASPNETCORE_ENVIRONMENT要設定成Local
+ 設定Program.cs public static IHostBuilder CreateHostBuilder(string[] args) =&amp;gt; Host.CreateDefaultBuilder(args) .ConfigureAppConfiguration((hostingContext, config) =&amp;gt; { //會依照ASPNETCORE_ENVIRONMENT來讀取不同的檔案  config.</description>
+    </item>
+    
     <item>
       <title>Linq Expression</title>
       <link>https://mindbreaker3310.github.io/posts/post/20211222_linqexpression.md/</link>
@@ -28,7 +47,7 @@ public interface IAsyncRepository&amp;lt;T&amp;gt; where T : EntityBase { Task&a
       <description>取得磁碟狀態  工作上總是一堆鳥事，在甲方裡工作有時候又要處理一些完全沒有意義的雜事，浪費時間。
 總之因為不明原因，我需要每週紀錄主機的磁碟剩餘容量百分比&amp;hellip;
 要取得磁碟訊息很簡單，使用System.IO的DriveInfo.GetDrives()可以取得所有磁碟，再把DriveInfo的屬性取出來
-string diskStatus = &amp;#34;&amp;#34;; DriveInfo[] allDrives = DriveInfo.GetDrives(); foreach (DriveInfo d in allDrives) { if (d.IsReady == true)//確定磁碟就緒  { int freePercent = (int)(d.TotalFreeSpace / (float)d.TotalSize * 100); diskStatus += $&amp;#34; {d.Name}{freePercent} &amp;#34; } }  寫入紀錄  這邊一切以簡單為主，直接用寫入文字檔的方式來進行
+string diskStatus = &amp;#34;&amp;#34;; DriveInfo[] allDrives = DriveInfo.GetDrives(); foreach (DriveInfo d in allDrives) { if (d.IsReady == true)//確定磁碟就緒  { int freePercent = (int)(d.TotalFreeSpace / (float)d.TotalSize * 100); diskStatus += $&amp;#34; {d.Name}{freePercent} &amp;#34; } }  寫入紀錄(過時，改由Mail發送)  這邊一切以簡單為主，直接用寫入文字檔的方式來進行
 //如果有額外輸入檔案路徑的話，就把第一個參數當作路徑，沒有就丟在桌面 //若不想在排程器那裡設定開始位置的話，就用絕對路徑吧。 string path = args.Length == 1 ? args[0] : &amp;#34;DiskLog.txt&amp;#34;; //記錄時間 string now = DateRime.Now.ToString(&amp;#34;yyyy/MM/dd HH:mm:ss&amp;#34;); using StreamWriter file = new (path, append: true); file.</description>
     </item>
     

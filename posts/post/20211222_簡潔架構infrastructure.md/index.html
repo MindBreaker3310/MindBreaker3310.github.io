@@ -9,7 +9,7 @@
 <meta property='og:description' content='基礎設施的部分'>
 <meta property='og:url' content='https://mindbreaker3310.github.io/posts/post/20211222_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Binfrastructure.md/'>
 <meta property='og:site_name' content='MindBreaker3310'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Disign Principle' /><meta property='article:tag' content='Clean Architecture' /><meta property='article:published_time' content='2021-12-22T13:32:25&#43;08:00'/><meta property='article:modified_time' content='2021-12-22T13:32:25&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Disign Principle' /><meta property='article:tag' content='Clean Architecture' /><meta property='article:tag' content='Micorservices' /><meta property='article:published_time' content='2021-12-22T13:32:25&#43;08:00'/><meta property='article:modified_time' content='2021-12-22T13:32:25&#43;08:00'/>
 <meta name="twitter:title" content="簡潔架構 Infrastructure Layer">
 <meta name="twitter:description" content="基礎設施的部分">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZL9P8D9FJ"></script>
@@ -480,6 +480,36 @@ if (!doNotTrack) {
 <p>直到<code>var context = services.GetService&lt;TContext&gt;();</code>才取得OrderContext的地方</p>
 <p>寫在裡面並沒有辦法確定TContext的類型，寫在外面的話就可以確定</p>
 <p>因為<code>host.MigrateDatabase&lt;OrderContext&gt;</code>在這邊就確定型別的同時，也確定seeder的第一個參數了</p>
+<blockquote>
+<h2 id="連接資料庫與docker容器化">連接資料庫與Docker容器化</h2>
+</blockquote>
+<p>DB是使用<a class="link" href="https://hub.docker.com/_/microsoft-mssql-server"  target="_blank" rel="noopener"
+    >Microsoft SQL Server</a>的映像檔
+詳細的操作可以參考這篇<a class="link" href="/posts/post/20211227_Docker%e5%ae%b9%e5%99%a8%e5%8c%96_MSSQLServer.md" >Docker容器化_MSSQLServer</a></p>
+<p>架設好資料庫後，在appsettings裡加上連接字串，Server位置為localhost預設port為1433，帳密為sa/Max4129889</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="s">&#34;ConnectionStrings&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">&#34;OrderingConnectionString&#34;</span><span class="p">:</span> <span class="s">&#34;Server=localhost;Database=OrderDb;User Id=sa;Password=Max4129889;&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p>到這邊基本上就可以測試一下我們的Ordering.API，沒問題後接著也把Ordering.API容器化，跟這篇<a class="link" href="/posts/post/20211227_Docker%e5%ae%b9%e5%99%a8%e5%8c%96_MSSQLServer.md" >Docker容器化_MSSQLServer</a>裡面的操作一樣，Dockerfile、Docker-compose.yml也都會自動設定好，我們只要在Docker-compose.override.yml裡做一些設定即可。</p>
+<p>這邊的連結字串改成一行冒號、雙引號要做調整，最重要的是<code>Server=orderdb</code>，改指向orderdb(MSSQL的微服務)。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">ordering.api</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">ordering.api</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">ASPNETCORE_ENVIRONMENT=Development</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;ConnectionStrings__OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=Max4129889;&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">orderdb</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;8004:80&#34;</span><span class="w">
+</span></code></pre></div><p>最後執行docker-compose指令，搞定收工。</p>
+<blockquote>
+<h2 id="參考">參考</h2>
+</blockquote>
+<p><a class="link" href="/posts/post/20211227_Docker%e5%ae%b9%e5%99%a8%e5%8c%96_MSSQLServer.md" >Docker容器化_MSSQLServer</a></p>
+<p><a class="link" href="/posts/post/20211217_%e7%b0%a1%e6%bd%94%e6%9e%b6%e6%a7%8bapplication.md/" >簡潔架構 Application Layer</a></p>
+<p><a class="link" href="/posts/post/20211222_%e7%b0%a1%e6%bd%94%e6%9e%b6%e6%a7%8bInfrastructure.md/" >簡潔架構 Infrastructure Layer</a></p>
+<p><a class="link" href="https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet/"  target="_blank" rel="noopener"
+    >https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet/</a></p>
 
 </section>
 
@@ -491,6 +521,8 @@ if (!doNotTrack) {
             <a href="/tags/disign-principle/">Disign Principle</a>
         
             <a href="/tags/clean-architecture/">Clean Architecture</a>
+        
+            <a href="/tags/micorservices/">Micorservices</a>
         
     </section>
 
@@ -594,7 +626,9 @@ if (!doNotTrack) {
     <section class="copyright">
         &copy; 
         
-        2021 MindBreaker3310
+            2021 - 
+        
+        2022 MindBreaker3310
     </section>
     
     <section class="powerby">
@@ -724,6 +758,8 @@ if (!doNotTrack) {
     <li><a href="#di-service-collection">DI Service Collection</a></li>
     <li><a href="#生成migration檔案">生成Migration檔案</a></li>
     <li><a href="#遷移資料庫">遷移資料庫</a></li>
+    <li><a href="#連接資料庫與docker容器化">連接資料庫與Docker容器化</a></li>
+    <li><a href="#參考">參考</a></li>
   </ol>
 </nav>
                 </div>

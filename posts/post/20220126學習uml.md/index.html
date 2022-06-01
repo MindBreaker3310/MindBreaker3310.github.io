@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='根據協定來溝通'><title>使用Grpc服務</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='看圖說故事'><title>學習UML</title>
 
-<link rel='canonical' href='https://mindbreaker3310.github.io/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/'>
+<link rel='canonical' href='https://mindbreaker3310.github.io/posts/post/20220126%E5%AD%B8%E7%BF%92uml.md/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='使用Grpc服務'>
-<meta property='og:description' content='根據協定來溝通'>
-<meta property='og:url' content='https://mindbreaker3310.github.io/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/'>
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='學習UML'>
+<meta property='og:description' content='看圖說故事'>
+<meta property='og:url' content='https://mindbreaker3310.github.io/posts/post/20220126%E5%AD%B8%E7%BF%92uml.md/'>
 <meta property='og:site_name' content='MindBreaker3310'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C#' /><meta property='article:tag' content='Grpc' /><meta property='article:tag' content='Micorservices' /><meta property='article:published_time' content='2021-11-25T15:57:43&#43;08:00'/><meta property='article:modified_time' content='2021-11-25T15:57:43&#43;08:00'/>
-<meta name="twitter:title" content="使用Grpc服務">
-<meta name="twitter:description" content="根據協定來溝通">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='UML' /><meta property='article:published_time' content='2022-01-26T13:31:49&#43;08:00'/><meta property='article:modified_time' content='2022-01-26T13:31:49&#43;08:00'/>
+<meta name="twitter:title" content="學習UML">
+<meta name="twitter:description" content="看圖說故事">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZL9P8D9FJ"></script>
 <script>
 var doNotTrack = false;
@@ -76,24 +76,20 @@ if (!doNotTrack) {
     
     <header class="article-category">
         
-            <a href="/categories/c#/" >
-                C#
-            </a>
-        
-            <a href="/categories/micorservices/" >
-                Micorservices
+            <a href="/categories/uml/" >
+                UML
             </a>
         
     </header>
     
 
     <h2 class="article-title">
-        <a href="/posts/post/2021125_%E4%BD%BF%E7%94%A8grpc%E6%9C%8D%E5%8B%99.md/">使用Grpc服務</a>
+        <a href="/posts/post/20220126%E5%AD%B8%E7%BF%92uml.md/">學習UML</a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        根據協定來溝通
+        看圖說故事
     </h3>
     
 
@@ -110,7 +106,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Nov 25, 2021</time>
+                <time class="article-time--published">Jan 26, 2022</time>
             </div>
         
 
@@ -135,32 +131,151 @@ if (!doNotTrack) {
 </header>
 
     <section class="article-content">
-    <h1 id="使用grpc服務">使用Grpc服務</h1>
-<blockquote>
-<h2 id="前情提要">前情提要</h2>
+    <blockquote>
+<h2 id="筆記">筆記</h2>
 </blockquote>
-<p>購物車的功能需要導入折價券.Grpc的服務</p>
-<p>購物車是Client端</p>
-<p>折價券是Server端</p>
+<p>老闆最近希望讓我去開發與設計一個管理公司內部合約與公文的檔管系統</p>
+<p>以前在學校學習的已經還給老師啦XD</p>
+<p>趁這個機會複習一下</p>
+<p>一個系統開發不只包含了coding也同時有設計、品管、預算、測試、寫文件、上線與維護</p>
+<p>常用的開發流程分為Waterfall與Agile</p>
 <blockquote>
-<h2 id="新增grpc服務的reference">新增Grpc服務的reference</h2>
+<h2 id="waterfall">Waterfall</h2>
 </blockquote>
-<p>VS for Mac在專案下面就可以直接看到Connected Services
-Windows則是右鍵 &raquo; Add &raquo; connected services</p>
-<p>選取購物車專案的connected services &raquo; Add new Grpc service reference &raquo; Add &raquo; 參照折價券.Grpc裡面的.proto &raquo; 選擇Client模式</p>
-<p>執行完後，可以看到.csproj多了Grpc服務、專案下也多了protos</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="p">&lt;</span><span class="n">Protobuf</span> <span class="n">Include</span><span class="p">=</span><span class="s">&#34;..\..\Discount\Discount.Grpc\Discount.Grpc\Protos\discount.proto&#34;</span> <span class="n">GrpcServices</span><span class="p">=</span><span class="s">&#34;Client&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">OutputDir</span><span class="p">&gt;</span><span class="n">obj</span><span class="err">\</span><span class="n">Debug</span><span class="err">\</span><span class="n">net5</span><span class="p">.</span><span class="m">0</span><span class="err">\</span><span class="p">&lt;/</span><span class="n">OutputDir</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">Link</span><span class="p">&gt;</span><span class="n">Protos</span><span class="err">\</span><span class="n">discount</span><span class="p">.</span><span class="n">proto</span><span class="p">&lt;/</span><span class="n">Link</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="n">Protobuf</span><span class="p">&gt;</span>
-</code></pre></div><p>建置專案後，也會產生ProtoServiceClient等cs檔</p>
+<p>Waterfall最適合幾乎確定需求且開發中不會有太多變動</p>
+<p>主要可以分為五個步驟</p>
+<ol>
+<li>收集與分析需求</li>
+<li>決定系統架構</li>
+<li>實作</li>
+<li>驗證</li>
+<li>維護</li>
+</ol>
+<hr>
+<h3 id="收集與分析需求">收集與分析需求</h3>
+<p>與利益相關者保持距離並徹底紀錄需求</p>
+<p>下面已建立note app為例</p>
+<p>可以使用“必須”來條列式需求</p>
+<ul>
+<li>
+<p>功能需求：</p>
+<ul>
+<li>APP必須可以記錄文字，也可以插入圖片或手寫塗鴉。</li>
+<li>部分筆記內容必須設定密碼，避免被別人看見。</li>
+<li>筆記內容必須可以自動同步到雲端硬碟上。</li>
+</ul>
+</li>
+<li>
+<p>非功能性需求：</p>
+<ul>
+<li>必須支援ios10或更新版</li>
+<li>必須減少不必要的資料傳輸，以降低伺服器的負擔</li>
+</ul>
+</li>
+</ul>
+<p>從功能需求我們可以分析出三個情境(epic)</p>
+<ol>
+<li>筆記的建立與編輯</li>
+<li>隱私問題</li>
+<li>雲端同步</li>
+</ol>
+<ul>
+<li>
+<p>情境1：筆記建立與編輯</p>
+<ul>
+<li>身為一個user，我要可以快速記下筆記。</li>
+<li>身為一個user，我要能把圖片以附件的方式附上，避免影響到筆記的排版。</li>
+<li>身為一個user，我要有手寫功能，讓我的筆記更有溫度。</li>
+</ul>
+</li>
+<li>
+<p>情境2：隱私</p>
+<ul>
+<li>身為一個user，我要建立隱私筆記，只有我能存取它。</li>
+<li>身為一個user，我要用密碼保護我的隱私筆記。</li>
+</ul>
+</li>
+<li>
+<p>情境3：雲端同步</p>
+<ul>
+<li>身為一個user，我要打開app時，資料就已經同步成最新版。</li>
+<li>身為一個user，我要能夠自動同步到雲端硬碟上，隨時備份不怕資料不見。</li>
+</ul>
+</li>
+</ul>
+<p>依照情境畫出Use Cases圖</p>
+<p><figure 
+	>
+	<a href="/images/20220127_UseCases1.png" >
+		<img src="/images/20220127_UseCases1.png"
+			
+			
+			
+			loading="lazy"
+			alt="筆記建立與編輯">
+	</a>
+	
+	<figcaption>筆記建立與編輯</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/images/20220127_UseCases2.png" >
+		<img src="/images/20220127_UseCases2.png"
+			
+			
+			
+			loading="lazy"
+			alt="隱私">
+	</a>
+	
+	<figcaption>隱私</figcaption>
+	
+</figure></p>
+<p><figure 
+	>
+	<a href="/images/20220127_UseCases3.png" >
+		<img src="/images/20220127_UseCases3.png"
+			
+			
+			
+			loading="lazy"
+			alt="雲端同步">
+	</a>
+	
+	<figcaption>雲端同步</figcaption>
+	
+</figure></p>
+<p>畫出class之間的關聯圖</p>
+<p>畫出流程圖</p>
+<hr>
+<h3 id="決定系統架構">決定系統架構</h3>
+<p>這個步驟就像是建築的藍圖一樣，設計必須清晰明瞭</p>
+<ul>
+<li>要用什麼package/components？</li>
+<li>每個component的type是什麼？</li>
+<li>這些type怎麼互動或達成功能所需</li>
+<li>我們的系統安全嗎？</li>
+<li>效能如何？</li>
+<li>如何處理錯誤？</li>
+<li>我們的系統穩固嗎？</li>
+<li>之後會不會擴展？</li>
+<li>使用哪些第三方套件？</li>
+</ul>
+<hr>
+<h3 id="實作測試">實作＆測試</h3>
+<p>就是實作，發與測試，平常在做的。</p>
+<p>交給User測試功能性、安全性、效能、實用性</p>
+<p>這兩個步驟會一直重複到沒有bug</p>
+<hr>
+<h3 id="維護">維護</h3>
+<p>在這個階段就是抓抓小蟲</p>
+<p>小幅度強化功能</p>
 <blockquote>
-<h2 id="參考">參考</h2>
+<h2 id="agile">Agile</h2>
 </blockquote>
-<p><a class="link" href="https://pjchender.dev/golang/grpc-getting-started/"  target="_blank" rel="noopener"
-    >https://pjchender.dev/golang/grpc-getting-started/</a>
-<a class="link" href="https://docs.microsoft.com/en-us/aspnet/core/grpc/aspnetcore?view=aspnetcore-6.0&amp;tabs=visual-studio"  target="_blank" rel="noopener"
-    >https://docs.microsoft.com/en-us/aspnet/core/grpc/aspnetcore?view=aspnetcore-6.0&tabs=visual-studio</a></p>
+<p>敏捷開發是為了因應需求一直變動，沒辦法再開發之前就知道最終的產品會是長什麼樣子，透過不斷重複的週期(Sprint)循環，每次都一點點收集分析資料、設計、實作、測試，每一個循環就像小瀑布一樣。</p>
+<p>常聽到的Scrum就是一種實作Agile的方式</p>
 
 </section>
 
@@ -169,11 +284,7 @@ Windows則是右鍵 &raquo; Add &raquo; connected services</p>
     
     <section class="article-tags">
         
-            <a href="/tags/c#/">C#</a>
-        
-            <a href="/tags/grpc/">Grpc</a>
-        
-            <a href="/tags/micorservices/">Micorservices</a>
+            <a href="/tags/uml/">UML</a>
         
     </section>
 
@@ -199,73 +310,6 @@ Windows則是右鍵 &raquo; Add &raquo; connected services</p>
     <aside class="related-contents--wrapper">
     
     
-        <h2 class="section-title">Related contents</h2>
-        <div class="related-contents">
-            <div class="flex article-list--tile">
-                
-                    
-<article class="">
-    <a href="/posts/post/20211124_grpcmemo.md/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Grpc 筆記</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="">
-    <a href="/posts/post/20211217_windows%E6%8E%92%E7%A8%8B%E7%B4%80%E9%8C%84%E4%B8%BB%E6%A9%9F%E7%A3%81%E7%A2%9F%E7%8B%80%E6%85%8B.md/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">windows排程紀錄主機磁碟狀態</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="">
-    <a href="/posts/post/20211216_fluentvalidation%E9%A9%97%E8%AD%89%E5%A5%97%E4%BB%B6.md/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">FluentValidation</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="">
-    <a href="/posts/post/20211214_%E6%AD%A3%E5%89%87%E8%A1%A8%E9%81%94%E5%BC%8F.md/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">正則表達式筆記</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="">
-    <a href="/posts/post/20211125_automapper.md/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">AutoMapper - DI Version</h2>
-        </div>
-    </a>
-</article>
-                
-            </div>
-        </div>
-    
 </aside>
 
      
@@ -277,7 +321,9 @@ Windows則是右鍵 &raquo; Add &raquo; connected services</p>
     <section class="copyright">
         &copy; 
         
-        2021 MindBreaker3310
+            2021 - 
+        
+        2022 MindBreaker3310
     </section>
     
     <section class="powerby">
@@ -388,9 +434,16 @@ Windows則是右鍵 &raquo; Add &raquo; connected services</p>
                 <div class="widget--toc">
                     <nav id="TableOfContents">
   <ol>
-    <li><a href="#前情提要">前情提要</a></li>
-    <li><a href="#新增grpc服務的reference">新增Grpc服務的reference</a></li>
-    <li><a href="#參考">參考</a></li>
+    <li><a href="#筆記">筆記</a></li>
+    <li><a href="#waterfall">Waterfall</a>
+      <ol>
+        <li><a href="#收集與分析需求">收集與分析需求</a></li>
+        <li><a href="#決定系統架構">決定系統架構</a></li>
+        <li><a href="#實作測試">實作＆測試</a></li>
+        <li><a href="#維護">維護</a></li>
+      </ol>
+    </li>
+    <li><a href="#agile">Agile</a></li>
   </ol>
 </nav>
                 </div>

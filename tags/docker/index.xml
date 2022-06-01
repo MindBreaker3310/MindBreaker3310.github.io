@@ -6,7 +6,23 @@
     <description>Recent content in Docker on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Dec 2021 10:52:40 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Dec 2021 11:33:55 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RabbitMQ筆記</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211228_rabbitmq%E7%AD%86%E8%A8%98.md/</link>
+      <pubDate>Tue, 28 Dec 2021 11:33:55 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211228_rabbitmq%E7%AD%86%E8%A8%98.md/</guid>
+      <description>前置作業  RabbitMQ的兔兔icon怪可愛的，可以想像成郵局，可以收信也可以送信，是一堆兔兔幫你送信~🐰
+ 安裝Docker 透過docker-compose來設定下載，alpine是輕量化體積較小的版本
+#docker-compose.ymlabbitmq:image:rabbitmq:3-management-alpine#docker-compose.override.ymlrabbitmq:container_name:rabbitmqrestart:alwaysports:- &amp;#34;5672:5672&amp;#34;- &amp;#34;15672:15672&amp;#34;#DashBoard的portdocker up上去後，測試看看能不能連線到localhost:15672，可以就會進到登入畫面，第一次直接登入帳密都是guest。
+ MassTransit🚎 集體搭車去RabbitMQ的概念(?)，這是專給.Net用的套件，讓我們更簡單的去使用RabbitMQ的功能
+ 建立Event製造機  建立EventBus.Messages項目專案
+安裝必要套件
+&amp;lt;PackageReference Include=&amp;#34;MassTransit&amp;#34; Version=&amp;#34;7.1.6&amp;#34; /&amp;gt; &amp;lt;PackageReference Include=&amp;#34;MassTransit.AspNetCore&amp;#34; Version=&amp;#34;7.1.6&amp;#34; /&amp;gt; &amp;lt;PackageReference Include=&amp;#34;MassTransit.RabbitMQ&amp;#34; Version=&amp;#34;7.1.6&amp;#34; /&amp;gt; 建立Base Event有ID與建構日期，讓其他Event去繼承它。
+public class IntegrationBaseEvent { public IntegrationBaseEvent() { Id = Guid.NewGuid(); CreationDate = DateTime.UtcNow; } public IntegrationBaseEvent(Guid id, DateTime createDate) { Id = id; CreationDate = createDate; } public Guid Id { get; private set; } public DateTime CreationDate { get; private set; } } 建立結帳Event</description>
+    </item>
+    
     <item>
       <title>Docker容器化</title>
       <link>https://mindbreaker3310.github.io/posts/post/20211227_docker%E5%AE%B9%E5%99%A8%E5%8C%96_mssqlserver.md/</link>
@@ -19,12 +35,12 @@
 可以將多個container合而為一，也會多一個Docker Compose 項目
 #docker-compose.ymlservice:orderdb:#加入的serviceimage:mcr.microsoft.com/mssql/server:2019-latest#pull映像檔的位置#docker-compose.override.ymlservice:orderdb:container_name:orderdbenvironment:ACCEPT_EULA:&amp;#34;Y&amp;#34;SA_PASSWORD:&amp;#34;Max4129889&amp;#34;#system administrator密碼restart:alwaysports:- &amp;#34;1433:1433&amp;#34; 整合、執行映像檔  在終端機執行Docker-compose
 docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml up -d 到這邊基本上就搞定了，查看一下容器有沒有好好運作~
+如果出現ERROR: yaml.parser.ParserError: while parsing a block mapping之類的錯誤
+很有可能是排版有誤，可以透過yml檢視器來進行查看
 docker ps  SQL GUI  在windows裡的Visual Studio可以使用Server Explorer直接連線DB進行查看
 在Mac下的Visual Studio貌似沒有這個功能，必須改用別的工具來進行查看
 DBreaver
-免費、好用、支持多種DB，推薦一下~😄
- 參考  https://hub.docker.com/_/microsoft-mssql-server
-https://docs.microsoft.com/zh-tw/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&amp;pivots=cs1-bash</description>
+免費、好用、支持多種DB，推薦一下~😄</description>
     </item>
     
   </channel>

@@ -6,7 +6,91 @@
     <description>Recent content in Micorservices on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Nov 2021 10:12:35 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/micorservices/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Dec 2021 11:33:55 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/micorservices/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RabbitMQ筆記</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211228_rabbitmq%E7%AD%86%E8%A8%98.md/</link>
+      <pubDate>Tue, 28 Dec 2021 11:33:55 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211228_rabbitmq%E7%AD%86%E8%A8%98.md/</guid>
+      <description>前置作業  RabbitMQ的兔兔icon怪可愛的，可以想像成郵局，可以收信也可以送信，是一堆兔兔幫你送信~🐰
+ 安裝Docker 透過docker-compose來設定下載，alpine是輕量化體積較小的版本
+#docker-compose.ymlabbitmq:image:rabbitmq:3-management-alpine#docker-compose.override.ymlrabbitmq:container_name:rabbitmqrestart:alwaysports:- &amp;#34;5672:5672&amp;#34;- &amp;#34;15672:15672&amp;#34;#DashBoard的portdocker up上去後，測試看看能不能連線到localhost:15672，可以就會進到登入畫面，第一次直接登入帳密都是guest。
+ MassTransit🚎 集體搭車去RabbitMQ的概念(?)，這是專給.Net用的套件，讓我們更簡單的去使用RabbitMQ的功能
+ 建立Event製造機  建立EventBus.Messages項目專案
+安裝必要套件
+&amp;lt;PackageReference Include=&amp;#34;MassTransit&amp;#34; Version=&amp;#34;7.1.6&amp;#34; /&amp;gt; &amp;lt;PackageReference Include=&amp;#34;MassTransit.AspNetCore&amp;#34; Version=&amp;#34;7.1.6&amp;#34; /&amp;gt; &amp;lt;PackageReference Include=&amp;#34;MassTransit.RabbitMQ&amp;#34; Version=&amp;#34;7.1.6&amp;#34; /&amp;gt; 建立Base Event有ID與建構日期，讓其他Event去繼承它。
+public class IntegrationBaseEvent { public IntegrationBaseEvent() { Id = Guid.NewGuid(); CreationDate = DateTime.UtcNow; } public IntegrationBaseEvent(Guid id, DateTime createDate) { Id = id; CreationDate = createDate; } public Guid Id { get; private set; } public DateTime CreationDate { get; private set; } } 建立結帳Event</description>
+    </item>
+    
+    <item>
+      <title>Docker容器化</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211227_docker%E5%AE%B9%E5%99%A8%E5%8C%96_mssqlserver.md/</link>
+      <pubDate>Mon, 27 Dec 2021 10:52:40 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211227_docker%E5%AE%B9%E5%99%A8%E5%8C%96_mssqlserver.md/</guid>
+      <description>建立Dockerfile  對專案項目按右鍵 &amp;raquo; Add &amp;raquo; Docker Support &amp;raquo; Linux &amp;raquo; 確定
+該項目下面就會有Dockerfile，裡面是建立容器的指令文字檔
+ 建立Docker Compose  對專案項目按右鍵 &amp;raquo; Add &amp;raquo; Container Orchestrator Support(容器協調器支援) &amp;raquo; Docker Compose &amp;raquo; Linux &amp;raquo; 確定
+可以將多個container合而為一，也會多一個Docker Compose 項目
+#docker-compose.ymlservice:orderdb:#加入的serviceimage:mcr.microsoft.com/mssql/server:2019-latest#pull映像檔的位置#docker-compose.override.ymlservice:orderdb:container_name:orderdbenvironment:ACCEPT_EULA:&amp;#34;Y&amp;#34;SA_PASSWORD:&amp;#34;Max4129889&amp;#34;#system administrator密碼restart:alwaysports:- &amp;#34;1433:1433&amp;#34; 整合、執行映像檔  在終端機執行Docker-compose
+docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml up -d 到這邊基本上就搞定了，查看一下容器有沒有好好運作~
+如果出現ERROR: yaml.parser.ParserError: while parsing a block mapping之類的錯誤
+很有可能是排版有誤，可以透過yml檢視器來進行查看
+docker ps  SQL GUI  在windows裡的Visual Studio可以使用Server Explorer直接連線DB進行查看
+在Mac下的Visual Studio貌似沒有這個功能，必須改用別的工具來進行查看
+DBreaver
+免費、好用、支持多種DB，推薦一下~😄</description>
+    </item>
+    
+    <item>
+      <title>簡潔架構 Infrastructure Layer</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211222_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Binfrastructure.md/</link>
+      <pubDate>Wed, 22 Dec 2021 13:32:25 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211222_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Binfrastructure.md/</guid>
+      <description>基礎設施層，將我們Application Layer說的那些處理，連接到資料庫上。
+在這一層我們將使用Entity Framework Core AKA EF Core，EFCore的目的是讓程式設計師能夠以熟習的語言去操作資料庫，而非使用sql語法然後再轉成我們的資料模型。
+先去NuGet裝Microsoft.EntityFrameworkCore.SqlServer，使用.Net 5.0的話版本只支援到5.0.x以下，6.0.0不支援。
+ Ordering.API  這跟infrastructure一樣，都是最外面一層，寫一起比較好整理吧
+Controller 得利於mediator的handler，我們整個controller就是一個清爽，基本上就是建立Request，丟給Handler來處理，最後把資料回傳就搞定了。
+[ApiController] [Route(&amp;#34;[controller]&amp;#34;)] public class OrderController : ControllerBase { private readonly IMediator _mediator; public OrderController(IMediator mediator) { _mediator = mediator; } [HttpGet(&amp;#34;{userName}&amp;#34;, Name = &amp;#34;GetOrder&amp;#34;)] [ProducesResponseType(typeof(IEnumerable&amp;lt;OrdersVm&amp;gt;), (int)HttpStatusCode.OK)] public async Task&amp;lt;ActionResult&amp;lt;IEnumerable&amp;lt;OrdersVm&amp;gt;&amp;gt;&amp;gt; GetOrdersByUserName(string userName) { //建立Request  var query = new GetOrdersListQuery(userName); //發送給Handler處理  List&amp;lt;OrdersVm&amp;gt; orders = await _mediator.Send(query); return Ok(orders); } [HttpPost(Name = &amp;#34;CheckoutOrder&amp;#34;)] [ProducesResponseType(StatusCodes.Status200OK)] public async Task&amp;lt;ActionResult&amp;lt;int&amp;gt;&amp;gt; CheckoutOrder([FromBody] CheckoutOrderCommand command) { var result = await _mediator.</description>
+    </item>
+    
+    <item>
+      <title>簡潔架構 Application Layer</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20211217_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bapplication.md/</link>
+      <pubDate>Fri, 17 Dec 2021 11:44:52 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20211217_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bapplication.md/</guid>
+      <description>Application Layer  注重於商業需求而不是實作一些外部系統的東西，DB之類的。
+在這一層裡有三個主要的資料夾Contracts、Features、Behaviors，分別為存放服務介面、Use case、驗證用戶行為。
+主要在於Fetures，根據DDD並使用MediatR為每一個需求做獨自的CQRS操作，
+ Contracts  存放各Services的interface的地方
+Persistence 通用的非同步Repository介面(Asynchronous Generic Repository)
+裡面包含常用的功能。
+//泛型T必需繼承Domina Layer的EntityBase(Id、createdBy、createDate、LastModifiedDate等等的東西) public interface IAsyncRepository&amp;lt;T&amp;gt; where T : EntityBase { Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAllAsync(); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, string includeString = null, bool disableTracking = true); Task&amp;lt;IReadOnlyList&amp;lt;T&amp;gt;&amp;gt; GetAsync(Expression&amp;lt;Func&amp;lt;T, bool&amp;gt;&amp;gt; predicate = null, Func&amp;lt;IQueryable&amp;lt;T&amp;gt;, IOrderedQueryable&amp;lt;T&amp;gt;&amp;gt; orderBy = null, List&amp;lt;Expression&amp;lt;Func&amp;lt;T, object&amp;gt;&amp;gt;&amp;gt; includes = null, bool disableTracking = true); Task&amp;lt;T&amp;gt; GetByIdAsync(int id); Task&amp;lt;T&amp;gt; AddAsync(T entity); Task UpdateAsync(T entity); Task DeleteAsync(T entity); } 下訂單Repository介面，在這邊我們可以建立自己的方法、功能，後面處理Request時會用到。</description>
+    </item>
+    
+    <item>
+      <title>簡潔架構 Domain Layer</title>
+      <link>https://mindbreaker3310.github.io/posts/post/2021202_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bdomain.md/</link>
+      <pubDate>Thu, 02 Dec 2021 15:52:49 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/2021202_%E7%B0%A1%E6%BD%94%E6%9E%B6%E6%A7%8Bdomain.md/</guid>
+      <description>介紹  接下來的筆記是根據線上課程Microservices Architecture and Implementation on .NET 5所記錄下來的，講者的口音有點重，聽得有點吃力，他這個專案基本上重做微軟提供的範例專案，電商系統，完美呈現微服務的使用與他的優點，一共把服務切成四個主要的服務，Catalog(商品目錄系統)、Basket(購物車系統)、Discount(折扣系統)、Ordering(訂單系統)，並分別使用不同的資料庫(mongodb、redis、PostgreSQL、MSSQL)、不同的傳輸協定(Rest API、Grpc)、不同的架構(多層式架構、簡潔架構)，最後使用Docker容器化，把他們都整合在一起運作。
+整個系統的架構圖
+工作一陣子了，維護的系統基本也都上手了(龐大的Web Service架構)，但還有許多前人的智慧，一時之間是很難理解的XD，這時有一個乾淨的架構，或許上手的時間就可以更短了。
+ Domain Layer  建立一個訂單系統使用Clean Architecture
+依照分層創建各個不同的Project， Ordering.API Ordering.Domain Ordering.Application Ordering.infrastructure 整個系統的架構圖
+建立相依關係Project右鍵 &amp;gt;&amp;gt; Add &amp;gt;&amp;gt; Reference 相依關係
+詳細定義與設計可以參考
+https://ithelp.ithome.com.tw/articles/10223150 https://ithelp.ithome.com.tw/articles/10223595
+ 開發Ordering.Domain Layer  我們要先建立兩個資料夾Common、Entities
+Common 其中Common放的是我們建立Entity的基礎，含有兩個abstract class，EntityBase、ValueObject，
+//我們每一個Entity都要的屬性 public abstract class EntityBase { public int Id { get; protected set; } public string CreatedBy { get; set; } public DateTime CreatedDate { get; set; } public string LastModifiedBy { get; set; } public DateTime?</description>
+    </item>
+    
     <item>
       <title>Grpc 筆記</title>
       <link>https://mindbreaker3310.github.io/posts/post/20211124_grpcmemo.md/</link>
