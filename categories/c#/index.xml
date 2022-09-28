@@ -6,7 +6,23 @@
     <description>Recent content in C# on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Jan 2022 13:20:59 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/c#/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Jun 2022 10:48:46 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/c#/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C#反射方法紀錄</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20220629_c#%E5%8F%8D%E5%B0%84%E6%96%B9%E6%B3%95%E7%B4%80%E9%8C%84.md/</link>
+      <pubDate>Wed, 29 Jun 2022 10:48:46 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20220629_c#%E5%8F%8D%E5%B0%84%E6%96%B9%E6%B3%95%E7%B4%80%E9%8C%84.md/</guid>
+      <description>筆記  記錄一下這個特別的controller寫法
+通通都只有一個入口，傳入加密的電文，解析電文後
+會得知要執行的class名稱與DLL名稱
+由名稱字串到執行功能的步驟
+來做到動態的呼叫的方法
+使用反射
+不囉說 直接看程式
+//xxxService 專案名稱 //xxxFolder 資料夾名稱 //xxxClass 名稱 //&amp;#34;xxxClass的位置, DLL名稱(通常是專案名稱)&amp;#34; string targetFile = &amp;#34;xxxService.xxxFolder.xxxClass, xxxService&amp;#34;; //方法名稱 string targetMethod = &amp;#34;DoSomething&amp;#34;; //傳入參數 Object[] args = [{xxxInputObject}]; //讀取dll Type dll = Type.GetType(target); //實作dll Object InstanceObj = dll.InvokeMember(null, BindingFlags.DeclaredOnly | //invokeAttr一個或多個BindingFlags組成，會指定執行搜尋的方式  BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.CreateInstance, null, null, null); //執行實作物件的方法 Object result = dll.InvokeMember(targetMethod,//要呼叫的屬性或方法名稱  BindingFlags.InvokeMethod, //invoke參數  null, InstanceObj, //要執行的obj  args); //傳入的參數  //回傳執行結果 return result;  參考  https://www.</description>
+    </item>
+    
     <item>
       <title>APIGateway筆記</title>
       <link>https://mindbreaker3310.github.io/posts/post/20220114_apigateway%E7%AD%86%E8%A8%98.md/</link>

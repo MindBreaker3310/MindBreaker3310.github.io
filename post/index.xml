@@ -6,7 +6,80 @@
     <description>Recent content in Posts on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Jan 2022 13:31:49 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Sep 2022 14:24:26 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog操作手冊</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20220928_blog%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A.md/</link>
+      <pubDate>Wed, 28 Sep 2022 14:24:26 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20220928_blog%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A.md/</guid>
+      <description>筆記  部落格要一直寫下去是不間單，工作一忙回到家倒頭就睡，沒時間跟精神來記錄一下
+我本人基本上沒有在使用IG，但內心也有一個要發廢文的衝動
+把這邊當IG在用來的心態寫東西
+記錄一下Hugo操作的指令
+免得下次又要再去查怎麼用
+ Hugo指令  新增文章 hugo new post/20220928_Blog操作手冊.md 這樣就可以在content/post/下看到新創的markdown檔
+開幾本地server hugo server 先在本地測試預覽用的
+打包成靜態網頁檔 hugo hugo -d ../GitHub/MindBreaker3310.github.io 執行完後，打包的靜態網頁會輸出在public/資料夾下
+或是給他destination flag輸出到指定資料夾
+ GitHub Page相關  我這邊是打包成靜態網頁檔直接蓋掉Github Page對應在本機的檔案
+接著commit push收工
+ MarkDown相關  &amp;gt;## MarkDown相關
+段落標題，如上
+### 段落內的小區塊
+段落內的小區塊 **就是粗體** *就是斜體*
+就是粗體 就是斜體
++ 列表的Fu
+ 列表的Fu  ![圖片下方的文字](images/圖片檔名.jpg)
+上圖片
+其他有需要再去查吧 https://markdown.tw/
+ 後記  希望未來還能持續更新，GOGO~</description>
+    </item>
+    
+    <item>
+      <title>RabbitMQ重新理解</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20220706_rabbitmq%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3.md/</link>
+      <pubDate>Wed, 06 Jul 2022 15:04:29 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20220706_rabbitmq%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3.md/</guid>
+      <description>前言  之前寫了關於RabbitMQ的筆記
+其實是記錄如何使用masstransit套件來快速的傳遞message
+這個套件支援的功能與能夠設定的細節當然是沒有原生來得好
+所以重新學習一下如何使用官方的套件
+ Hello World!  實作最簡單的
+Producer直接將Message丟入Queue再由Consumer處理完畢
+架構圖
+ 發送端程式碼  class Send { public static void Main() { var factory = new ConnectionFactory() { HostName = &amp;#34;localhost&amp;#34; }; using (var connection = factory.CreateConnection())//連線至rabbitmq server  using (var channel = connection.CreateModel())//建立模型  { //宣告queue(如果不存在才會宣告)  channel.QueueDeclare(queue: &amp;#34;hello&amp;#34;,//queue名稱  durable: false, exclusive: false, autoDelete: false, arguments: null); //要傳送的訊息  string message = &amp;#34;Hello World!</description>
+    </item>
+    
+    <item>
+      <title>C#反射方法紀錄</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20220629_c#%E5%8F%8D%E5%B0%84%E6%96%B9%E6%B3%95%E7%B4%80%E9%8C%84.md/</link>
+      <pubDate>Wed, 29 Jun 2022 10:48:46 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20220629_c#%E5%8F%8D%E5%B0%84%E6%96%B9%E6%B3%95%E7%B4%80%E9%8C%84.md/</guid>
+      <description>筆記  記錄一下這個特別的controller寫法
+通通都只有一個入口，傳入加密的電文，解析電文後
+會得知要執行的class名稱與DLL名稱
+由名稱字串到執行功能的步驟
+來做到動態的呼叫的方法
+使用反射
+不囉說 直接看程式
+//xxxService 專案名稱 //xxxFolder 資料夾名稱 //xxxClass 名稱 //&amp;#34;xxxClass的位置, DLL名稱(通常是專案名稱)&amp;#34; string targetFile = &amp;#34;xxxService.xxxFolder.xxxClass, xxxService&amp;#34;; //方法名稱 string targetMethod = &amp;#34;DoSomething&amp;#34;; //傳入參數 Object[] args = [{xxxInputObject}]; //讀取dll Type dll = Type.GetType(target); //實作dll Object InstanceObj = dll.InvokeMember(null, BindingFlags.DeclaredOnly | //invokeAttr一個或多個BindingFlags組成，會指定執行搜尋的方式  BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.CreateInstance, null, null, null); //執行實作物件的方法 Object result = dll.InvokeMember(targetMethod,//要呼叫的屬性或方法名稱  BindingFlags.InvokeMethod, //invoke參數  null, InstanceObj, //要執行的obj  args); //傳入的參數  //回傳執行結果 return result;  參考  https://www.</description>
+    </item>
+    
+    <item>
+      <title>MongoDb Cli 讀取資料</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20220627_mongodb_cli%E6%93%8D%E4%BD%9C.md/</link>
+      <pubDate>Mon, 27 Jun 2022 14:07:21 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20220627_mongodb_cli%E6%93%8D%E4%BD%9C.md/</guid>
+      <description>筆記  還不會在dcoker內透過mongo express(GUI工具)同時連線多個MongoDB，只能先用指令先擋著了。
+常用查看資料內容的方法大致如下
+其他用在再看文檔就好
+//使用mongo cli mongo //顯示資料庫 show dbs //使用資料庫(myDb為例) use myDb //讀取資料 db.myCollection.find() db.myCollection.find().pretty() db.get(&amp;#39;myCollection&amp;#39;).find() db.get(&amp;#39;myCollection&amp;#39;).find().pretty() //有條件的讀取 db.myCollection.find({條件}, {欄位}) db.myCollection.find({name: &amp;#39;Max&amp;#39;}, {name : 1, age : 1}) db.myCollection.find({name: &amp;#39;Max&amp;#39;}, {name : 1, age : 1, height : 1}) // &amp;gt;18歲 db.myCollection.find({age: {$gt : 18} }, {name : 1, age : 1}) // &amp;gt;=18歲 db.myCollection.find({age: {$gte : 18} }, {name : 1, age : 1}) // &amp;lt;18歲 db.</description>
+    </item>
+    
     <item>
       <title>學習UML</title>
       <link>https://mindbreaker3310.github.io/posts/post/20220126%E5%AD%B8%E7%BF%92uml.md/</link>
@@ -237,7 +310,8 @@ Regex.IsMatch(EnglishName, &amp;#34;@^(?=.*[A-Z].*[A-Z].*[A-Z])[A-Z//.\\\s]{3,50
       <guid>https://mindbreaker3310.github.io/posts/post/20211211_xboxgamepass.md/</guid>
       <description>介紹  自小時候我就是Halo(最後一戰)系列的鐵桿粉絲了，在最初代XBOX上面不知道重破了好幾遍，這款遊戲也是我唯一想要購買XBOX的理由了，過了超久到了現在，Halo也不再是XBOX獨佔了(除了Halo 5)，其他版本皆已經能在PC上遊玩，如今Halo Infinite也正式推出，這次鐵了心買了XGPU的會員，一次就給他包3年。這三年微軟自家的遊戲都可以直接玩爆，還有EA PLAY可以玩，絕對玩不完的。 趕回來結束戰鬥
  省錢  網路上有很多教你怎麼儲XGPU最劃算，但是算一算都還是要幾千元，因為台灣的XGPU價格太高了，國外其他地區的價格可能比台灣便宜上不少，所以自行跨區購買或是請人代儲可能是最划算的方案，但是這些風險都比較高，但是我打開淘寶看到代儲3年只要118人民幣，真的是太香了，直接秒速下訂，但發現淘寶的虛擬物品只能透過中國的銀行卡來進行付款，不支持海外刷卡，或是玉山ATM轉帳，只能去蝦皮找代付，看了幾家都差不多錢，公道價應該是1:5.4台幣，換算下來淘寶代儲只需要台幣637，一年只要200出頭，太划算了。
- 代儲  代儲最好使用小號且要先把密碼隨便改掉，再給淘寶的店家比較安全，店家登入時會再跟你要登入安全碼，我不確定店家是如何把成本壓那麼低的，不過代儲時會看到自己的信箱收到來自微軟的日文信件的付款訊息，應該官方的沒錯，最後記得把密碼改掉。 代儲時收到的日文信件</description>
+ 代儲  代儲最好使用小號且要先把密碼隨便改掉，再給淘寶的店家比較安全，店家登入時會再跟你要登入安全碼，我不確定店家是如何把成本壓那麼低的，不過代儲時會看到自己的信箱收到來自微軟的日文信件的付款訊息，應該官方的沒錯，最後記得把密碼改掉。 代儲時收到的日文信件
+ 貪小便宜的下場  沒想到過了半年後，突然發現被偵測到違反Xbox條款及條件，被取消訂閱啦QQ，只好聯繫賣家退款，淘寶店鋪直接倒店找不到商店了，但好在賣家客服還在，也願意按照比例退款(願意退98.5RMB)。 需要聯繫官方客服申請開通退款，經過官方客服漫長的處理(隔天早上)，再次聯繫客服才開通成功，一開始詢問是不是退到我的支付寶，客服說是，結過退完發現是退到代付的人那邊＝＝ 去蝦皮看也發現他倒店了，聊聊五天前上線，希望渺茫Ｒ</description>
     </item>
     
     <item>

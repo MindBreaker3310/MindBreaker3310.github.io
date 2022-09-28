@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MongoDB on MindBreaker3310</title>
+    <link>https://mindbreaker3310.github.io/categories/mongodb/</link>
+    <description>Recent content in MongoDB on MindBreaker3310</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jun 2022 14:07:21 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/categories/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MongoDb Cli 讀取資料</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20220627_mongodb_cli%E6%93%8D%E4%BD%9C.md/</link>
+      <pubDate>Mon, 27 Jun 2022 14:07:21 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20220627_mongodb_cli%E6%93%8D%E4%BD%9C.md/</guid>
+      <description>筆記  還不會在dcoker內透過mongo express(GUI工具)同時連線多個MongoDB，只能先用指令先擋著了。
+常用查看資料內容的方法大致如下
+其他用在再看文檔就好
+//使用mongo cli mongo //顯示資料庫 show dbs //使用資料庫(myDb為例) use myDb //讀取資料 db.myCollection.find() db.myCollection.find().pretty() db.get(&amp;#39;myCollection&amp;#39;).find() db.get(&amp;#39;myCollection&amp;#39;).find().pretty() //有條件的讀取 db.myCollection.find({條件}, {欄位}) db.myCollection.find({name: &amp;#39;Max&amp;#39;}, {name : 1, age : 1}) db.myCollection.find({name: &amp;#39;Max&amp;#39;}, {name : 1, age : 1, height : 1}) // &amp;gt;18歲 db.myCollection.find({age: {$gt : 18} }, {name : 1, age : 1}) // &amp;gt;=18歲 db.myCollection.find({age: {$gte : 18} }, {name : 1, age : 1}) // &amp;lt;18歲 db.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,23 @@
     <description>Recent content in Micorservices on MindBreaker3310</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Dec 2021 11:33:55 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/micorservices/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Jul 2022 15:04:29 +0800</lastBuildDate><atom:link href="https://mindbreaker3310.github.io/tags/micorservices/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RabbitMQ重新理解</title>
+      <link>https://mindbreaker3310.github.io/posts/post/20220706_rabbitmq%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3.md/</link>
+      <pubDate>Wed, 06 Jul 2022 15:04:29 +0800</pubDate>
+      
+      <guid>https://mindbreaker3310.github.io/posts/post/20220706_rabbitmq%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3.md/</guid>
+      <description>前言  之前寫了關於RabbitMQ的筆記
+其實是記錄如何使用masstransit套件來快速的傳遞message
+這個套件支援的功能與能夠設定的細節當然是沒有原生來得好
+所以重新學習一下如何使用官方的套件
+ Hello World!  實作最簡單的
+Producer直接將Message丟入Queue再由Consumer處理完畢
+架構圖
+ 發送端程式碼  class Send { public static void Main() { var factory = new ConnectionFactory() { HostName = &amp;#34;localhost&amp;#34; }; using (var connection = factory.CreateConnection())//連線至rabbitmq server  using (var channel = connection.CreateModel())//建立模型  { //宣告queue(如果不存在才會宣告)  channel.QueueDeclare(queue: &amp;#34;hello&amp;#34;,//queue名稱  durable: false, exclusive: false, autoDelete: false, arguments: null); //要傳送的訊息  string message = &amp;#34;Hello World!</description>
+    </item>
+    
     <item>
       <title>RabbitMQ筆記</title>
       <link>https://mindbreaker3310.github.io/posts/post/20211228_rabbitmq%E7%AD%86%E8%A8%98.md/</link>
